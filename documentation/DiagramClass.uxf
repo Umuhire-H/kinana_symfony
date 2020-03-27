@@ -1,0 +1,356 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.3.0">
+  <zoom_level>12</zoom_level>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>732</x>
+      <y>96</y>
+      <w>372</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>lt=-
+m1=0..1
+m2=0..*
+participate &gt;</panel_attributes>
+    <additional_attributes>10.0;20.0;290.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1092</x>
+      <y>300</y>
+      <w>240</w>
+      <h>372</h>
+    </coordinates>
+    <panel_attributes>Activity
+--
+-name: string
+-description:string
+-date: Date
+-isComplete : bool
+-freePlace : int
+-price : float
+-animator : User 
+-partipations : Participation[]
+-agenda:AgendaAPI
+--
++CRUD methodes
++addInAgenda(Activity)
++showInAgenda ()</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1104</x>
+      <y>792</y>
+      <w>204</w>
+      <h>168</h>
+    </coordinates>
+    <panel_attributes>AgendaAPI
+--
+-activities : Activity[]
+--
++showAllActivities()
++showDetails(Activity)</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>432</x>
+      <y>0</y>
+      <w>312</w>
+      <h>216</h>
+    </coordinates>
+    <panel_attributes>Child
+--
+-firstName : string
+-lastName: string
+-dateOfBirth:Date
+-Parent : User
+-sesParticipations:Participation[]
+--
++CRUD methodes
++participate(Activity activityX)</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>432</x>
+      <y>312</y>
+      <w>300</w>
+      <h>372</h>
+    </coordinates>
+    <panel_attributes>User
+--
+-firstName : string
+-lastName: string
+-email : string
+-password:string
+-passwordHash:string
+-role : Role
+
+--
++CRUD methodes
++login()
++animate
++enrolChild (Activity actitityx)
++participate(Activity activityX)
++translate()
++translate(textToTranslate : string)
++demand(textToTranslate:string
++</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>588</x>
+      <y>204</y>
+      <w>132</w>
+      <h>132</h>
+    </coordinates>
+    <panel_attributes>lt=-
+m1=0..1
+m2=0..*
+est parent &gt;</panel_attributes>
+    <additional_attributes>10.0;90.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1176</x>
+      <y>660</y>
+      <w>144</w>
+      <h>156</h>
+    </coordinates>
+    <panel_attributes>lt=-
+m1=0..*
+m2=0..1
+is classified &gt;</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;110.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>768</x>
+      <y>792</y>
+      <w>216</w>
+      <h>168</h>
+    </coordinates>
+    <panel_attributes>TranslationDone
+--
+-translator:User
+-translation : Translation
+-date : Date</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>384</x>
+      <y>672</y>
+      <w>132</w>
+      <h>156</h>
+    </coordinates>
+    <panel_attributes>lt=-
+m1=0..1
+m2=0..*
+demand &gt;</panel_attributes>
+    <additional_attributes>40.0;10.0;10.0;110.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>720</x>
+      <y>672</y>
+      <w>96</w>
+      <h>144</h>
+    </coordinates>
+    <panel_attributes>lt=-
+m1=0..*
+m2=1..1
+do &gt;</panel_attributes>
+    <additional_attributes>40.0;100.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>96</x>
+      <y>312</y>
+      <w>192</w>
+      <h>180</h>
+    </coordinates>
+    <panel_attributes>Role
+--
+-id : int
+-name : string
+(admin, translator, 
+animator, parent, other 
+--
++CRUD methodes
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>276</x>
+      <y>372</y>
+      <w>180</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>lt=-
+m1=1..1
+m2=0..*
+have &gt;</panel_attributes>
+    <additional_attributes>10.0;20.0;130.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>720</x>
+      <y>408</y>
+      <w>396</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>lt=-
+m1=0..1
+m2=0..*
+animate &gt;</panel_attributes>
+    <additional_attributes>10.0;20.0;310.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>492</x>
+      <y>1068</y>
+      <w>192</w>
+      <h>168</h>
+    </coordinates>
+    <panel_attributes>Translation
+--
+-id
+-name:string
+-description:string
+--
++CRUD methodes
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>672</x>
+      <y>948</y>
+      <w>144</w>
+      <h>144</h>
+    </coordinates>
+    <panel_attributes>lt=-
+m1=1..1
+m2=1..*
+fait par &gt;</panel_attributes>
+    <additional_attributes>10.0;100.0;80.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>120</x>
+      <y>804</y>
+      <w>276</w>
+      <h>156</h>
+    </coordinates>
+    <panel_attributes>TranslationDemand
+--
+-applicant:User
+-textToTranslate : string
+-translation : Translation (nullable)
+-date:Date</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>792</x>
+      <y>1080</y>
+      <w>684</w>
+      <h>228</h>
+    </coordinates>
+    <panel_attributes>Note..
+question sur : methode  demand() &amp;&amp; proporiété textToTranslate
+--
+
+methode  demand()renvererra vers un formulaire de contact
+
+(comment faire après?:
+1.envoyer directement la demande par mail 
+au translator sans stocker dans la DB--&gt; gain de place/facilité
+2. stocker dans la BD --&gt; pour avoir une version avant et après
+  =&gt; textToTranslate doit être un simple champ ou un object complet?
+
+
+bg=red</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>720</x>
+      <y>168</y>
+      <w>384</w>
+      <h>168</h>
+    </coordinates>
+    <panel_attributes>lt=-
+m1=0..1
+m2=0..*
+participate &gt;</panel_attributes>
+    <additional_attributes>10.0;120.0;300.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1080</x>
+      <y>48</y>
+      <w>192</w>
+      <h>132</h>
+    </coordinates>
+    <panel_attributes>Participation
+--
+participant : Child || User
+activity: Activity
+--
++CRUD methodes</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1164</x>
+      <y>168</y>
+      <w>108</w>
+      <h>156</h>
+    </coordinates>
+    <panel_attributes>lt=-
+m1=0..*
+m2=1..1
+accept &gt;</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;110.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>384</x>
+      <y>948</y>
+      <w>156</w>
+      <h>144</h>
+    </coordinates>
+    <panel_attributes>lt=-
+m1=1..1
+m2=1..*
+involve &gt;</panel_attributes>
+    <additional_attributes>90.0;100.0;10.0;10.0</additional_attributes>
+  </element>
+</diagram>
