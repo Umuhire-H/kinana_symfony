@@ -1,18 +1,17 @@
-// Variables
+// Color Variables
+$primary-color: #ffbc3b;
+$secondary-color: #1a1a37;
+$text-color: #5c5c77;
+$text-color-light: #8585a4;
+$text-color-dark: #1e1e4b;
+$body-color: #fff;
+$border-color: #ededf1;
+$black: #000;
+$white: #fff;
+$light: #f8f9fe;
+$gray: #f8f8f8;
 
-// Restated Bootstrap Variables
-
-$white: #fff !default;
-$gray-100: #f8f9fa !default;
-$gray-200: #e9ecef !default;
-$gray-300: #dee2e6 !default;
-$gray-400: #ced4da !default;
-$gray-500: #adb5bd !default;
-$gray-600: #868e96 !default;
-$gray-700: #495057 !default;
-$gray-800: #343a40 !default;
-$gray-900: #212529 !default;
-$black: #000 !default;
-
-$primary: #e6a756 !default;
-$secondary: #2F170F !default;
+// Font Variables
+$primary-font: 'Poppins', sans-serif;
+$secondary-font: 'futura-bold';
+$icon-font: 'themify';
