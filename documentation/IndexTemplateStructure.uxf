@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.3.0">
+  <zoom_level>10</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>130</x>
+      <y>140</y>
+      <w>260</w>
+      <h>610</h>
+    </coordinates>
+    <panel_attributes>index.html
+--
+*&lt;body&gt;*
+header
+--
+modal
+--
+hero slider (3x)
+-
+banner feature
+--
+about us &gt; about.html
+
+--
+courses  &gt;courses.html
+ - course list : item -&gt;course-single.html
+ - mobile : btn : seeAll &gt; courses.html
+ 
+--
+cta &gt; form: contact.html
+--
+succes story &gt; youtubeVideao + txt
+
+--
+events &gt; events.html
+ - event &gt; event-single.html
+ - - mobile : btn : seeAll &gt; courses.html
+ 
+--
+teachers
+ - item &gt; teacher-single.html  
+ 
+-
+blog 
+ - blog post &gt; blog-single.html
+ 
+-
+footer
+ - newlettter &gt; form
+ - footer content
+ - copyright
+ 
+-
+scripts
+--
+*&lt;/body&gt;*</panel_attributes>
+    <additional_attributes/>
+  </element>
+</diagram>
