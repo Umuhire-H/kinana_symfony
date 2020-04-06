@@ -2,7 +2,7 @@
 <html lang="fr">
   <head>
     <meta charset="utf-8" />
-    <title>Educenter</title>
+    <title>{% block title %}{% endblock %}</title>
 
     <!-- mobile responsive meta -->
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -295,7 +295,28 @@
         </div>
       </div>
     </div>
-    {% block hero_slider %}
+    <!-- end Modal -->
+    {% block page_title %}
+    <!-- page title -->
+    <section class="page-title-section overlay" data-background="images/backgrounds/page-title.jpg">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-8">
+            <ul class="list-inline custom-breadcrumb">
+              <li class="list-inline-item"><a class="h2 text-primary font-secondary" href="@@page-link">{% block page_title_title %}{% endblock %}</a></li>
+              {# --------------------------------------------------------------------------------- #}
+              {# test test : 3single-pages have the class "nasted" instead of "@@nasted"  #}
+              {# + this li = full  #}
+              <li class="list-inline-item text-white h3 font-secondary nasted">{% block page_title_second_title %}{% endblock %}</li>
+              {# --------------------------------------------------------------------------------- #}
+              <li class="list-inline-item text-white h3 font-secondary @@nasted"></li>
+            </ul>
+            <p class="text-lighten">{% block page_title_content %}{% endblock %}</p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- /page title -->
     {% endblock %} 
 
     {% block content %}
