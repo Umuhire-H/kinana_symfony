@@ -304,12 +304,15 @@
           <div class="col-md-8">
             <ul class="list-inline custom-breadcrumb">
               <li class="list-inline-item"><a class="h2 text-primary font-secondary" href="@@page-link">{% block page_title_title %}{% endblock %}</a></li>
-              {# --------------------------------------------------------------------------------- #}
-              {# test test : 3single-pages have the class "nasted" instead of "@@nasted"  #}
-              {# + this li = full  #}
-              <li class="list-inline-item text-white h3 font-secondary nasted">{% block page_title_second_title %}{% endblock %}</li>
-              {# --------------------------------------------------------------------------------- #}
+
+              {% block page_title_second_title_empty %}
               <li class="list-inline-item text-white h3 font-secondary @@nasted"></li>
+              {% endblock %}
+
+              {% block page_title_second_title_full %}
+              <li class="list-inline-item text-white h3 font-secondary nasted">{% block page_title_second_title_full_title %}{% endblock %}</li>
+              {% endblock %}
+              
             </ul>
             <p class="text-lighten">{% block page_title_content %}{% endblock %}</p>
           </div>
