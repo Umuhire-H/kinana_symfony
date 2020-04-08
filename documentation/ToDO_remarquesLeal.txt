@@ -1,0 +1,57 @@
+----navigation : preciser
+-ok--activite o animateu 1...n
+-ok-- user : 2 roles ( parent---animateur---traducteur)
+-ok--user lié a enfant + traduction  ....user 
+     2 len avec traduction : (demander et 
+     faire....2 type de gets (getTraductionDemandé)
+ 
+role acces : en acces ( si je veux historique)
+---getTraductions
+---parents qui cree traduction
+
+AJOUTER LES ATTRIBUTS
+---organisateur d'activ pr enfant + inclus traduction de chanson/texte
+
+diagrammes : enlever les listes+CRUDS
+__ enlever Participation ( mettre ob)
+
+
+=========================================================
+pagination : voir lien + querybuilder
+=========================================================
+------------
+agenda + traduction : filtre !!! (par sujet / par date/...
+
+
+---------------------
+=========================================================
+respecter les consignes + syntax symfony
+=========================================================
+!Respectez les consignes, svp (1)
+_____ 1) Faites "Save Workspace as", ça me facilite la tache d'ouvrir et manipuler les projets. 
+
+_____ 2) Svp respectez les consignes pour nommer les classes (camel case) et les autres normes qu'on a 	établi
+	car autrement on va devenir dingues.
+
+_____ 3) Les propriétes sont en camel case, pas de majuscules au debut 
+
+_____ 4) Les methodes en camel case
+
+_____ 5) ne faites pas de racourcis style "setMDP" pour "setMotDePass" car autrement je dois deviner vos 	intentions.
+	L'idéel ici c'est "setPass" car les conjuctions n'apportent pas grande chose.
+
+_____ Pour l'indentation, utilisez CTRL
+
+=========================================================
+1.fixtures:
+=========================================================
+__remplissage de DB par fakeData > quand modif : probleme : après modif dans les entités-> migrations : parfois doctrine n'éfface pas les données
+__solution POUR LES CLASSES PRINCIPALES: creer les classes qui remplissent les donner pour nous <----courseTest extends Fixture
+=========================================================
+Entités d'abord, rélations après. Tout en utilisant git.
+=========================================================	
+D'abord toutes les entités isolées, sans les rélations
+	Commit "entités faites sans rélations"
+	Toutes les rélations, en faisant un commit à chaque fois que vous créez les rélations d'une entité. Vous mettrez "relations entité XX faites" comme message du commit.
+
+Bonne chance. On se voit demain matin j'éspère! 
