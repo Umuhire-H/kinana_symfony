@@ -239,4 +239,17 @@ m2=0..1
 régler </panel_attributes>
     <additional_attributes>10.0;20.0;150.0;20.0</additional_attributes>
   </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>1044</x>
+      <y>192</y>
+      <w>312</w>
+      <h>120</h>
+    </coordinates>
+    <panel_attributes>Note..
+bg=blue
+2 tables séparées ou une seule ?</panel_attributes>
+    <additional_attributes/>
+  </element>
 </diagram>
