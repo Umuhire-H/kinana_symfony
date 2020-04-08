@@ -7,7 +7,7 @@
       <x>880</x>
       <y>150</y>
       <w>260</w>
-      <h>470</h>
+      <h>380</h>
     </coordinates>
     <panel_attributes>about.html
 --
@@ -111,7 +111,7 @@ blog
       <x>1140</x>
       <y>150</y>
       <w>260</w>
-      <h>470</h>
+      <h>380</h>
     </coordinates>
     <panel_attributes>blog-single.html
 --
@@ -206,6 +206,20 @@ TRADUCTIONS
 -mixitup filter
 -google map
 -Main Script</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>900</x>
+      <y>590</y>
+      <w>560</w>
+      <h>320</h>
+    </coordinates>
+    <panel_attributes>Note..
+bg=red
+possible errors de tepmates : 
+1. base.html.twig {% block page_title_second_title %}{% endblock %}</panel_attributes>
     <additional_attributes/>
   </element>
 </diagram>
