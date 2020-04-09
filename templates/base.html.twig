@@ -30,15 +30,16 @@
     <link rel="stylesheet" href="{{ asset ('assets/css/style.css')}}" />
 
     <!--Favicon-->
-    {#     
-    <link rel="shortcut icon" href="{{ asset ('assets/images/favicon.ico')}}" type="image/x-icon" />
-    <link rel="icon" href="{{ asset ('assets/images/favicon.ico')}}" type="image/x-icon" /> #}
+       
+    {# <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="images/favicon.ico" type="image/x-icon">
+     #}
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
 
     <!--Favicon-->
-    
-    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
-    <link rel="icon" href="images/favicon.ico" type="image/x-icon">
-
   </head>
 
   <body>
@@ -54,22 +55,10 @@
                   <a
                     class="text-uppercase text-color p-sm-2 py-2 px-0 d-inline-block"
                     href="{{ path ('notice') }}"
-                    >Bientôt</a
+                    >prochainement... </a
                   >
                 </li>
-                <li class="list-inline-item">
-                  <a
-                    class="text-uppercase text-color p-sm-2 py-2 px-0 d-inline-block"
-                    href="{{ path ('research') }}"
-                    >research</a
-                  >
-                </li>
-                <li class="list-inline-item">
-                  <a
-                    class="text-uppercase text-color p-sm-2 py-2 px-0 d-inline-block"
-                    href="{{ path ('scholarship') }}"
-                    >SCHOLARSHIP</a
-                  >
+               
                 </li>
                 <li class="list-inline-item">
                   <a
@@ -77,7 +66,7 @@
                     href="#"
                     data-toggle="modal"
                     data-target="#loginModal"
-                    >login</a
+                    >se connecter </a
                   >
                 </li>
                 <li class="list-inline-item">
@@ -86,7 +75,7 @@
                     href="#"
                     data-toggle="modal"
                     data-target="#signupModal"
-                    >register</a
+                    >s'inscrire</a
                   >
                 </li>
               </ul>
@@ -99,7 +88,7 @@
         <div class="container">
           <nav class="navbar navbar-expand-lg navbar-light p-0">
             <a class="navbar-brand" href="{{ path ('home') }}"
-              ><img src="{{ asset ('assets/images/logo.png')}}" alt="logo"
+              ><img src="{{ asset ('assets/images/favicon-32x32.png')}}" alt="logo"
             /></a>
             <button
               class="navbar-toggler rounded-0"
@@ -116,59 +105,21 @@
             <div class="collapse navbar-collapse" id="navigation">
               <ul class="navbar-nav ml-auto text-center">
                 <li class="nav-item active">
-                  <a class="nav-link" href="{{ path ('home') }}">Home</a>
+                  <a class="nav-link" href="{{ path ('home') }}">acceuil</a>
                 </li>
                 <li class="nav-item @@about">
-                  <a class="nav-link" href="{{ path ('about') }}">About</a>
+                  <a class="nav-link" href="{{ path ('about') }}"> qui est KINA ?</a>
                 </li>
                 <li class="nav-item @@courses">
-                  <a class="nav-link" href="{{ path ('courses') }}">COURSES</a>
+                  <a class="nav-link" href="{{ path ('courses') }}">nos activités</a>
                 </li>
                 <li class="nav-item @@events">
-                  <a class="nav-link" href="{{ path ('events') }}">EVENTS</a>
+                  <a class="nav-link" href="{{ path ('events') }}">vue sur l'agenda</a>
                 </li>
                 <li class="nav-item @@blog">
-                  <a class="nav-link" href="{{ path ('blog') }}">BLOG</a>
+                  <a class="nav-link" href="{{ path ('blog') }}">nos traductions</a>
                 </li>
-                <li class="nav-item dropdown view">
-                  <a
-                    class="nav-link dropdown-toggle"
-                    href="#"
-                    id="navbarDropdown"
-                    role="button"
-                    data-toggle="dropdown"
-                    aria-haspopup="true"
-                    aria-expanded="false"
-                  >
-                    Pages
-                  </a>
-                  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="{{ path ('teacher') }}">Teacher</a>
-                    <a class="dropdown-item" href="{{ path ('teacher-single') }}"
-                      >Teacher Single</a
-                    >
-                    <a class="dropdown-item" href="{{ path ('notice') }}">Notice</a>
-                    <a class="dropdown-item" href="{{ path ('notice-single') }}"
-                      >Notice Details</a
-                    >
-                    <a class="dropdown-item" href="{{ path ('research') }}">Research</a>
-                    <a class="dropdown-item" href="{{ path ('scholarship') }}"
-                      >Scholarship</a
-                    >
-                    <a class="dropdown-item" href="{{ path ('course-single') }}"
-                      >Course Details</a
-                    >
-                    <a class="dropdown-item" href="{{ path ('event-single') }}"
-                      >Event Details</a
-                    >
-                    <a class="dropdown-item" href="{{ path ('blog-single') }}"
-                      >Blog Details</a
-                    >
-                  </div>
-                </li>
-                <li class="nav-item @@contact">
-                  <a class="nav-link" href="{{ path ('contact') }}">CONTACT</a>
-                </li>
+               
               </ul>
             </div>
           </nav>
@@ -187,7 +138,7 @@
       <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content rounded-0 border-0 p-4">
           <div class="modal-header border-0">
-            <h3>Register</h3>
+            <h3>S'inscrire</h3>
             <button
               type="button"
               class="close"
@@ -204,18 +155,18 @@
                   <input
                     type="text"
                     class="form-control mb-3"
-                    id="signupPhone"
-                    name="signupPhone"
-                    placeholder="Phone"
+                    id="signupName1"
+                    name="signupName2"
+                    placeholder="Nom"
                   />
                 </div>
                 <div class="col-12">
                   <input
                     type="text"
                     class="form-control mb-3"
-                    id="signupName"
-                    name="signupName"
-                    placeholder="Name"
+                    id="signupName2"
+                    name="signupName2"
+                    placeholder="Prénom"
                   />
                 </div>
                 <div class="col-12">
@@ -233,11 +184,20 @@
                     class="form-control mb-3"
                     id="signupPassword"
                     name="signupPassword"
-                    placeholder="Password"
+                    placeholder="Mot de passe"
                   />
                 </div>
                 <div class="col-12">
-                  <button type="submit" class="btn btn-primary">SIGN UP</button>
+                  <input
+                    type="password"
+                    class="form-control mb-3"
+                    id="signupPassword"
+                    name="signupPassword"
+                    placeholder="Confirmer le mot de passe"
+                  />
+                </div>
+                <div class="col-12">
+                  <button type="submit" class="btn btn-primary text-uppercase">envoyer</button>
                 </div>
               </form>
             </div>
@@ -256,7 +216,7 @@
       <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content rounded-0 border-0 p-4">
           <div class="modal-header border-0">
-            <h3>Login</h3>
+            <h3>Se connecter</h3>
             <button
               type="button"
               class="close"
@@ -296,7 +256,7 @@
                 />
               </div>
               <div class="col-12">
-                <button type="submit" class="btn btn-primary">LOGIN</button>
+                <button type="submit" class="btn btn-primary text-uppercase">envoyer</button>
               </div>
             </form>
           </div>
@@ -311,8 +271,8 @@
         <div class="row">
           <div class="col-md-8">
             <ul class="list-inline custom-breadcrumb">
-              <li class="list-inline-item"><a class="h2 text-primary font-secondary" href="@@page-link">{% block page_title_title %}{% endblock %}</a></li>
-
+              {# <li class="list-inline-item"><a class="h2 text-primary font-secondary" href="@@page-link">{% block page_title_title %}{% endblock %}</a></li> CE2ER UN CONTROLLER ssi finalement utilisé E#}
+              <li class="list-inline-item"><a class="h2 text-primary font-secondary" href="#page_title_content">{% block page_title_title %}{% endblock %}</a></li>
               {% block page_title_second_title_empty %}
               <li class="list-inline-item text-white h3 font-secondary @@nasted"></li>
               {% endblock %}
@@ -322,7 +282,7 @@
               {% endblock %}
               
             </ul>
-            <p class="text-lighten">{% block page_title_content %}{% endblock %}</p>
+            <p id="page_title_content" class="text-lighten">{% block page_title_content %}{% endblock %}</p>
           </div>
         </div>
       </div>
@@ -366,7 +326,7 @@
             <div class="col-lg-4 col-sm-8 mb-5 mb-lg-0">
               <!-- logo -->
               <a class="logo-footer" href="{{ path ('home') }}"
-                ><img class="img-fluid mb-4" src="{{ asset ('assets/images/logo.png')}}" alt="logo"
+                ><img class="img-fluid mb-4" src="{{ asset ('assets/images/favicon-32x32..png')}}" alt="logo"
               /></a>
               <ul class="list-unstyled">
                 <li class="mb-2">
