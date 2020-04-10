@@ -47,16 +47,15 @@ participate </panel_attributes>
       <w>192</w>
       <h>264</h>
     </coordinates>
-    <panel_attributes>Activity
+    <panel_attributes>ActivityExecution
 --
--name: string
--description:string
 -date: Date
 -isComplete : bool
 -freePlace : int
--price : decimal
+
 
 --
+(object Activity)
 (array participations)
 (array userAnimators)
 bg=green</panel_attributes>
@@ -77,7 +76,6 @@ bg=green</panel_attributes>
 -email : string
 -passwordHash:string
 -role : JSON (roles)
-
 --
 (array animatedActivities)
 (array participationsParent)
@@ -86,7 +84,7 @@ bg=green</panel_attributes>
 (array TranslatedTexts)
 
 
-
+bg=green
 </panel_attributes>
     <additional_attributes/>
   </element>
@@ -146,7 +144,7 @@ animate</panel_attributes>
 -textToTranslate:string
 -textTranslated:string
 -daten
-
+-
 (objet userDemandeur)
 (objet userTranslator)
 bg=green</panel_attributes>
@@ -170,21 +168,22 @@ participate </panel_attributes>
     <id>UMLClass</id>
     <coordinates>
       <x>792</x>
-      <y>48</y>
+      <y>24</y>
       <w>192</w>
-      <h>192</h>
+      <h>216</h>
     </coordinates>
     <panel_attributes>Participation
 --
-
+date : Date
+pricePayed:decimal
+typePayement
 status:string
-commentaire:string
-
+--
 (objet child)
 (objet activity)
 (objet user)
-(objet Payement)
-bg=red</panel_attributes>
+
+bg=green</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
@@ -218,52 +217,6 @@ translate</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1152</x>
-      <y>48</y>
-      <w>192</w>
-      <h>192</h>
-    </coordinates>
-    <panel_attributes>Payement
---
-typePayement
-pricePayed:decimal
-date : Date
-
-
-(objet Participation)
-bg=red</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>972</x>
-      <y>108</y>
-      <w>204</w>
-      <h>60</h>
-    </coordinates>
-    <panel_attributes>lt=-
-m1=0..1
-m2=0..1
-régler </panel_attributes>
-    <additional_attributes>10.0;20.0;150.0;20.0</additional_attributes>
-  </element>
-  <element>
-    <id>UMLNote</id>
-    <coordinates>
-      <x>984</x>
-      <y>192</y>
-      <w>312</w>
-      <h>120</h>
-    </coordinates>
-    <panel_attributes>Note..
-bg=blue
-2 tables séparées ou une seule ?</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
       <x>348</x>
       <y>36</y>
       <w>216</w>
@@ -274,28 +227,10 @@ bg=blue
 -firstName : string
 -lastName: string
 -dateOfBirth:Date
-
+--
 (array participations)
 (array Userparents)
 bg=green</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>1152</x>
-      <y>372</y>
-      <w>192</w>
-      <h>192</h>
-    </coordinates>
-    <panel_attributes>prix
---
-price:decimal
-date : Date
-
-
-(objet Activity)
-bg=red</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
@@ -303,13 +238,33 @@ bg=red</panel_attributes>
     <coordinates>
       <x>972</x>
       <y>444</y>
-      <w>204</w>
+      <w>216</w>
       <h>60</h>
     </coordinates>
     <panel_attributes>lt=-
-m1=0..1
+m1=0..*
 m2=0..1
-possède </panel_attributes>
-    <additional_attributes>10.0;20.0;150.0;20.0</additional_attributes>
+have </panel_attributes>
+    <additional_attributes>10.0;20.0;160.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1164</x>
+      <y>348</y>
+      <w>192</w>
+      <h>264</h>
+    </coordinates>
+    <panel_attributes>Activity
+--
+-name: string
+-description:string
+-price : decima
+-place : intl
+--
+(array ActivityExecution)
+(array userAnimators)
+bg=green</panel_attributes>
+    <additional_attributes/>
   </element>
 </diagram>
