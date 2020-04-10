@@ -27,16 +27,6 @@ class Activity
     private $description;
 
     /**
-     * @ORM\Column(type="datetime", nullable=true)
-     */
-    private $date;
-
-    /**
-     * @ORM\Column(type="boolean", nullable=true)
-     */
-    private $isComplete;
-
-    /**
      * @ORM\Column(type="integer")
      */
     private $place;
@@ -71,30 +61,6 @@ class Activity
     public function setDescription(?string $description): self
     {
         $this->description = $description;
-
-        return $this;
-    }
-
-    public function getDate(): ?\DateTimeInterface
-    {
-        return $this->date;
-    }
-
-    public function setDate(?\DateTimeInterface $date): self
-    {
-        $this->date = $date;
-
-        return $this;
-    }
-
-    public function getIsComplete(): ?bool
-    {
-        return $this->isComplete;
-    }
-
-    public function setIsComplete(?bool $isComplete): self
-    {
-        $this->isComplete = $isComplete;
 
         return $this;
     }
