@@ -36,7 +36,6 @@ class Activity
      */
     private $price;
 
-
     public function getId(): ?int
     {
         return $this->id;
@@ -89,5 +88,4 @@ class Activity
 
         return $this;
     }
-
 }
