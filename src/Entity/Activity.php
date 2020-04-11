@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -35,6 +37,16 @@ class Activity
      * @ORM\Column(type="decimal", precision=10, scale=2)
      */
     private $price;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\ActivityExecution", mappedBy="activity")
+     */
+    private $activityExecutions;
+
+    public function __construct()
+    {
+        $this->activityExecutions = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -85,6 +97,37 @@ class Activity
     public function setPrice(string $price): self
     {
         $this->price = $price;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|ActivityExecution[]
+     */
+    public function getActivityExecutions(): Collection
+    {
+        return $this->activityExecutions;
+    }
+
+    public function addActivityExecution(ActivityExecution $activityExecution): self
+    {
+        if (!$this->activityExecutions->contains($activityExecution)) {
+            $this->activityExecutions[] = $activityExecution;
+            $activityExecution->setActivity($this);
+        }
+
+        return $this;
+    }
+
+    public function removeActivityExecution(ActivityExecution $activityExecution): self
+    {
+        if ($this->activityExecutions->contains($activityExecution)) {
+            $this->activityExecutions->removeElement($activityExecution);
+            // set the owning side to null (unless already changed)
+            if ($activityExecution->getActivity() === $this) {
+                $activityExecution->setActivity(null);
+            }
+        }
 
         return $this;
     }
