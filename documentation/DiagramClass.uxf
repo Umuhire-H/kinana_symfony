@@ -263,7 +263,7 @@ have </panel_attributes>
 -place : intl
 --
 (array ActivityExecution)
-(array userAnimators)
+
 bg=green</panel_attributes>
     <additional_attributes/>
   </element>
