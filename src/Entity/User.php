@@ -50,10 +50,7 @@ class User implements UserInterface
      */
     private $dateBirth;
 
-    /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\ActivityExecution", mappedBy="userAnimators")
-     */
-    private $activityExecutions;
+   
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Participation", mappedBy="user")
@@ -77,7 +74,6 @@ class User implements UserInterface
 
     public function __construct()
     {
-        $this->activityExecutions = new ArrayCollection();
         $this->participations = new ArrayCollection();
         $this->children = new ArrayCollection();
         $this->requestedTexts = new ArrayCollection();
@@ -198,33 +194,8 @@ class User implements UserInterface
         return $this;
     }
 
-    /**
-     * @return Collection|ActivityExecution[]
-     */
-    public function getActivityExecutions(): Collection
-    {
-        return $this->activityExecutions;
-    }
-
-    public function addActivityExecution(ActivityExecution $activityExecution): self
-    {
-        if (!$this->activityExecutions->contains($activityExecution)) {
-            $this->activityExecutions[] = $activityExecution;
-            $activityExecution->addUserAnimator($this);
-        }
-
-        return $this;
-    }
-
-    public function removeActivityExecution(ActivityExecution $activityExecution): self
-    {
-        if ($this->activityExecutions->contains($activityExecution)) {
-            $this->activityExecutions->removeElement($activityExecution);
-            $activityExecution->removeUserAnimator($this);
-        }
-
-        return $this;
-    }
+   
+    
 
     /**
      * @return Collection|Participation[]
