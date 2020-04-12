@@ -52,6 +52,11 @@ class Participation
      */
     private $user;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Child", inversedBy="participations")
+     */
+    private $child;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -137,6 +142,18 @@ class Participation
     public function setUser(?User $user): self
     {
         $this->user = $user;
+
+        return $this;
+    }
+
+    public function getChild(): ?Child
+    {
+        return $this->child;
+    }
+
+    public function setChild(?Child $child): self
+    {
+        $this->child = $child;
 
         return $this;
     }
