@@ -30,8 +30,7 @@ respecter les consignes + syntax symfony
 !Respectez les consignes, svp (1)
 _____ 1) Faites "Save Workspace as", ça me facilite la tache d'ouvrir et manipuler les projets. 
 
-_____ 2) Svp respectez les consignes pour nommer les classes (camel case) et les autres normes qu'on a 	établi
-	car autrement on va devenir dingues.
+_____ 2) Svp respectez les consignes pour nommer les classes (camel case) 
 
 _____ 3) Les propriétes sont en camel case, pas de majuscules au debut 
 
