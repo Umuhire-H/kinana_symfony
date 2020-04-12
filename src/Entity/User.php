@@ -55,9 +55,15 @@ class User implements UserInterface
      */
     private $activityExecutions;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Participation", mappedBy="user")
+     */
+    private $participations;
+
     public function __construct()
     {
         $this->activityExecutions = new ArrayCollection();
+        $this->participations = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -197,6 +203,37 @@ class User implements UserInterface
         if ($this->activityExecutions->contains($activityExecution)) {
             $this->activityExecutions->removeElement($activityExecution);
             $activityExecution->removeUserAnimator($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Participation[]
+     */
+    public function getParticipations(): Collection
+    {
+        return $this->participations;
+    }
+
+    public function addParticipation(Participation $participation): self
+    {
+        if (!$this->participations->contains($participation)) {
+            $this->participations[] = $participation;
+            $participation->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeParticipation(Participation $participation): self
+    {
+        if ($this->participations->contains($participation)) {
+            $this->participations->removeElement($participation);
+            // set the owning side to null (unless already changed)
+            if ($participation->getUser() === $this) {
+                $participation->setUser(null);
+            }
         }
 
         return $this;
