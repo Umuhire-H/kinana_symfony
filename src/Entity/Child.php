@@ -38,9 +38,15 @@ class Child
      */
     private $participations;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\User", inversedBy="children")
+     */
+    private $userParents;
+
     public function __construct()
     {
         $this->participations = new ArrayCollection();
+        $this->userParents = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -110,6 +116,32 @@ class Child
             if ($participation->getChild() === $this) {
                 $participation->setChild(null);
             }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|User[]
+     */
+    public function getUserParents(): Collection
+    {
+        return $this->userParents;
+    }
+
+    public function addUserParent(User $userParent): self
+    {
+        if (!$this->userParents->contains($userParent)) {
+            $this->userParents[] = $userParent;
+        }
+
+        return $this;
+    }
+
+    public function removeUserParent(User $userParent): self
+    {
+        if ($this->userParents->contains($userParent)) {
+            $this->userParents->removeElement($userParent);
         }
 
         return $this;
