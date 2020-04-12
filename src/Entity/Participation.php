@@ -41,6 +41,12 @@ class Participation
      */
     private $comment;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\ActivityExecution", inversedBy="participations")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $activityExecution;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -102,6 +108,18 @@ class Participation
     public function setComment(?string $comment): self
     {
         $this->comment = $comment;
+
+        return $this;
+    }
+
+    public function getActivityExecution(): ?ActivityExecution
+    {
+        return $this->activityExecution;
+    }
+
+    public function setActivityExecution(?ActivityExecution $activityExecution): self
+    {
+        $this->activityExecution = $activityExecution;
 
         return $this;
     }
