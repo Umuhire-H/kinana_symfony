@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <diagram program="umlet" version="14.3.0">
-  <help_text>:entity// Uncomment the following line to change the fontsize and font:
+  <help_text>Ex:entity// Uncomment the following line to change the fontsize and font:
 // fontsize=14
 // fontfamily=SansSerif //possible: SansSerif,Serif,Monospaced
 
@@ -58,7 +58,7 @@ participate </panel_attributes>
 (object Activity)
 (array participations)
 (array userAnimators)
-bg=green</panel_attributes>
+bg=red</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
@@ -77,14 +77,14 @@ bg=green</panel_attributes>
 -passwordHash:string
 -role : JSON (roles)
 --
-(array animatedActivities)
-(array participationsParent)
+(array activityExecutions)
+(array participations)
 (array children)
 (array RequestedTexts)
 (array TranslatedTexts)
 
 
-bg=green
+bg=red
 </panel_attributes>
     <additional_attributes/>
   </element>
@@ -143,9 +143,9 @@ animate</panel_attributes>
 -name:string
 -textToTranslate:string
 -textTranslated:string
--daten
+-date
 -
-(objet userDemandeur)
+(objet userRequester)
 (objet userTranslator)
 bg=green</panel_attributes>
     <additional_attributes/>
@@ -230,7 +230,7 @@ translate</panel_attributes>
 --
 (array participations)
 (array Userparents)
-bg=green</panel_attributes>
+bg=red</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
