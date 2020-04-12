@@ -268,7 +268,7 @@ animate</panel_attributes>
 -passwordHash:string
 -role : JSON (roles)
 --
-(objet activityExecution)
+(array activityExecution)
 (array participations)
 (array children)
 (array RequestedTexts)
