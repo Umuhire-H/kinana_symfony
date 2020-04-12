@@ -70,7 +70,7 @@ class User implements UserInterface
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Text", mappedBy="userTranslator")
      */
-    private $translatedTexts;
+    private $translatedTexts; 
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\ActivityExecution", inversedBy="userAnimators")
