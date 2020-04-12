@@ -41,6 +41,17 @@ class Text
      */
     private $dateReturn;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="requestedTexts")
+     */
+    private $userRequester;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="translatedTexts")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $userTranslator;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -102,6 +113,30 @@ class Text
     public function setDateReturn(?\DateTimeInterface $dateReturn): self
     {
         $this->dateReturn = $dateReturn;
+
+        return $this;
+    }
+
+    public function getUserRequester(): ?User
+    {
+        return $this->userRequester;
+    }
+
+    public function setUserRequester(?User $userRequester): self
+    {
+        $this->userRequester = $userRequester;
+
+        return $this;
+    }
+
+    public function getUserTranslator(): ?User
+    {
+        return $this->userTranslator;
+    }
+
+    public function setUserTranslator(?User $userTranslator): self
+    {
+        $this->userTranslator = $userTranslator;
 
         return $this;
     }

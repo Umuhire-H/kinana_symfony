@@ -65,11 +65,23 @@ class User implements UserInterface
      */
     private $children;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Text", mappedBy="userRequester")
+     */
+    private $requestedTexts;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Text", mappedBy="userTranslator")
+     */
+    private $translatedTexts;
+
     public function __construct()
     {
         $this->activityExecutions = new ArrayCollection();
         $this->participations = new ArrayCollection();
         $this->children = new ArrayCollection();
+        $this->requestedTexts = new ArrayCollection();
+        $this->translatedTexts = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -268,6 +280,68 @@ class User implements UserInterface
         if ($this->children->contains($child)) {
             $this->children->removeElement($child);
             $child->removeUserParent($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Text[]
+     */
+    public function getRequestedTexts(): Collection
+    {
+        return $this->requestedTexts;
+    }
+
+    public function addRequestedText(Text $requestedText): self
+    {
+        if (!$this->requestedTexts->contains($requestedText)) {
+            $this->requestedTexts[] = $requestedText;
+            $requestedText->setUserRequester($this);
+        }
+
+        return $this;
+    }
+
+    public function removeRequestedText(Text $requestedText): self
+    {
+        if ($this->requestedTexts->contains($requestedText)) {
+            $this->requestedTexts->removeElement($requestedText);
+            // set the owning side to null (unless already changed)
+            if ($requestedText->getUserRequester() === $this) {
+                $requestedText->setUserRequester(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Text[]
+     */
+    public function getTranslatedTexts(): Collection
+    {
+        return $this->translatedTexts;
+    }
+
+    public function addTranslatedText(Text $translatedText): self
+    {
+        if (!$this->translatedTexts->contains($translatedText)) {
+            $this->translatedTexts[] = $translatedText;
+            $translatedText->setUserTranslator($this);
+        }
+
+        return $this;
+    }
+
+    public function removeTranslatedText(Text $translatedText): self
+    {
+        if ($this->translatedTexts->contains($translatedText)) {
+            $this->translatedTexts->removeElement($translatedText);
+            // set the owning side to null (unless already changed)
+            if ($translatedText->getUserTranslator() === $this) {
+                $translatedText->setUserTranslator(null);
+            }
         }
 
         return $this;
