@@ -44,11 +44,17 @@ class ActivityExecution
      */
     private $participations;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\User", mappedBy="activityExecution")
+     */
+    private $userAnimators;
+
 
 
     public function __construct()
     {
         $this->participations = new ArrayCollection();
+        $this->userAnimators = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -129,6 +135,37 @@ class ActivityExecution
             // set the owning side to null (unless already changed)
             if ($participation->getActivityExecution() === $this) {
                 $participation->setActivityExecution(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|User[]
+     */
+    public function getUserAnimators(): Collection
+    {
+        return $this->userAnimators;
+    }
+
+    public function addUserAnimator(User $userAnimator): self
+    {
+        if (!$this->userAnimators->contains($userAnimator)) {
+            $this->userAnimators[] = $userAnimator;
+            $userAnimator->setActivityExecution($this);
+        }
+
+        return $this;
+    }
+
+    public function removeUserAnimator(User $userAnimator): self
+    {
+        if ($this->userAnimators->contains($userAnimator)) {
+            $this->userAnimators->removeElement($userAnimator);
+            // set the owning side to null (unless already changed)
+            if ($userAnimator->getActivityExecution() === $this) {
+                $userAnimator->setActivityExecution(null);
             }
         }
 

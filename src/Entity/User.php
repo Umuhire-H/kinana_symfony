@@ -72,6 +72,11 @@ class User implements UserInterface
      */
     private $translatedTexts;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\ActivityExecution", inversedBy="userAnimators")
+     */
+    private $activityExecution;
+
     public function __construct()
     {
         $this->participations = new ArrayCollection();
@@ -314,6 +319,18 @@ class User implements UserInterface
                 $translatedText->setUserTranslator(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getActivityExecution(): ?ActivityExecution
+    {
+        return $this->activityExecution;
+    }
+
+    public function setActivityExecution(?ActivityExecution $activityExecution): self
+    {
+        $this->activityExecution = $activityExecution;
 
         return $this;
     }
