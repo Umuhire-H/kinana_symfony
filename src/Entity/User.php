@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
 
@@ -47,6 +49,16 @@ class User implements UserInterface
      * @ORM\Column(type="datetime")
      */
     private $dateBirth;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\ActivityExecution", mappedBy="userAnimators")
+     */
+    private $activityExecutions;
+
+    public function __construct()
+    {
+        $this->activityExecutions = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -158,6 +170,34 @@ class User implements UserInterface
     public function setDateBirth(\DateTimeInterface $dateBirth): self
     {
         $this->dateBirth = $dateBirth;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|ActivityExecution[]
+     */
+    public function getActivityExecutions(): Collection
+    {
+        return $this->activityExecutions;
+    }
+
+    public function addActivityExecution(ActivityExecution $activityExecution): self
+    {
+        if (!$this->activityExecutions->contains($activityExecution)) {
+            $this->activityExecutions[] = $activityExecution;
+            $activityExecution->addUserAnimator($this);
+        }
+
+        return $this;
+    }
+
+    public function removeActivityExecution(ActivityExecution $activityExecution): self
+    {
+        if ($this->activityExecutions->contains($activityExecution)) {
+            $this->activityExecutions->removeElement($activityExecution);
+            $activityExecution->removeUserAnimator($this);
+        }
 
         return $this;
     }

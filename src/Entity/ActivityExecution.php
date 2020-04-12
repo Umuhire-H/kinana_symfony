@@ -44,9 +44,15 @@ class ActivityExecution
      */
     private $participations;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\User", inversedBy="activityExecutions")
+     */
+    private $userAnimators;
+
     public function __construct()
     {
         $this->participations = new ArrayCollection();
+        $this->userAnimators = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -128,6 +134,32 @@ class ActivityExecution
             if ($participation->getActivityExecution() === $this) {
                 $participation->setActivityExecution(null);
             }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|User[]
+     */
+    public function getUserAnimators(): Collection
+    {
+        return $this->userAnimators;
+    }
+
+    public function addUserAnimator(User $userAnimator): self
+    {
+        if (!$this->userAnimators->contains($userAnimator)) {
+            $this->userAnimators[] = $userAnimator;
+        }
+
+        return $this;
+    }
+
+    public function removeUserAnimator(User $userAnimator): self
+    {
+        if ($this->userAnimators->contains($userAnimator)) {
+            $this->userAnimators->removeElement($userAnimator);
         }
 
         return $this;
