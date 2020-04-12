@@ -45,12 +45,11 @@ class ActivityExecution
     private $participations;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\User", mappedBy="activityExecution")
+     * @ORM\ManyToMany(targetEntity="App\Entity\User", mappedBy="activityExecutions")
      */
     private $userAnimators;
 
-
-
+ 
     public function __construct()
     {
         $this->participations = new ArrayCollection();
@@ -153,7 +152,7 @@ class ActivityExecution
     {
         if (!$this->userAnimators->contains($userAnimator)) {
             $this->userAnimators[] = $userAnimator;
-            $userAnimator->setActivityExecution($this);
+            $userAnimator->addActivityExecution($this);
         }
 
         return $this;
@@ -163,13 +162,11 @@ class ActivityExecution
     {
         if ($this->userAnimators->contains($userAnimator)) {
             $this->userAnimators->removeElement($userAnimator);
-            // set the owning side to null (unless already changed)
-            if ($userAnimator->getActivityExecution() === $this) {
-                $userAnimator->setActivityExecution(null);
-            }
+            $userAnimator->removeActivityExecution($this);
         }
 
         return $this;
     }
+
 
 }

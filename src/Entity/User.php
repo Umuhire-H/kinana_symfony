@@ -70,12 +70,13 @@ class User implements UserInterface
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Text", mappedBy="userTranslator")
      */
-    private $translatedTexts; 
+    private $translatedTexts;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\ActivityExecution", inversedBy="userAnimators")
+     * @ORM\ManyToMany(targetEntity="App\Entity\ActivityExecution", inversedBy="userAnimators")
      */
-    private $activityExecution;
+    private $activityExecutions; 
+
 
     public function __construct()
     {
@@ -83,6 +84,7 @@ class User implements UserInterface
         $this->children = new ArrayCollection();
         $this->requestedTexts = new ArrayCollection();
         $this->translatedTexts = new ArrayCollection();
+        $this->activityExecutions = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -323,15 +325,30 @@ class User implements UserInterface
         return $this;
     }
 
-    public function getActivityExecution(): ?ActivityExecution
+    /**
+     * @return Collection|ActivityExecution[]
+     */
+    public function getActivityExecutions(): Collection
     {
-        return $this->activityExecution;
+        return $this->activityExecutions;
     }
 
-    public function setActivityExecution(?ActivityExecution $activityExecution): self
+    public function addActivityExecution(ActivityExecution $activityExecution): self
     {
-        $this->activityExecution = $activityExecution;
+        if (!$this->activityExecutions->contains($activityExecution)) {
+            $this->activityExecutions[] = $activityExecution;
+        }
 
         return $this;
     }
+
+    public function removeActivityExecution(ActivityExecution $activityExecution): self
+    {
+        if ($this->activityExecutions->contains($activityExecution)) {
+            $this->activityExecutions->removeElement($activityExecution);
+        }
+
+        return $this;
+    }
+
 }
