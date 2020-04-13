@@ -3,6 +3,7 @@
 namespace App\DataFixtures;
 
 use Faker\Factory;
+use App\Entity\User;
 use App\Entity\Activity;
 use App\Entity\ActivityExecution;
 use Doctrine\Bundle\FixturesBundle\Fixture;
@@ -13,6 +14,8 @@ class AppFixtures extends Fixture
     public function load(ObjectManager $manager)
     {
         $faker = Factory::create();
+        $faker->seed(1234);
+
         for ($i=1; $i<7; $i++ ){
             
             //-- Activity
@@ -31,7 +34,13 @@ class AppFixtures extends Fixture
             $ActivityExecution->setActivity($activity);
             $manager->persist($ActivityExecution);
         }
-     
+        for ($i=1; $i<4; $i++ ){
+            //--
+            $user = new User();
+            $user->setEmail($faker->freeEmail());
+            $user->setRoles(['ROLE_PARENT']);
+
+        }
 
 
         $manager->flush();
