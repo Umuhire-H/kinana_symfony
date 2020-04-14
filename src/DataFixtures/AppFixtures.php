@@ -66,19 +66,18 @@ class AppFixtures extends Fixture
                 $OneExcecution = $ActivityExecution;
                 $dateExecution=  $OneExcecution->getDate();
                 //--
-                $participation->setActivityExecution( $OneExcecution);
+                $participation->setActivityExecution($OneExcecution);
                 $participation->setPricePayed($OneExcecution->getActivity()->getPrice());
                 if( $dateExecution< new DateTime('now') ){
-                    $participation->setDatePayement($faker->dateTimeBetween('-10 days',$dateExecution));
+                    $participation->setDatePayement($dateExecution);
                     $participation->setTypePayement('cash'); 
                     $participation->setStatusPayement('payed');
                 }
                 if( $dateExecution> new DateTime('now') ){
-                    $participation->setDatePayement($faker->dateTimeBetween('-10 days','now'));
+                    $participation->setDatePayement($faker->dateTimeBetween('now','+10 days'));
                     $participation->setTypePayement('paypal'); 
                     $participation->setStatusPayement('in process');
-                }
-               
+                }               
                 $participation->setComment($faker->realText(100, 2));
                 //$participation->setUser(); : no need
                 
@@ -86,7 +85,6 @@ class AppFixtures extends Fixture
                 $child->addParticipation($participation);
                 $manager->persist($child);
                 $participation->setChild($child);
-
             }
             
         }
@@ -125,9 +123,7 @@ class AppFixtures extends Fixture
         $manager->persist($traductor);
 
         //--
-        $traductor->addTranslatedText($text);
-
-        
+        $traductor->addTranslatedText($text);        
         
         //-------------------------------------------------------------------------
         $manager->flush();
