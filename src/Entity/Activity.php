@@ -39,7 +39,7 @@ class Activity
     private $price;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\ActivityExecution", mappedBy="activity")
+     * @ORM\OneToMany(targetEntity="App\Entity\ActivityExecution", mappedBy="activity", cascade={"persist", "remove"})
      */
     private $activityExecutions;
 
@@ -106,7 +106,7 @@ class Activity
      */
     public function getActivityExecutions(): Collection
     {
-        return $this->activityExecutions;
+       return $this->activityExecutions;
     }
 
     public function addActivityExecution(ActivityExecution $activityExecution): self

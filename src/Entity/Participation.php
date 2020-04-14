@@ -42,18 +42,18 @@ class Participation
     private $comment;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\ActivityExecution", inversedBy="participations")
+     * @ORM\ManyToOne(targetEntity="App\Entity\ActivityExecution", inversedBy="participations",cascade={"persist", "remove"})
      * @ORM\JoinColumn(nullable=false)
      */
     private $activityExecution;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="participations")
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="participations",cascade={"persist", "remove"})
      */
     private $user;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Child", inversedBy="participations")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Child", inversedBy="participations",cascade={"persist", "remove"})
      */
     private $child;
 

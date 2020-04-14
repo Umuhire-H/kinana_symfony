@@ -34,18 +34,18 @@ class ActivityExecution
     private $isComplete;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Activity", inversedBy="activityExecutions")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Activity", inversedBy="activityExecutions",cascade={"persist", "remove"})
      * @ORM\JoinColumn(nullable=false)
      */
     private $activity;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Participation", mappedBy="activityExecution")
+     * @ORM\OneToMany(targetEntity="App\Entity\Participation", mappedBy="activityExecution",cascade={"persist", "remove"})
      */
     private $participations;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\User", mappedBy="activityExecutions")
+     * @ORM\ManyToMany(targetEntity="App\Entity\User", mappedBy="activityExecutions",cascade={"persist", "remove"})
      */
     private $userAnimators;
 

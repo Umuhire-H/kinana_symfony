@@ -53,27 +53,27 @@ class User implements UserInterface
    
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Participation", mappedBy="user")
+     * @ORM\OneToMany(targetEntity="App\Entity\Participation", mappedBy="user", cascade={"persist", "remove"})
      */
     private $participations;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Child", mappedBy="userParents")
+     * @ORM\ManyToMany(targetEntity="App\Entity\Child", mappedBy="userParents", cascade={"persist", "remove"})
      */
     private $children;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Text", mappedBy="userRequester")
+     * @ORM\OneToMany(targetEntity="App\Entity\Text", mappedBy="userRequester", cascade={"persist", "remove"})
      */
     private $requestedTexts;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Text", mappedBy="userTranslator")
+     * @ORM\OneToMany(targetEntity="App\Entity\Text", mappedBy="userTranslator", cascade={"persist", "remove"})
      */
     private $translatedTexts;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\ActivityExecution", inversedBy="userAnimators")
+     * @ORM\ManyToMany(targetEntity="App\Entity\ActivityExecution", inversedBy="userAnimators", cascade={"persist", "remove"})
      */
     private $activityExecutions; 
 

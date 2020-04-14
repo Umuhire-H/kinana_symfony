@@ -34,12 +34,12 @@ class Child
     private $dateBirth;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Participation", mappedBy="child")
+     * @ORM\OneToMany(targetEntity="App\Entity\Participation", mappedBy="child", cascade={"persist", "remove"})
      */
     private $participations;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\User", inversedBy="children")
+     * @ORM\ManyToMany(targetEntity="App\Entity\User", inversedBy="children", cascade={"persist", "remove"})
      */
     private $userParents;
 

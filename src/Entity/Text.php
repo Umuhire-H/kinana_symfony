@@ -42,12 +42,12 @@ class Text
     private $dateReturn;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="requestedTexts")
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="requestedTexts", cascade={"persist", "remove"})
      */
     private $userRequester;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="translatedTexts")
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="translatedTexts", cascade={"persist", "remove"})
      * @ORM\JoinColumn(nullable=false)
      */
     private $userTranslator;
