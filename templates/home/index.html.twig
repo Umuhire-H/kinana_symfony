@@ -12,7 +12,7 @@
   <div class="container">
     <div class="row align-items-center">
       <div class="col-md-6 order-2 order-md-1">
-        <h2 class="section-title">About Educenter</h2>
+        <h2 class="section-title">Qui est Kina ?</h2>
         <p>
           Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
           eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
@@ -26,7 +26,7 @@
           anim id est laborum. Sed ut perspiciatis unde omnis iste natus
           error sit voluptatem
         </p>
-        <a href="{{ path ('about') }}" class="btn btn-primary-outline">Learn more</a>
+        {# <a href="{{ path ('about') }}" class="btn btn-primary-outline">Learn more</a> #}
       </div>
       <div class="col-md-6 order-1 order-md-2 mb-4 mb-md-0">
         <img
@@ -39,152 +39,6 @@
   </div>
 </section>
 <!-- /about us -->
-
-<!-- courses -->
-<section class="section-sm">
-  <div class="container">
-    <div class="row">
-      <div class="col-12">
-        <div
-          class="d-flex align-items-center section-title justify-content-between"
-        >
-          <h2 class="mb-0 text-nowrap mr-3">Our Course</h2>
-          <div
-            class="border-top w-100 border-primary d-none d-sm-block"
-          ></div>
-          <div>
-            <a
-              href="{{ path ('courses') }}"
-              class="btn btn-sm btn-primary-outline ml-sm-3 d-none d-sm-block"
-              >see all</a
-            >
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- course list -->
-    <div class="row justify-content-center">
-      <!-- course item -->
-      <div class="col-lg-4 col-sm-6 mb-5">
-        <div class="card p-0 border-primary rounded-0 hover-shadow">
-          <img
-            class="card-img-top rounded-0"
-           src="{{ asset ('assets/images/courses/course-1.jpg') }}"
-            alt="course thumb"
-          />
-          <div class="card-body">
-            <ul class="list-inline mb-2">
-              <li class="list-inline-item">
-                <i class="ti-calendar mr-1 text-color"></i>02-14-2018
-              </li>
-              <li class="list-inline-item">
-                <a class="text-color" href="#">Humanities</a>
-              </li>
-            </ul>
-            <a href="{{ path ('course-single') }}">
-              <h4 class="card-title">Photography</h4>
-            </a>
-            <p class="card-text mb-4">
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed
-              do eiusmod tempor incididunt ut labore et dolore magna.
-            </p>
-            <a href="{{ path ('course-single') }}" class="btn btn-primary btn-sm"
-              >Apply now</a
-            >
-          </div>
-        </div>
-      </div>
-      <!-- course item -->
-      <div class="col-lg-4 col-sm-6 mb-5">
-        <div class="card p-0 border-primary rounded-0 hover-shadow">
-          <img
-            class="card-img-top rounded-0"
-           src="{{ asset ('assets/images/courses/course-2.jpg') }}"
-            alt="course thumb"
-          />
-          <div class="card-body">
-            <ul class="list-inline mb-2">
-              <li class="list-inline-item">
-                <i class="ti-calendar mr-1 text-color"></i>02-14-2018
-              </li>
-              <li class="list-inline-item">
-                <a class="text-color" href="#">Humanities</a>
-              </li>
-            </ul>
-            <a href="{{ path ('course-single') }}">
-              <h4 class="card-title">Programming</h4>
-            </a>
-            <p class="card-text mb-4">
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed
-              do eiusmod tempor incididunt ut labore et dolore magna.
-            </p>
-            <a href="{{ path ('course-single') }}" class="btn btn-primary btn-sm"
-              >Apply now</a
-            >
-          </div>
-        </div>
-      </div>
-      <!-- course item -->
-      <div class="col-lg-4 col-sm-6 mb-5">
-        <div class="card p-0 border-primary rounded-0 hover-shadow">
-          <img
-            class="card-img-top rounded-0"
-           src="{{ asset ('assets/images/courses/course-3.jpg') }}"
-            alt="course thumb"
-          />
-          <div class="card-body">
-            <ul class="list-inline mb-2">
-              <li class="list-inline-item">
-                <i class="ti-calendar mr-1 text-color"></i>02-14-2018
-              </li>
-              <li class="list-inline-item">
-                <a class="text-color" href="#">Humanities</a>
-              </li>
-            </ul>
-            <a href="{{ path ('course-single') }}">
-              <h4 class="card-title">Lifestyle Archives</h4>
-            </a>
-            <p class="card-text mb-4">
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed
-              do eiusmod tempor incididunt ut labore et dolore magna.
-            </p>
-            <a href="{{ path ('course-single') }}" class="btn btn-primary btn-sm"
-              >Apply now</a
-            >
-          </div>
-        </div>
-      </div>
-      <!-- course item -->
-    </div>
-    <!-- /course list -->
-    <!-- mobile see all button -->
-    <div class="row">
-      <div class="col-12 text-center">
-        <a
-          href="{{ path ('courses') }}"
-          class="btn btn-sm btn-primary-outline d-sm-none d-inline-block"
-          >sell all</a
-        >
-      </div>
-    </div>
-  </div>
-</section>
-<!-- /courses -->
-
-<!-- cta -->
-<section class="section bg-primary">
-  <div class="container">
-    <div class="row">
-      <div class="col-12 text-center">
-        <h2 class="section-title text-white">
-          Un texte que voudriez faire traduire ?
-        </h2>
-        <a href="{{ path ('contact') }}" class="btn btn-secondary">envoyer</a>
-      </div>
-    </div>
-  </div>
-</section>
-<!-- /cta -->
 
 <!-- success story -->
 <section
@@ -204,11 +58,14 @@
       </div>
       <div class="col-lg-6 col-sm-8">
         <div class="bg-white p-5">
-          <h2 class="section-title">Success Stories</h2>
+          <h2 class="section-title">En image...</h2>
           <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-            enim ad minim veniam, quis nostrud exercitation ullamco laboris
+            Apprendre en s'amusant :
+            telle est notre volonté d'apprendre ou d'introduire , pour certains enfants, ikinyarwanda
+            dans une démarche ludique.
+             Jouer est l'activité que l'enfant pratique avec 
+            enthousiasme et énergie. Se mettre à sa hauteur et intéragir avec lui dans 
+            la langue à apprendre est la formule à adopter.
             nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
             in reprehenderit in voluptate velit esse cillum dolore eu fugiat
             nulla pariatur. Excepteur sint occaecat.
@@ -225,8 +82,23 @@
 </section>
 <!-- /success story -->
 
+<!-- cta -->
+<section class="section bg-primary">
+  <div class="container">
+    <div class="row">
+      <div class="col-12 text-center">
+        <h2 class="section-title text-white">
+          Un texte que voudriez faire traduire ?
+        </h2>
+        <a href="{{ path ('contact') }}" class="btn btn-secondary">envoyer</a>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- /cta -->
+
 <!-- events -->
-<section class="section bg-gray">
+{# <section class="section bg-gray">
   <div class="container">
     <div class="row">
       <div class="col-12">
@@ -334,7 +206,7 @@
       </div>
     </div>
   </div>
-</section>
+</section> #}
 <!-- /events -->
 
 <!-- teachers -->
@@ -342,7 +214,7 @@
   <div class="container">
     <div class="row justify-content-center">
       <div class="col-12">
-        <h2 class="section-title">Our Teachers</h2>
+        <h2 class="section-title">L'équipe</h2>
       </div>
       <!-- teacher -->
       <div class="col-lg-4 col-sm-6 mb-5 mb-lg-0">
@@ -457,112 +329,5 @@
 </section>
 <!-- /teachers -->
 
-<!-- blog -->
-<section class="section pt-0">
-  <div class="container">
-    <div class="row">
-      <div class="col-12">
-        <h2 class="section-title">Latest News</h2>
-      </div>
-    </div>
-    <div class="row justify-content-center">
-      <!-- blog post -->
-      <article class="col-lg-4 col-sm-6 mb-5 mb-lg-0">
-        <div
-          class="card rounded-0 border-bottom border-primary border-top-0 border-left-0 border-right-0 hover-shadow"
-        >
-          <img
-            class="card-img-top rounded-0"
-           src="{{ asset ('assets/images/blog/post-1.jpg') }}"
-            alt="Post thumb"
-          />
-          <div class="card-body">
-            <!-- post meta -->
-            <ul class="list-inline mb-3">
-              <!-- post date -->
-              <li class="list-inline-item mr-3 ml-0">August 28, 2019</li>
-              <!-- author -->
-              <li class="list-inline-item mr-3 ml-0">By Jonathon</li>
-            </ul>
-            <a href="{{ path ('blog-single') }}">
-              <h4 class="card-title">The Expenses You Are Thinking.</h4>
-            </a>
-            <p class="card-text">
-              Lorem ipsum dolor sit amet, consectetur adipisicin
-            </p>
-            <a href="{{ path ('blog-single') }}" class="btn btn-primary btn-sm"
-              >read more</a
-            >
-          </div>
-        </div>
-      </article>
-      <!-- blog post -->
-      <article class="col-lg-4 col-sm-6 mb-5 mb-lg-0">
-        <div
-          class="card rounded-0 border-bottom border-primary border-top-0 border-left-0 border-right-0 hover-shadow"
-        >
-          <img
-            class="card-img-top rounded-0"
-           src="{{ asset ('assets/images/blog/post-2.jpg') }}"
-            alt="Post thumb"
-          />
-          <div class="card-body">
-            <!-- post meta -->
-            <ul class="list-inline mb-3">
-              <!-- post date -->
-              <li class="list-inline-item mr-3 ml-0">August 13, 2019</li>
-              <!-- author -->
-              <li class="list-inline-item mr-3 ml-0">By Jonathon Drew</li>
-            </ul>
-            <a href="{{ path ('blog-single') }}">
-              <h4 class="card-title">
-                Tips to Succeed in an Online Course
-              </h4>
-            </a>
-            <p class="card-text">
-              Lorem ipsum dolor sit amet, consectetur adipisicin
-            </p>
-            <a href="{{ path ('blog-single') }}" class="btn btn-primary btn-sm"
-              >read more</a
-            >
-          </div>
-        </div>
-      </article>
-      <!-- blog post -->
-      <article class="col-lg-4 col-sm-6 mb-5 mb-lg-0">
-        <div
-          class="card rounded-0 border-bottom border-primary border-top-0 border-left-0 border-right-0 hover-shadow"
-        >
-          <img
-            class="card-img-top rounded-0"
-           src="{{ asset ('assets/images/blog/post-3.jpg') }}"
-            alt="Post thumb"
-          />
-          <div class="card-body">
-            <!-- post meta -->
-            <ul class="list-inline mb-3">
-              <!-- post date -->
-              <li class="list-inline-item mr-3 ml-0">August 24, 2018</li>
-              <!-- author -->
-              <li class="list-inline-item mr-3 ml-0">By Alex Pitt</li>
-            </ul>
-            <a href="{{ path ('blog-single') }}">
-              <h4 class="card-title">
-                Orientation Program for the new students
-              </h4>
-            </a>
-            <p class="card-text">
-              Lorem ipsum dolor sit amet, consectetur adipisicin
-            </p>
-            <a href="{{ path ('blog-single') }}" class="btn btn-primary btn-sm"
-              >read more</a
-            >
-          </div>
-        </div>
-      </article>
-    </div>
-  </div>
-</section>
-<!-- /blog -->
 {% endblock %}  
  

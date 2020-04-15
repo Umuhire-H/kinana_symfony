@@ -126,6 +126,6 @@ class AppFixtures extends Fixture
         $traductor->addTranslatedText($text);        
         
         //-------------------------------------------------------------------------
-        $manager->flush();
+        //$manager->flush();
     }
 }

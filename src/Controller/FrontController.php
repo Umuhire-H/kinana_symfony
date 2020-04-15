@@ -7,14 +7,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class FrontController extends AbstractController
 {
-    /**
-     * @Route("/home", name="home")
-     */
-    public function home()
-    {
-        return $this->render('front/index.html.twig');
-    }
-
+   
     /**
      * @Route("/about", name="about")
      */
