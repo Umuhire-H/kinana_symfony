@@ -40,21 +40,7 @@ class FrontController extends AbstractController
         return $this->render('front/contact.html.twig');
     }
 
-    /**
-     * @Route("/course/single", name="course-single")
-     */
-    public function courseSingle()
-    {
-        return $this->render('front/course-single.html.twig');
-    }
-
-    /**
-     * @Route("/courses", name="courses")
-     */
-    public function courses()
-    {
-        return $this->render('front/courses.html.twig');
-    }
+    
     
     /**
      * @Route("/event/single", name="event-single")
