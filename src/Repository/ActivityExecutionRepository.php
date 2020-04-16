@@ -19,32 +19,18 @@ class ActivityExecutionRepository extends ServiceEntityRepository
         parent::__construct($registry, ActivityExecution::class);
     }
 
-    // /**
-    //  * @return ActivityExecution[] Returns an array of ActivityExecution objects
-    //  */
-    /*
-    public function findByExampleField($value)
+    /**
+     * @return ActivityExecution[] Returns an array of ActivityExecution objects
+     */
+    
+    public function findAllByIdActivity($value) : array
     {
-        return $this->createQueryBuilder('a')
-            ->andWhere('a.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('a.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
+        $qb = $this->createQueryBuilder('a')
+            ->where('a.activity_id = :idActiviy')
+            ->setParameter('idActiviy', $value)
+            ->orderBy('a.date', 'ASC');
+        $query = $qb->getQuery();
+        return $query->execute();
     }
-    */
-
-    /*
-    public function findOneBySomeField($value): ?ActivityExecution
-    {
-        return $this->createQueryBuilder('a')
-            ->andWhere('a.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
-    }
-    */
+    
 }
