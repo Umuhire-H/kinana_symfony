@@ -17,13 +17,14 @@ class ActivityExecutionController extends AbstractController
      */
     public function uneActivite(Request $req)
     {
-        $activityId= $req->request->get('activityId'); // null ????????????????????????????????????????????????????????
-        dd($activityId);
+        
+        $activityId= $req->get('activityId'); // ok
+        //dd($activityId);
         $em = $this->getDoctrine()->getManager();
         dd($em);
         $repo = $em->getRepository(ActivityExecution::class);
         
-        //$activityExecutions = $repo->findAllByIdActivity($activityId); // methode queryBuilder "custum" ne fonctionne pas
+        $activityExecutions = $repo->findAllByIdActivity($activityId); // methode queryBuilder "custum" ne fonctionne pas
         $activityExecutions2 = $repo->findBy(['activity_id'=> $activityId]);
         return $this->render('activity_execution/une-activite.html.twig');
     }
