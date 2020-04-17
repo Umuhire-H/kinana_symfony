@@ -23,14 +23,19 @@ class ActivityExecutionRepository extends ServiceEntityRepository
      * @return ActivityExecution[] Returns an array of ActivityExecution objects
      */
     
-    public function findAllByIdActivity($id_activity) : array
+    public function findAllByActivityId($activity_id, $today) : array
     {
         $qb = $this->createQueryBuilder('ae')
+            ->addSelect('a')
+            ->addSelect('ua')
+            ->join('ae.activity', 'a')  
+            ->join('ae.userAnimators', 'ua')  
             ->where('ae.activity = :idActiviy')
-            ->setParameter('idActiviy', $id_activity)
+            ->andWhere('ae.date >= :datelimit')
+            ->setParameter('idActiviy', $activity_id)
+            ->setParameter('datelimit', $today)
             ->orderBy('ae.date', 'ASC');
         $query = $qb->getQuery();
-        //return $query->execute();
         $res = $query->getResult();
         return $res;
     }

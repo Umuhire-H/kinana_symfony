@@ -21,11 +21,11 @@ class ActivityController extends AbstractController
         return $this->render('activity/activites.html.twig',$nosActivites);
     }
     // /**
-    //  * @Route("/une/activite", name="une-activite")
+    //  * @Route("/une/activite", name="activite")
     //  */
     // public function uneActivite()
     // {
-    //     return $this->render('activity/une-activite.html.twig');
+    //     return $this->render('activity/activite.html.twig');
     // }
 
   

@@ -21,25 +21,25 @@ class AppFixtures extends Fixture
         $faker = Factory::create();
         $faker->seed(1234);
 
-        for ($i=1; $i<7; $i++ ){
+        
             
-            //-- ACTIVITY
-            $activity = new Activity();
-            $activity->setName("bricolage". $i);
-            $activity->setDescription($faker->realText(500, 2));
-            $activity->setPlace(5);
-            $activity->setPrice(30.00);
-           // $manager->persist($activity);
-            
-           //--ACTIVITY-EXECUTION
-            $ActivityExecution = new ActivityExecution();
-            $ActivityExecution->setDate($faker->dateTimeThisYear('now'));
-            $freePlace=$faker->numberBetween(0,5);
-            $ActivityExecution->setFreePlace($freePlace);
-            $ActivityExecution->setIsComplete(((5-$freePlace) == 0) ? true : false);
-            $ActivityExecution->setActivity($activity);
-           // $manager->persist($ActivityExecution);
-        }
+        //-- ACTIVITY
+        $activity = new Activity();
+        $activity->setName("bricolage". $i);
+        $activity->setDescription($faker->realText(500, 2));
+        $activity->setPlace(5);
+        $activity->setPrice(30.00);
+        // $manager->persist($activity);
+        
+        //--ACTIVITY-EXECUTION
+        $ActivityExecution = new ActivityExecution();
+        $ActivityExecution->setDate($faker->dateTimeThisYear('now'));
+        $freePlace=$faker->numberBetween(0,5);
+        $ActivityExecution->setFreePlace($freePlace);
+        $ActivityExecution->setIsComplete(((5-$freePlace) == 0) ? true : false);
+        $ActivityExecution->setActivity($activity);
+        // $manager->persist($ActivityExecution);
+        
         for ($i=1; $i<3; $i++ ){
             //-PARENT-
             $parent = new User();

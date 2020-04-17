@@ -1,0 +1,99 @@
+{% extends "base.html.twig" %}
+{% block title %} {{activityExecutions[0].activity.name}} | Kina{% endblock %}
+{% block page_title_title %}Nos activités {% endblock %}
+{% block page_title_second_title_empty %}{% endblock %}
+{% block page_title_second_title_full_title %}{{activityExecutions[0].activity.name}}{% endblock %}
+{% block page_title_content %} Apprendre ikinyarwanda en jouant? Par groupe de 5 enfants maximun, les enfants apprennent à nommer les élements qui les entourent.{% endblock %}
+
+{% block content %}
+<!-- related course -->
+<section class="section-sm">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">      
+        <h2 class="section-title"> <i class="ti-book text-primary icon-md mr-2"></i> Etape 1</h2>
+        <p> Faites un choix :</p>
+      </div>
+    </div>
+    <div class="row justify-content-center">
+      {% for activityExecution in activityExecutions %}
+    
+      <!-- course item -->
+      <div class="col-lg-4 col-sm-6 mb-5">
+        <div class="card p-0 border-primary rounded-0 hover-shadow">
+          <img class="card-img-top rounded-0" src="{{ asset ('assets/images/activites/course-1.jpg') }}" alt="course thumb">
+          <div class="card-body">
+            <ul class="list-inline mb-2">
+
+              <li class="list-inline-item"><i class="ti-calendar mr-1 text-color"></i>{{activityExecution.date|date("d-m-Y")}} {#{{activityExecution.date|format_datetime('none', 'short')}}#} </li>
+
+              {% if (activityExecution.isComplete) %}
+               <li class="list-inline-item"><a class=" ti-check-box text-color" href="#"> Complet</a></li>
+
+              {% else %} 
+              <li class="list-inline-item"><i class=" ti-hand-open  mr-1 text-color"></i>{{activityExecution.freePlace}}/{{activityExecution.activity.place}} places restantes</li>
+              {% endif %}
+              {# <li class="list-inline-item"><a class="text-color" href="#">Humanities</a></li> #}
+            </ul>
+            <a href="{{ path ('activite') }}">
+              <h4 class="card-title">{{activityExecution.activity.name}}</h4>
+            </a>
+            <p class="card-text text-truncate mb-4">{{activityExecution.activity.description}}</p>
+            <ul class="list-inline mb-2">
+            <h5> Animée par :</h5>
+              {% for animator in activityExecution.userAnimators  %}
+{# ------------------------------------------ #}
+              <li class="list-inline-item"><i class="ti-palette mr-1 text-color"></i>{{animator.firstName|capitalize}} {{animator.lastName|capitalize}} </li>          
+              {# <li class="list-inline-item"><a class="text-color" href="#">Humanities</a></li> #}
+{# ------------------------------------------ #}
+              {% endfor %}
+            </ul>
+            <a href="{{ path ('activite-inscription', {selectedOne: activityExecution.id} ) }}" class="btn btn-primary btn-sm"> Confirmer </a>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+      <!-- course item -->
+      <div class="col-lg-4 col-sm-6 mb-5">
+        <div class="card p-0 border-primary rounded-0 hover-shadow">
+          <img class="card-img-top rounded-0" src="{{ asset ('assets/images/activites/course-2.jpg') }}" alt="course thumb">
+          <div class="card-body">
+            <ul class="list-inline mb-2">
+              <li class="list-inline-item"><i class="ti-calendar mr-1 text-color"></i>02-14-2018</li>
+              <li class="list-inline-item"><a class="text-color" href="#">Humanities</a></li>
+            </ul>
+            <a href="{{ path ('activite') }}">
+              <h4 class="card-title">Programming</h4>
+            </a>
+            <p class="card-text mb-4"> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+              incididunt ut labore et dolore magna.</p>
+            <a href="{{ path ('activite') }}" class="btn btn-primary btn-sm">Apply now</a>
+          </div>
+        </div>
+      </div>
+      <!-- course item -->
+      <div class="col-lg-4 col-sm-6 mb-5">
+        <div class="card p-0 border-primary rounded-0 hover-shadow">
+          <img class="card-img-top rounded-0" src="{{ asset ('assets/images/activites/course-3.jpg') }}" alt="course thumb">
+          <div class="card-body">
+            <ul class="list-inline mb-2">
+              <li class="list-inline-item"><i class="ti-calendar mr-1 text-color"></i>02-14-2018</li>
+              <li class="list-inline-item"><a class="text-color" href="#">Humanities</a></li>
+            </ul>
+            <a href="{{ path ('activite') }}">
+              <h4 class="card-title">Lifestyle Archives</h4>
+            </a>
+            <p class="card-text mb-4"> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+              incididunt ut labore et dolore magna.</p>
+            <a href="{{ path ('activite') }}" class="btn btn-primary btn-sm">Apply now</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- /related course -->
+
+
+
+{% endblock %}
