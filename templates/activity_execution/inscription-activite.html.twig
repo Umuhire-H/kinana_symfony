@@ -1,91 +1,47 @@
-<!-- contact -->
-<section class="section bg-gray">
+{% extends "base.html.twig" %}
+{% block title %} {{activityExecutions[0].activity.name}} | Kina{% endblock %}
+{% block page_title_title %}Nos activités {% endblock %}
+{% block page_title_second_title_empty %}{% endblock %}
+{% block page_title_second_title_full_title %}{{activityExecutions[0].activity.name}}{% endblock %}
+{% block page_title_content %} Apprendre ikinyarwanda en jouant? Par groupe de 5 enfants maximun, les enfants apprennent à nommer les élements qui les entourent.{% endblock %}
+
+{% block content %}
+<!-- related course -->
+<section class="section-sm">
   <div class="container">
-     <div class="row align-items-center mb-5">
-      <div class="col-xl-3 order-1 col-sm-6 mb-4 mb-xl-0">
-        <h2>Photography</h2>
-      </div>
-      <div class="col-xl-6 order-sm-3 order-xl-2 col-12 order-2">
-        <ul class="list-inline text-xl-center">
-          <li class="list-inline-item mr-4 mb-3 mb-sm-0">
-            <div class="d-flex align-items-center">
-              <i class="ti-book text-primary icon-md mr-2"></i>
-              <div class="text-left">
-                <h6 class="mb-0">ACTIVITES</h6>
-                <p class="mb-0">06 Month</p>
-              </div>
-            </div>
-          </li>
-          <li class="list-inline-item mr-4 mb-3 mb-sm-0">
-            <div class="d-flex align-items-center">
-              <i class="ti-alarm-clock text-primary icon-md mr-2"></i>
-              <div class="text-left">
-                <h6 class="mb-0">DURATION</h6>
-                <p class="mb-0">03 Hours</p>
-              </div>
-            </div>
-          </li>
-          <li class="list-inline-item mr-4 mb-3 mb-sm-0">
-            <div class="d-flex align-items-center">
-              <i class="ti-wallet text-primary icon-md mr-2"></i>
-              <div class="text-left">
-                <h6 class="mb-0">FEE</h6>
-                <p class="mb-0">From: $699</p>
-              </div>
-            </div>
-          </li>
-        </ul>
-      </div>
-      
-      <!-- border -->
-      <div class="col-12 mt-4 order-4">
-        <div class="border-bottom border-primary"></div>
+    <div class="row">
+      <div class="col-12">      
+        <h2 class="section-title"> <i class="ti-book text-primary icon-md mr-2"></i> Etape 2</h2>
+        <h4> Faites un choix :</h4>
       </div>
     </div>
-    <div class="row">
-      <div class="col-lg-5">
-        <div class="col-xl-6 order-sm-3 order-xl-2 col-12 order-2">
-        <ul class="list-inline text-xl-center">
-          <li class="list-inline-item mr-4 mb-3 mb-sm-0">
-            <div class="d-flex align-items-center">
-              <i class="ti-book text-primary icon-md mr-2"></i>
-              <div class="text-left">
-                <h6 class="mb-0">ACTIVITES</h6>
-                <p class="mb-0">06 Month</p>
-              </div>
-            </div>
-          </li>
-          <li class="list-inline-item mr-4 mb-3 mb-sm-0">
-            <div class="d-flex align-items-center">
-              <i class="ti-alarm-clock text-primary icon-md mr-2"></i>
-              <div class="text-left">
-                <h6 class="mb-0">DURATION</h6>
-                <p class="mb-0">03 Hours</p>
-              </div>
-            </div>
-          </li>
-          <li class="list-inline-item mr-4 mb-3 mb-sm-0">
-            <div class="d-flex align-items-center">
-              <i class="ti-wallet text-primary icon-md mr-2"></i>
-              <div class="text-left">
-                <h6 class="mb-0">FEE</h6>
-                <p class="mb-0">From: $699</p>
-              </div>
-            </div>
-          </li>
-        </ul>
+    <div class="row justify-content-center">
+      
+      <!-- course item -->
+      <div class="col-lg-4 col-sm-6 mb-5">
+        <div class="card p-0 border-primary rounded-0 hover-shadow">
+          <img class="card-img-top rounded-0" src="{{ asset ('assets/images/activites/course-2.jpg') }}" alt="course thumb">
+          <div class="card-body">
+            <ul class="list-inline mb-2">
+              <li class="list-inline-item"><i class="ti-calendar mr-1 text-color"></i>02-14-2018</li>
+              <li class="list-inline-item"><a class="text-color" href="#">Humanities</a></li>
+            </ul>
+            <a href="{{ path ('activite') }}">
+              <h4 class="card-title">Programming</h4>
+            </a>
+            <p class="card-text mb-4"> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+              incididunt ut labore et dolore magna.</p>
+            <a href="{{ path ('activite') }}" class="btn btn-primary btn-sm">Apply now</a>
+          </div>
+        </div>
       </div>
-      </div>
-      <div class="col-lg-7 mb-4 mb-lg-0">
-        <form action="#">
-          <input type="text" class="form-control mb-3" id="name" name="name" placeholder="Your Name">
-          <input type="email" class="form-control mb-3" id="mail" name="mail" placeholder="Your Email">
-          <input type="text" class="form-control mb-3" id="subject" name="subject" placeholder="Subject">
-          <textarea name="message" id="message" class="form-control mb-3" placeholder="Your Message"></textarea>
-          <button type="submit" value="send" class="btn btn-primary">SEND MESSAGE</button>
-        </form>
-      </div>
+      <!-- course item -->
+      
     </div>
   </div>
 </section>
-<!-- /contact -->
+<!-- /related course -->
+
+
+
+{% endblock %}

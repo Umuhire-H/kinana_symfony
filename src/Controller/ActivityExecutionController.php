@@ -49,7 +49,7 @@ class ActivityExecutionController extends AbstractController
 
         //--The activityExecution --selected by User --
         $repoUser = $em->getRepository(User::class);
-       
+        dd($repoUser);
         return $this->render('activity_execution/activite.html.twig', ['activityExecutions'=>$activityExecutions]);
     }
 

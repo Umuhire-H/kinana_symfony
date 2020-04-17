@@ -2,18 +2,19 @@
 
 namespace App\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Form\ParticipationType;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class ParticipationController extends AbstractController
 {
     /**
-     * @Route("/participation", name="participation")
+     * @Route("/participation/inscription", name="participation-inscription")
      */
     public function index()
     {
-        return $this->render('participation/index.html.twig', [
-            'controller_name' => 'ParticipationController',
-        ]);
+        $formulaireParticipation = $this->createForm(ParticipationType::class);
+        $toView = [ 'participationForm' => $formulaireParticipation->createView()];
+        return $this->render('participation/index.html.twig', $toView );
     }
 }

@@ -22,7 +22,7 @@ class ParticipationType extends AbstractType {
         ->add ('user', EntityType::class, ['class'=> User::class])
         ->add ('activityExecution', EntityType::class, ['class'=> ActivityExecution::class])
         ->add ('pricePayed', MoneyType::class)
-        ->add ('typePayement', TextType::class, ChoiceType::class, [
+        ->add ('typePayement', ChoiceType::class, [
             'choices'  => [
                 'cash' => 'cash',
                 'paypal' => 'paypal',
@@ -37,4 +37,5 @@ class ParticipationType extends AbstractType {
         ])
         ->add ('datePayement', DateTimeType::class);
     }   
-}
+} 
+
