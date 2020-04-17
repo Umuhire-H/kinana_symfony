@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Activity;
 use App\Entity\ActivityExecution;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -19,13 +20,25 @@ class ActivityExecutionController extends AbstractController
     {
         
         $activityId= $req->get('activityId'); // ok
+        $activityDescription= $req->get('activityDescription'); // ok
+        //dump($activityDescription);
         //dd($activityId);
         $em = $this->getDoctrine()->getManager();
-        dd($em);
-        $repo = $em->getRepository(ActivityExecution::class);
-        
-        $activityExecutions = $repo->findAllByIdActivity($activityId); // methode queryBuilder "custum" ne fonctionne pas
-        $activityExecutions2 = $repo->findBy(['activity_id'=> $activityId]);
+
+        //--The activityExecution --selected by User --
+        $repoAcEx = $em->getRepository(ActivityExecution::class);
+        $activityExecutions = $repoAcEx->findAllByIdActivity($activityId);
+        //dump($activityExecutions);
+
+        //--the Activity associated --
+        $repoAc = $em->getRepository(Activity::class);
+        $activityAssociated = $repoAc->findOneById($activityId);
+        //dd($activityAssociated);
+        //--
+        $arrayObject = [];
+        array_push($arrayObject, $activityExecutions);
+        array_push($arrayObject, $activityAssociated);
+        dd($arrayObject); 
         return $this->render('activity_execution/une-activite.html.twig');
     }
 }

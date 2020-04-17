@@ -19,14 +19,7 @@ class ActivityRepository extends ServiceEntityRepository
         parent::__construct($registry, Activity::class);
     }
 
-    // public function getAllActivities(){
-    //     $qb = $this->createQueryBuilder("a");
-    //     $query = $qb->select('a');
-    //     $query = $qb->getQuery();
-    //     $ressult = $query->getResult();
-    //     return $ressult;
-
-    // }
+ 
     
     // /**
     //  * @return Activity[] Returns an array of Activity objects
@@ -45,15 +38,15 @@ class ActivityRepository extends ServiceEntityRepository
     }
     */
 
-    /*
-    public function findOneBySomeField($value): ?Activity
+    
+    public function findOneById($activity_id): ?Activity
     {
         return $this->createQueryBuilder('a')
-            ->andWhere('a.exampleField = :val')
-            ->setParameter('val', $value)
+            ->andWhere('a.id = :val')
+            ->setParameter('val', $activity_id)
             ->getQuery()
             ->getOneOrNullResult()
         ;
     }
-    */
+    
 }

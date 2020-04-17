@@ -24,7 +24,7 @@
               <h4 class="card-title">{{activity.name}}</h4>
             </a>
             <p class="card-text text-truncate mb-4"> {{activity.description}}</p>
-            <a href="{{ path ('une-activite', { activityId: activity.id } ) }}" class="btn btn-primary btn-sm">Participer</a>
+            <a href="{{ path ('une-activite', { activityId: activity.id, activityDescription: activity.description  } ) }}" class="btn btn-primary btn-sm">Participer</a>
                         
           </div>
         </div>
