@@ -2,10 +2,12 @@
 // CECI EST MON NOUVEL ESSAI : SANS SUCCES NON PLUS
 namespace App\Form;
 
+use App\Entity\Child;
 use App\Entity\Participation;
 use App\Entity\ActivityExecution;
-use App\Repository\ActivityExecutionRepository;
+use App\Repository\ChildRepository;
 use Symfony\Component\Form\AbstractType;
+use App\Repository\ActivityExecutionRepository;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -49,9 +51,17 @@ class ParticipationType extends AbstractType
                 'choice_label' => function($ActEx){
                     return $ActEx->getActivity()->getName();
                 }
+            ])
+            ->add('child', EntityType::class, [
+                'class' => Child::class,
+                'query_builder' => function (ChildRepository $repo){
+                    return $repo->createQueryBuilder('c');
+                },
+                'choice_label' => function($child){
+                    return $child->getFirstName();
+                }
             ]);
             // ->add('user')
-            // ->add('child')
         ;
     }
 
