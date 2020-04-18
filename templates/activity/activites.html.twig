@@ -20,11 +20,12 @@
               <li class="list-inline-item"><i class=" ti-hand-open  mr-1 text-color"></i>{{activity.place}} participants</li>
               <li class="list-inline-item"><a class=" text-color" href="#">{{(activity.price)/3}} €/h</a></li>
             </ul>
-            <a href="{{ path ('activite') }}">
+            <h4 class="card-title">{{activity.name}}</h4>
+            {# <a href="{{ path ('activity-executions') }}">
               <h4 class="card-title">{{activity.name}}</h4>
-            </a>
+            </a> #}
             <p class="card-text text-truncate mb-4"> {{activity.description}}</p>
-            <a href="{{ path ('activite', { activityId: activity.id} ) }}" class="btn btn-primary btn-sm">Participer</a>
+            <a href="{{ path ('activity-executions', { activityId: activity.id} ) }}" class="btn btn-primary btn-sm">Participer</a>
                         
           </div>
         </div>
@@ -39,12 +40,12 @@
               <li class="list-inline-item"><i class="ti-calendar mr-1 text-color"></i>02-14-2018</li>
               <li class="list-inline-item"><a class="text-color" href="#">Humanities</a></li>
             </ul>
-            <a href="{{ path ('activite') }}">
+            <a href="{{ path ('activity-executions') }}">
               <h4 class="card-title">Programming</h4>
             </a>
             <p class="card-text mb-4"> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
               incididunt ut labore et dolore magna.</p>
-            <a href="{{ path ('activite') }}" class="btn btn-primary btn-sm">Apply now</a>
+            <a href="{{ path ('activity-executions') }}" class="btn btn-primary btn-sm">Apply now</a>
           </div>
         </div>
       </div> #}
@@ -62,12 +63,12 @@
               <li class="list-inline-item"><i class="ti-calendar mr-1 text-color"></i>02-14-2018</li>
               <li class="list-inline-item"><a class="text-color" href="#">Humanities</a></li>
             </ul>
-            <a href="{{ path ('activite') }}">
+            <a href="{{ path ('activity-executions') }}">
               <h4 class="card-title">Photography</h4>
             </a>
             <p class="card-text mb-4"> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
               incididunt ut labore et dolore magna.</p>
-            <a href="{{ path ('activite') }}" class="btn btn-primary btn-sm">Apply now</a>
+            <a href="{{ path ('activity-executions') }}" class="btn btn-primary btn-sm">Apply now</a>
           </div>
         </div>
       </div>   
@@ -80,12 +81,12 @@
               <li class="list-inline-item"><i class="ti-calendar mr-1 text-color"></i>02-14-2018</li>
               <li class="list-inline-item"><a class="text-color" href="#">Humanities</a></li>
             </ul>
-            <a href="{{ path ('activite') }}">
+            <a href="{{ path ('activity-executions') }}">
               <h4 class="card-title">Branding Design</h4>
             </a>
             <p class="card-text mb-4"> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
               incididunt ut labore et dolore magna.</p>
-            <a href="{{ path ('activite') }}" class="btn btn-primary btn-sm">Apply now</a>
+            <a href="{{ path ('activity-executions') }}" class="btn btn-primary btn-sm">Apply now</a>
           </div>
         </div>
       </div>
@@ -98,12 +99,12 @@
               <li class="list-inline-item"><i class="ti-calendar mr-1 text-color"></i>02-14-2018</li>
               <li class="list-inline-item"><a class="text-color" href="#">Humanities</a></li>
             </ul>
-            <a href="{{ path ('activite') }}">
+            <a href="{{ path ('activity-executions') }}">
               <h4 class="card-title">Branding Design</h4>
             </a>
             <p class="card-text mb-4"> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
               incididunt ut labore et dolore magna.</p>
-            <a href="{{ path ('activite') }}" class="btn btn-primary btn-sm">Apply now</a>
+            <a href="{{ path ('activity-executions') }}" class="btn btn-primary btn-sm">Apply now</a>
           </div>
         </div>
       </div>

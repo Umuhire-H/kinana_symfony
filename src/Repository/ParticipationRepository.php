@@ -36,15 +36,35 @@ class ParticipationRepository extends ServiceEntityRepository
     }
     */
 
-    /*
-    public function findOneBySomeField($value): ?Participation
+    
+    public function findOneByChildExecutionId($activityExecution_id): ?Participation
     {
-        return $this->createQueryBuilder('p')
-            ->andWhere('p.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
+        $qb = $this->createQueryBuilder('p')
+            ->addSelect('ae')
+            ->join('p.activityExecution', 'ae')  
+            ->addSelect('c')
+            ->join('p.child', 'c') 
+            ->where('p.activityExecution = :val')
+            ->setParameter('val', $activityExecution_id);
+        
+        return $qb->getQuery()
+        ->getOneOrNullResult();
         ;
     }
-    */
+    
+    public function findOneByUserExecutionId($activityExecution_id): ?Participation
+    {
+        $qb = $this->createQueryBuilder('p')
+            ->addSelect('ae')
+            ->join('p.activityExecution', 'ae')  
+            ->addSelect('u')
+            ->join('p.user', 'u') 
+            ->where('p.activityExecution = :val')
+            ->setParameter('val', $activityExecution_id);
+        
+        return $qb->getQuery()
+        ->getOneOrNullResult();
+        ;
+    }
+    
 }

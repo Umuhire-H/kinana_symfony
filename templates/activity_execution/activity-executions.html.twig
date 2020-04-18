@@ -12,7 +12,7 @@
     <div class="row">
       <div class="col-12">      
         <h2 class="section-title"> <i class="ti-book text-primary icon-md mr-2"></i> Etape 1</h2>
-        <p> Faites un choix :</p>
+        <h3> Je choisis l'activité de la date voulue :</h3>
       </div>
     </div>
     <div class="row justify-content-center">
@@ -35,9 +35,10 @@
               {% endif %}
               {# <li class="list-inline-item"><a class="text-color" href="#">Humanities</a></li> #}
             </ul>
-            <a href="{{ path ('activite') }}">
+            <h4 class="card-title">{{activityExecution.activity.name}}</h4>
+            {# <a href="{{ path ('activite') }}">
               <h4 class="card-title">{{activityExecution.activity.name}}</h4>
-            </a>
+            </a> #}
             <p class="card-text text-truncate mb-4">{{activityExecution.activity.description}}</p>
             <ul class="list-inline mb-2">
             <h5> Animée par :</h5>
@@ -48,7 +49,7 @@
 {# ------------------------------------------ #}
               {% endfor %}
             </ul>
-            <a href="{{ path ('activite-inscription', {selectedOne: activityExecution.id} ) }}" class="btn btn-primary btn-sm"> Confirmer </a>
+            <a href="{{ path ('execution-inscription', {selectedOne: activityExecution.id} ) }}" class="btn btn-primary btn-sm"> Confirmer </a>
           </div>
         </div>
       </div>
@@ -62,12 +63,12 @@
               <li class="list-inline-item"><i class="ti-calendar mr-1 text-color"></i>02-14-2018</li>
               <li class="list-inline-item"><a class="text-color" href="#">Humanities</a></li>
             </ul>
-            <a href="{{ path ('activite') }}">
+            <a href="{{ path ('activity-executions') }}">
               <h4 class="card-title">Programming</h4>
             </a>
             <p class="card-text mb-4"> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
               incididunt ut labore et dolore magna.</p>
-            <a href="{{ path ('activite') }}" class="btn btn-primary btn-sm">Apply now</a>
+            <a href="{{ path ('activity-executions') }}" class="btn btn-primary btn-sm">Apply now</a>
           </div>
         </div>
       </div>
@@ -80,12 +81,12 @@
               <li class="list-inline-item"><i class="ti-calendar mr-1 text-color"></i>02-14-2018</li>
               <li class="list-inline-item"><a class="text-color" href="#">Humanities</a></li>
             </ul>
-            <a href="{{ path ('activite') }}">
+            <a href="{{ path ('activity-executions') }}">
               <h4 class="card-title">Lifestyle Archives</h4>
             </a>
             <p class="card-text mb-4"> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
               incididunt ut labore et dolore magna.</p>
-            <a href="{{ path ('activite') }}" class="btn btn-primary btn-sm">Apply now</a>
+            <a href="{{ path ('activity-executions') }}" class="btn btn-primary btn-sm">Apply now</a>
           </div>
         </div>
       </div>

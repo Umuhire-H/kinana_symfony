@@ -14,43 +14,58 @@ class ActivityExecutionController extends AbstractController
     
 
      /**
-     * @Route("/activite", name="activite")
+     * @Route("/activity/executions", name="activity-executions")
      * 
      */
-    public function uneActivite(Request $req)
+    public function activityExecutions(Request $req)
     {
-        // LIMITER ACCES SI PAS ROLE_USER / CREER SESSIONINTERFACE & ACCES DENIED...
+        // LIMITER ACCES SI PAS ROLE_USER :  CREER SESSIONINTERFACE & ACCES DENIED...
         $today= date("Y-m-d H:i:s");
         $activityId= $req->get('activityId'); 
-        //dd($activityId);
         $em = $this->getDoctrine()->getManager();
-
-        //--The activityExecution --selected by User --
+        
+        //--The activityExecutions --selected by User --
         $repoAcEx = $em->getRepository(ActivityExecution::class);
         $activityExecutions = $repoAcEx->findAllByActivityId($activityId, $today);
+        return $this->render('activity_execution/activity-executions.html.twig', ['activityExecutions'=>$activityExecutions]);
+        //dd($activityId);
         //dump($activityExecutions);
-        return $this->render('activity_execution/activite.html.twig', ['activityExecutions'=>$activityExecutions]);
     }
 
       /**
-     * @Route("/activite/inscription", name="activite-inscription")
+     * @Route("/activity/execution/inscription", name="execution-inscription")
      * 
      */
-    public function activiteInscription(Request $req)
+    public function activityExecutionInscription(Request $req)
     { 
-        // LIMITER ACCES SI PAS ROLE_USER <- CREER SESSIONINTERFACE & ACCES DENIED...
-        ///1. $user > repoUser > findAllCustum > user.childer :pour formInscription<- classe formulaire
-        $selectedActivityExecutionId= $req->get('selectedOne'); 
-        //dd($selectedActivityExecutionId);
-        //------------test----------------------------------
+        ///1.  ACCES DENIED----> SI PAS ROLE_USER <---> USERFormulaireROLE
+        ///2.  ACCES DENIED----> SI PAS ROLE_USER_PARENT <---> CHILDFormulaire
+        ///3.  INSCRIPTION_EXECUTION----> <---> PARTICIPATIONFormulaire
+        //---------------------------------------------------------------------
+        //--The activity-execution --selected for inscription --
+        $executionId= $req->get('selectedOne');      
+        $em = $this->getDoctrine()->getManager()->getRepository(ActivityExecution::class);
+        $activityExecution = $em->find($executionId);
+        // // if (!empty(user->getchildren() ){
+        $participationForm = $this->forward('App\Controller\ParticipationController:participationInscription', ['execution_id'=> $executionId]);
         
+        return $this->render('activity_execution/activity-execution-inscription.html.twig', ['participationForm'=>$participationForm, 'execution'=>$activityExecution]);
+        
+        // }
+        //dd( $participationForm);
+        // //else{
+
+        //}
+        //------------test----------------------------------
+        /*
         //dd($activityId);
         $em = $this->getDoctrine()->getManager();
 
         //--The activityExecution --selected by User --
         $repoUser = $em->getRepository(User::class);
         dd($repoUser);
-        return $this->render('activity_execution/activite.html.twig', ['activityExecutions'=>$activityExecutions]);
+        return $this->render('activity_execution/activity-executions.html.twig', ['activityExecutions'=>$activityExecutions]);
+        */
     }
 
 
