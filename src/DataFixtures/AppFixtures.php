@@ -25,11 +25,11 @@ class AppFixtures extends Fixture
             
         //-- ACTIVITY
         $activity = new Activity();
-        $activity->setName("bricolage". $i);
+        $activity->setName("bricolage");
         $activity->setDescription($faker->realText(500, 2));
         $activity->setPlace(5);
         $activity->setPrice(30.00);
-        // $manager->persist($activity);
+        $manager->persist($activity);
         
         //--ACTIVITY-EXECUTION
         $ActivityExecution = new ActivityExecution();
