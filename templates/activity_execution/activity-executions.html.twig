@@ -24,11 +24,10 @@
           <img class="card-img-top rounded-0" src="{{ asset ('assets/images/activites/course-1.jpg') }}" alt="course thumb">
           <div class="card-body">
             <ul class="list-inline mb-2">
-
               <li class="list-inline-item"><i class="ti-calendar mr-1 text-color"></i>{{activityExecution.date|date("d-m-Y")}} {#{{activityExecution.date|format_datetime('none', 'short')}}#} </li>
 
               {% if (activityExecution.isComplete) %}
-               <li class="list-inline-item"><a class=" ti-check-box text-color" href="#"> Complet</a></li>
+              <li class="list-inline-item"><a class=" ti-check-box text-color" href="#"> Complet</a></li>
 
               {% else %} 
               <li class="list-inline-item"><i class=" ti-hand-open  mr-1 text-color"></i>{{activityExecution.freePlace}}/{{activityExecution.activity.place}} places restantes</li>
@@ -36,20 +35,18 @@
               {# <li class="list-inline-item"><a class="text-color" href="#">Humanities</a></li> #}
             </ul>
             <h4 class="card-title">{{activityExecution.activity.name}}</h4>
-            {# <a href="{{ path ('activite') }}">
-              <h4 class="card-title">{{activityExecution.activity.name}}</h4>
-            </a> #}
+              {# <a href="{{ path ('activite') }}">
+                <h4 class="card-title">{{activityExecution.activity.name}}</h4>
+              </a> #}
             <p class="card-text text-truncate mb-4">{{activityExecution.activity.description}}</p>
-            <ul class="list-inline mb-2">
             <h5> Animée par :</h5>
+            <ul class="list-inline mb-2">
               {% for animator in activityExecution.userAnimators  %}
-{# ------------------------------------------ #}
               <li class="list-inline-item"><i class="ti-palette mr-1 text-color"></i>{{animator.firstName|capitalize}} {{animator.lastName|capitalize}} </li>          
-              {# <li class="list-inline-item"><a class="text-color" href="#">Humanities</a></li> #}
-{# ------------------------------------------ #}
               {% endfor %}
             </ul>
-            <a href="{{ path ('execution-inscription', {selectedOne: activityExecution.id} ) }}" class="btn btn-primary btn-sm"> Confirmer </a>
+            <a href="{{ path ('participation-inscription', {selectedOne: activityExecution.id} ) }}" class="btn btn-primary btn-sm"> Confirmer </a>
+            {# <a href="{{ path ('execution-inscription', {selectedOne: activityExecution.id} ) }}" class="btn btn-primary btn-sm"> Confirmer </a> #}
           </div>
         </div>
       </div>
@@ -64,7 +61,7 @@
               <li class="list-inline-item"><a class="text-color" href="#">Humanities</a></li>
             </ul>
             <a href="{{ path ('activity-executions') }}">
-              <h4 class="card-title">Programming</h4>
+              <h4 class="card-title">à enleverProgramming</h4>
             </a>
             <p class="card-text mb-4"> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
               incididunt ut labore et dolore magna.</p>
@@ -82,7 +79,7 @@
               <li class="list-inline-item"><a class="text-color" href="#">Humanities</a></li>
             </ul>
             <a href="{{ path ('activity-executions') }}">
-              <h4 class="card-title">Lifestyle Archives</h4>
+              <h4 class="card-title"> à enlever Lifestyle Archives</h4>
             </a>
             <p class="card-text mb-4"> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
               incididunt ut labore et dolore magna.</p>

@@ -40,18 +40,18 @@ class ActivityExecutionRepository extends ServiceEntityRepository
         return $res;
     }
 
-    public function findOnebyId($activity_id) : ?ActivityExecution
+    public function findOnebyId($execution_id) : ?ActivityExecution
     {
         $qb = $this->createQueryBuilder('ae')
             ->addSelect('a')
             ->addSelect('ua')
+            ->addSelect('p')
             ->join('ae.activity', 'a')  
             ->join('ae.userAnimators', 'ua')  
-            ->where('ae.activity = :idActiviy')
-            ->andWhere('ae.date >= :datelimit')
-            ->setParameter('idActiviy', $activity_id);
-        return $qb->getQuery()
-            ->getOneOrNullResult();   
+            ->join('ae.participations', 'p')  
+            ->where('ae.id = :id')
+            ->setParameter('id', $execution_id);
+        return $qb->getQuery()->getOneOrNullResult();   
         
     }
     

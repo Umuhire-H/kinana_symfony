@@ -38,6 +38,7 @@ class ActivityExecutionController extends AbstractController
      */
     public function activityExecutionInscription(Request $req)
     { 
+        /*
         ///1.  ACCES DENIED----> SI PAS ROLE_USER <---> USERFormulaireROLE
         ///2.  ACCES DENIED----> SI PAS ROLE_USER_PARENT <---> CHILDFormulaire
         ///3.  INSCRIPTION_EXECUTION----> <---> PARTICIPATIONFormulaire
@@ -45,26 +46,19 @@ class ActivityExecutionController extends AbstractController
         //--The activity-execution --selected for inscription --
         $executionId= $req->get('selectedOne');      
         $em = $this->getDoctrine()->getManager()->getRepository(ActivityExecution::class);
-        $activityExecution = $em->find($executionId);
+        $activityExecution = $em->findOnebyId($executionId);
+        
         // // if (!empty(user->getchildren() ){
         $participationForm = $this->forward('App\Controller\ParticipationController:participationInscription', ['execution_id'=> $executionId]);
         
+        //dd( $activityExecution);
         return $this->render('activity_execution/activity-execution-inscription.html.twig', ['participationForm'=>$participationForm, 'execution'=>$activityExecution]);
         
         // }
-        //dd( $participationForm);
         // //else{
 
         //}
-        //------------test----------------------------------
-        /*
-        //dd($activityId);
-        $em = $this->getDoctrine()->getManager();
-
-        //--The activityExecution --selected by User --
-        $repoUser = $em->getRepository(User::class);
-        dd($repoUser);
-        return $this->render('activity_execution/activity-executions.html.twig', ['activityExecutions'=>$activityExecutions]);
+        
         */
     }
 

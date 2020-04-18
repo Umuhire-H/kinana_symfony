@@ -37,7 +37,7 @@ class ParticipationRepository extends ServiceEntityRepository
     */
 
     
-    public function findOneByChildExecutionId($activityExecution_id): ?Participation
+    public function findOneByChildExecutionId($activityExecution_id, $child_id): ?Participation
     {
         $qb = $this->createQueryBuilder('p')
             ->addSelect('ae')
@@ -45,7 +45,9 @@ class ParticipationRepository extends ServiceEntityRepository
             ->addSelect('c')
             ->join('p.child', 'c') 
             ->where('p.activityExecution = :val')
-            ->setParameter('val', $activityExecution_id);
+            ->andWhere('p.child = :val2')
+            ->setParameter('val', $activityExecution_id)
+            ->setParameter('val2', $child_id);
         
         return $qb->getQuery()
         ->getOneOrNullResult();
