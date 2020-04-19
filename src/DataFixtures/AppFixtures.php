@@ -43,7 +43,25 @@ class AppFixtures extends Fixture
         $ActivityExecution->setFreePlace($freePlace);
         $ActivityExecution->setIsComplete(((5-$freePlace) == 0) ? true : false);
         $ActivityExecution->setActivity($activity);
-        // $manager->persist($ActivityExecution);
+        $manager->persist($ActivityExecution);
+        //------------
+         //-- ACTIVITY
+         $activity2 = new Activity();
+         $activity2->setName("jardinage");
+         $activity2->setDescription($faker->realText(500, 2));
+         $activity2->setPlace(5);
+         $activity2->setPrice(30.00);
+         $manager->persist($activity2);
+         
+         //--ACTIVITY-EXECUTION
+         $ActivityExecution2 = new ActivityExecution();
+         $ActivityExecution2->setDate($faker->dateTimeBetween('now', '+30 days'));
+         $freePlace=$faker->numberBetween(0,5);
+         $ActivityExecution2->setFreePlace($freePlace);
+         $ActivityExecution2->setIsComplete(((5-$freePlace) == 0) ? true : false);
+         $ActivityExecution2->setActivity($activity);
+         $manager->persist($ActivityExecution2);
+         //-----------------------------
         
         for ($i=1; $i<3; $i++ ){
             //-PARENT-
@@ -97,7 +115,7 @@ class AppFixtures extends Fixture
         $animator = new User();
         $animator->setEmail($faker->freeEmail);
         $animator->setRoles(['ROLE_USER','ROLE_USER_ANIMATOR']);
-        $animator->setPassword('test1234=');
+        $animator->setPassword($this->passwordEncoder->encodePassword($animator,'test1234='));
         $animator->setFirstName($faker->firstName);
         $animator->setLastName($faker->lastName);
         $animator->setDateBirth($faker->dateTimeBetween('-70 years','-40 years'));
@@ -108,7 +126,7 @@ class AppFixtures extends Fixture
         $traductor = new User();
         $traductor->setEmail($faker->freeEmail);
         $traductor->setRoles(['ROLE_USER','ROLE_USER_TRADUCTOR']);
-        $traductor->setPassword('test1234=');
+        $traductor->setPassword($this->passwordEncoder->encodePassword($traductor,'test1234='));
         $traductor->setFirstName($faker->firstName);
         $traductor->setLastName($faker->lastName);
         $traductor->setDateBirth($faker->dateTimeBetween('-70 years','-40 years'));
@@ -131,6 +149,6 @@ class AppFixtures extends Fixture
         $traductor->addTranslatedText($text);        
         
         //-------------------------------------------------------------------------
-        //$manager->flush();
+        $manager->flush();
     }
 }
