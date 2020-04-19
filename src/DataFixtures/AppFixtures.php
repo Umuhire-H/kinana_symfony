@@ -13,14 +13,19 @@ use App\Entity\ActivityExecution;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
 use Faker\Provider\Lorem;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class AppFixtures extends Fixture
 {
+    private $passwordEncoder;
+    public function __construct(UserPasswordEncoderInterface $passwordEncoderInterface)
+    {
+        $this->passwordEncoder = $passwordEncoderInterface;
+    }
     public function load(ObjectManager $manager)
     {
         $faker = Factory::create();
         $faker->seed(1234);
-
         
             
         //-- ACTIVITY
@@ -45,7 +50,7 @@ class AppFixtures extends Fixture
             $parent = new User();
             $parent->setEmail($faker->freeEmail);
             $parent->setRoles(['ROLE_USER','ROLE_PARENT']);
-            $parent->setPassword('test1234=');
+            $parent->setPassword($this->passwordEncoder->encodePassword($parent,'test1234='));
             $parent->setFirstName($faker->firstName);
             $parent->setLastName($faker->lastName);
             $parent->setDateBirth($faker->dateTimeBetween('-50 years','-20 years'))
