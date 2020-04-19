@@ -51,7 +51,6 @@ class User implements UserInterface
     private $dateBirth;
 
    
-
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Participation", mappedBy="user", cascade={"persist", "remove"})
      */
