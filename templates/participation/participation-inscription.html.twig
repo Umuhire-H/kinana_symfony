@@ -16,12 +16,7 @@
       </div>
     </div>
     <div class="row justify-content-center">
-     
-     
-     
-     
-     
-     
+    
       <!-- course item -->
       <div class="col-lg-8 col-sm-6 mb-5">
         <div class="card p-0 border-primary rounded-0 hover-shadow">
@@ -32,14 +27,14 @@
         </div>
       </div>
 
-
-
-
-
       <!-- course item -->
       <!-- course item -->
       <div class="col-lg-4 col-sm-6 mb-5">
         <div class="card p-0 border-primary rounded-0 hover-shadow">
+          <div class="card-header">
+            <p class="card-text mb-2"><strong> L'activité choisie : </strong></p>
+            <h4 >{{execution.activity.name}}</h4>
+          </div>
           <img class="card-img-top rounded-0" src="{{ asset ('assets/images/activites/course-1.jpg') }}" alt="course thumb">
           <div class="card-body">
             <ul class="list-inline mb-2">
@@ -53,12 +48,11 @@
               {% endif %}
               {# <li class="list-inline-item"><a class="text-color" href="#">Humanities</a></li> #}
             </ul>
-            <h4 class="card-title">{{execution.activity.name}}</h4>
               {# <a href="{{ path ('activite') }}">
-                <h4 class="card-title">{{activityExecution.activity.name}}</h4>
+                <h4 class="card-title">{{execution.activity.name}}</h4>
               </a> #}
             <p class="card-text text-truncate mb-4">{{execution.activity.description}}</p>
-            <h5> Animée par :</h5>
+            <p class="card-text mb-4"><strong> Animée par :</strong></p>
             <ul class="list-inline mb-2">
               {% for animator in execution.userAnimators  %}
               <li class="list-inline-item"><i class="ti-palette mr-1 text-color"></i>{{animator.firstName|capitalize}} {{animator.lastName|capitalize}} </li>          
