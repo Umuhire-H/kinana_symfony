@@ -1,0 +1,25 @@
+{% extends "base.html.twig" %}
+{% block title %} {{execution.activity.name}} | Kina{% endblock %}
+{% block page_title_title %}Nos activités {% endblock %}
+{% block page_title_second_title_empty %}{% endblock %}
+{% block page_title_second_title_full_title %}{{execution.activity.name}}{% endblock %}
+{% block page_title_content %} Apprendre ikinyarwanda en jouant? Par groupe de 5 enfants maximun, les enfants apprennent à nommer les élements qui les entourent.{% endblock %}
+
+{% block content %}
+<!-- related course -->
+<section class="section-sm">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">      
+        <h2 class="section-title"> <i class="ti-book text-primary icon-md mr-2"></i> Etape 2</h2>
+        <h4> Inscription réussie ! {{participationInsert.child }} est bien inscrit à l'activité "{{participationInsert.activityExecution.activity.name}}" du {{participationInsert.activityExecution.date}} </h4>
+      </div>
+    </div>
+    
+  </div>
+</section>
+<!-- /related course -->
+
+
+
+{% endblock %}

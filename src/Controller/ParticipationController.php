@@ -6,6 +6,7 @@ use App\Entity\Child;
 use App\Entity\Participation;
 use App\Form\ParticipationType;
 use App\Entity\ActivityExecution;
+use DateTime;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -17,33 +18,49 @@ class ParticipationController extends AbstractController
      */
     public function participationInscription(Request $req) //# (Request $req)
     {
+        $em= $this->getDoctrine()->getManager();
+        //====================================================
         //--The activity-execution --selected for inscription --
         $executionId= $req->get('selectedOne'); 
-        $selectedActivityExecution = $this
-            ->getDoctrine()
-            ->getManager()
-            ->getRepository(ActivityExecution::class)
-            ->findOnebyId($executionId);
+        $selectedActivityExecution = $em
+        ->getRepository(ActivityExecution::class)
+        ->findOnebyId($executionId);
+        //====================================================
+        //form to send to the View
+        //1.
         $uneParticipation = new Participation();
+        //2.
         $formulaireParticipation = $this
-            ->createForm(ParticipationType::class, $uneParticipation )
-            ->createView();
-        $toView = [ 'participationForm' => $formulaireParticipation, 'execution'=>$selectedActivityExecution];
+        ->createForm(ParticipationType::class, $uneParticipation, ['action' => $this->generateUrl('participation-inscription'), 'method' => 'POST'] );
+        //3.
+        $formulaireParticipation->handleRequest($req);
+       
+                    
+        if( $formulaireParticipation->isSubmitted() &&  $formulaireParticipation->isValid()){
+            $uneParticipation = $formulaireParticipation->getData();
+            $typePayement = $formulaireParticipation->get('typePayement')->getData();
+            switch($typePayement){
+                case 'cash':
+                    $uneParticipation->setStatusPayement('non payé');
+                    break;
+                case 'paypal':
+                    $dateTransaction = clone new \DateTimeInterface('now');
+                    $uneParticipation->setDatePayement($dateTransaction);
+                    
+                    $uneParticipation->setStatusPayement('en cours');
+
+                    $activityPrice = $uneParticipation->getActivityExecution()->getActivity()->getPrice();
+                    $uneParticipation->setPricePayed($activityPrice);
+                    break;
+            }
+            $em->persist($uneParticipation);
+            $em->flush();
+            return $this->render('participation/participation-inscription-traitement.html.twig',['participationInserted'=> $uneParticipation /*'execution'=>$selectedActivityExecution*/]);
+        }
+        
+        $toView = [ 'participationForm' => $formulaireParticipation->createView(), 'execution'=>$selectedActivityExecution];
         return $this->render('participation/participation-inscription.html.twig', $toView );
-        //=========================================================
-        // //==TEST AVEC CHILD_ID = 1  && PARTICIPATION FROM DB ===
-        //=========================================================
-        // // // // $childId=1;
-        // // // // $childSelected = $em->getRepository(Child::class)->find($childId);
-        // // // // $uneParticipation= $em->getRepository(Participation::class)->findOneByChildExecutionId($executionId, $childSelected);
-
-        // // // // $formulaireParticipation = $this->createForm(ParticipationType::class, $uneParticipation )->createView();
-        // // // // //dd($uneParticipation);
-
-        // // // // $toView = [ 'participationForm' => $formulaireParticipation, 'execution'=>$selectedActivityExecution];
-        // // // // return $this->render('participation/participation-inscription.html.twig', $toView );
-        // // // // //==============================================
-        // =========================================================
+        
     }
 
 }

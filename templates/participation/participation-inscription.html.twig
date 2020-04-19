@@ -16,17 +16,57 @@
       </div>
     </div>
     <div class="row justify-content-center">
-    
       <!-- course item -->
       <div class="col-lg-8 col-sm-6 mb-5">
-        <div class="card p-0 border-primary rounded-0 hover-shadow">
+        <div class="card p-0 border-primary rounded-0 hover-shadow mb-5">
             {{ form_start (participationForm) }}
-                {{ form_widget (participationForm) }}
+                {{ form_widget (participationForm.child) }}
+                {{ form_widget (participationForm.activityExecution) }}
+                {{ form_widget (participationForm.typePayement) }}
+                {{ form_widget (participationForm.datePayement) }}
+                {{ form_widget (participationForm.pricePayed) }}
+                {{ form_widget (participationForm.statusPayement) }}
+                {{ form_widget (participationForm.comment) }}
             {{ form_end (participationForm)}}
-            <button type="submit" class="btn btn-primary btn-sm">ENVOYER</button>
+            <button type="submit" class="btn btn-primary btn-sm mb-5">ENVOYER</button>
         </div>
       </div>
 
+
+      {# 
+        <form action="#" class="row">
+              <div class="col-12">
+                <input
+                  type="text"
+                  class="form-control mb-3"
+                  id="loginPhone"
+                  name="loginPhone"
+                  placeholder="Phone"
+                />
+              </div>
+              <div class="col-12">
+                <input
+                  type="text"
+                  class="form-control mb-3"
+                  id="loginName"
+                  name="loginName"
+                  placeholder="Name"
+                />
+              </div>
+              <div class="col-12">
+                <input
+                  type="password"
+                  class="form-control mb-3"
+                  id="loginPassword"
+                  name="loginPassword"
+                  placeholder="Password"
+                />
+              </div>
+              <div class="col-12">
+                <button type="submit" class="btn btn-primary text-uppercase">envoyer</button>
+              </div>
+            </form>
+       #}
       <!-- course item -->
       <!-- course item -->
       <div class="col-lg-4 col-sm-6 mb-5">
