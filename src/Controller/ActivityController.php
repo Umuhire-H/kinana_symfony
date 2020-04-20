@@ -13,6 +13,7 @@ class ActivityController extends AbstractController
      */
     public function activites()
     {
+        $this->getUser();
         $em = $this->getDoctrine()->getManager();
         $repo = $em->getRepository(Activity::class);
         $activites = $repo->findAll();

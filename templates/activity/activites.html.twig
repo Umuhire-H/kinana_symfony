@@ -5,6 +5,11 @@
 {% block page_title_content %}Nos activites éveilleront l'intérêt de l'enfant pour la langue de son parent{% endblock %}
 
 {% block content %}
+{% if app.user %}
+    <div class="mb-3 ">
+        Bonjour {{ app.user.username }}, <a href="{{ path('logout') }}">Logout</a>
+    </div>
+{% endif %}
 <!-- activites -->
 <section class="section">
   <div class="container">

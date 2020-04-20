@@ -6,7 +6,11 @@
 {# {% block index_hero_slider %} {% include "./includes/hero-slider.html.twig" %} {% endblock %}  #}
 {% block content %}
 {% include "./front/includes/hero-slider.html.twig" %} 
-
+{% if app.user %}
+    <div class="mb-3">
+        Bonjour {{ app.user.username }}, <a href="{{ path('logout') }}">Logout</a>
+    </div>
+{% endif %}
 <!-- about us -->
 <section class="section">
   <div class="container">
@@ -18,7 +22,7 @@
             Notre volonté est d'apprendre ikinyarwanda aux enfants en suivant une démarche ludique. <br>
         <p>
         <p>    
-         C'est aventure pars d'une volonté de réunir 2 générations autour de leur langue "maternelle / paternelle" ....   
+         C'est aventure part d'une volonté de réunir 2 générations autour de leur langue "maternelle / paternelle" ....   
         </p>
         <p>
          
