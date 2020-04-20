@@ -33,7 +33,7 @@ class AppFixtures extends Fixture
         $activity->setDescription($faker->realText(500, 2));
         $activity->setPlace(5);
         $activity->setPrice(30.00);
-        $manager->persist($activity);
+        //$manager->persist($activity);
         
         //--ACTIVITY-EXECUTION
         $ActivityExecution = new ActivityExecution();
@@ -43,7 +43,7 @@ class AppFixtures extends Fixture
         $ActivityExecution->setFreePlace($freePlace);
         $ActivityExecution->setIsComplete(((5-$freePlace) == 0) ? true : false);
         $ActivityExecution->setActivity($activity);
-        $manager->persist($ActivityExecution);
+        //$manager->persist($ActivityExecution);
         //------------
         //-- ACTIVITY
         $activity2 = new Activity();
@@ -51,7 +51,7 @@ class AppFixtures extends Fixture
         $activity2->setDescription($faker->realText(500, 2));
         $activity2->setPlace(5);
         $activity2->setPrice(30.00);
-        $manager->persist($activity2);
+        //$manager->persist($activity2);
         
         //--ACTIVITY-EXECUTION
         $ActivityExecution2 = new ActivityExecution();
@@ -61,7 +61,7 @@ class AppFixtures extends Fixture
         $ActivityExecution2->setFreePlace($freePlace);
         $ActivityExecution2->setIsComplete(((5-$freePlace) == 0) ? true : false);
         $ActivityExecution2->setActivity($activity2);
-        $manager->persist($ActivityExecution2);
+        //$manager->persist($ActivityExecution2);
         //-----------------------------
         
         for ($i=1; $i<3; $i++ ){
@@ -74,7 +74,7 @@ class AppFixtures extends Fixture
             $parent->setLastName($faker->lastName);
             $parent->setDateBirth($faker->dateTimeBetween('-50 years','-20 years'))
             ;
-            $manager->persist($parent);
+            //$manager->persist($parent);
             for ($i=0; $i<2; $i++ ){
                 //-- Child
                 $child = new Child();
@@ -105,9 +105,9 @@ class AppFixtures extends Fixture
                 $participation->setComment($faker->realText(100, 2));
                 //$participation->setUser(); : no need
                 
-                $manager->persist($participation);
+                //$manager->persist($participation);
                 $child->addParticipation($participation);
-                $manager->persist($child);
+                //$manager->persist($child);
                 $participation->setChild($child);
             }
             
@@ -122,7 +122,7 @@ class AppFixtures extends Fixture
         $animator->setDateBirth($faker->dateTimeBetween('-70 years','-40 years'));
         $otherExcecution = $ActivityExecution;
         $animator->addActivityExecution($otherExcecution);
-        $manager->persist($animator);
+        //$manager->persist($animator);
        //-- TRADUCTEUR
         $traductor = new User();
         $traductor->setEmail($faker->freeEmail);
@@ -131,7 +131,7 @@ class AppFixtures extends Fixture
         $traductor->setFirstName($faker->firstName);
         $traductor->setLastName($faker->lastName);
         $traductor->setDateBirth($faker->dateTimeBetween('-70 years','-40 years'));
-        $manager->persist($traductor);
+        //$manager->persist($traductor);
         //-- TEXT
         $text = new Text();
         $text->setName('Une comptine');
@@ -144,7 +144,7 @@ class AppFixtures extends Fixture
         $text->setUserRequester($oneParent);
         $text->setRating($faker->numberBetween(0,5));
         $text->setComment($faker->realText(100, 2));
-        $manager->persist($traductor);
+        //$manager->persist($traductor);
 
         //--
         $traductor->addTranslatedText($text);        
