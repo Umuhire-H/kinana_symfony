@@ -20,34 +20,49 @@ class ParticipationController extends AbstractController
     {
         $em= $this->getDoctrine()->getManager();
         //====================================================
-        //--The activity-execution --selected for inscription --
+        //==The activity-execution --selected for inscription ==
         $executionId= $req->get('selectedOne'); 
         $selectedActivityExecution = $em
-        ->getRepository(ActivityExecution::class)
-        ->findOnebyId($executionId);
+            ->getRepository(ActivityExecution::class)
+            ->findOnebyId($executionId);
+        //==TodayDate ==
+        //$today = new \DateTimeInterface('now');
+        $today = new DateTime('now');
+
         //====================================================
-        //form to send to the View
-        //1.
+        //==form to send to the View ==
+        //1. vide
         $uneParticipation = new Participation();
-        //2.
+        //2. form de TYPE participatonType
         $formulaireParticipation = $this
         ->createForm(ParticipationType::class, $uneParticipation, ['action' => $this->generateUrl('participation-inscription'), 'method' => 'POST'] );
-        //3.
+        /* J'AIMERAIS ICI :
+        2.1 AJOUTER au [formulaire avant de l'affiche] des valeurs par defaut 
+                (c'est-à-dire : les enfants du user,l'activité selectionnée, la date d'aujourd'hui))
+            * Que choisir ? ==ChoicesType['data'=> ...'Choice_label' ...'data'...'select name'...'option value'
+            * exemples: ->setChild($this->user->getChildren , 
+                        ->setactivityExecution($selectedActivityExecution->getActivity()->getName())
+                        ->setInscriptionDate($today)
+            *action à lancer: https://127.0.0.1:8000/activites ---puis--> btn 'participer'  ---puis--> btn 'Confirmer'
+            
+        2.2 : CACHER des champs (TWIG function? ou TYPE options ?)
+        2.3 : CREER mes propre type / ENUM pour les choix ?
+        */    
+        //3. form
         $formulaireParticipation->handleRequest($req);
-       
                     
         if( $formulaireParticipation->isSubmitted() &&  $formulaireParticipation->isValid()){
+            
             $uneParticipation = $formulaireParticipation->getData();
             $typePayement = $formulaireParticipation->get('typePayement')->getData();
             switch($typePayement){
                 case 'cash':
-                    $uneParticipation->setStatusPayement('non payé');
+                    $uneParticipation->setStatusPayement('unpayed');
                     break;
                 case 'paypal':
-                    $dateTransaction = clone new \DateTimeInterface('now');
-                    $uneParticipation->setDatePayement($dateTransaction);
-                    
-                    $uneParticipation->setStatusPayement('en cours');
+                   // $dateTransaction = clone new \DateTimeInterface('now');
+                    $uneParticipation->setDatePayement($today);                    
+                    $uneParticipation->setStatusPayement('in process');
 
                     $activityPrice = $uneParticipation->getActivityExecution()->getActivity()->getPrice();
                     $uneParticipation->setPricePayed($activityPrice);

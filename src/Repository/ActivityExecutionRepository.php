@@ -36,7 +36,12 @@ class ActivityExecutionRepository extends ServiceEntityRepository
             ->setParameter('datelimit', $today)
             ->orderBy('ae.date', 'ASC');
         $query = $qb->getQuery();
+        //dd($query);
+        //dump($query);
+
         $res = $query->getResult();
+        //dump($res);
+
         return $res;
     }
 

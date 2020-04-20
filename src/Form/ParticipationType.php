@@ -65,9 +65,9 @@ class ParticipationType extends AbstractType
             )
             ->add('statusPayement', ChoiceType::class, [ //radio
                 'choices' => [
-                    'en cours' => 'en cours',
-                    'payé' => 'payé',
-                    'non payé' => 'non payé',
+                    'in process' => 'en cours',
+                    'payed' => 'payé',
+                    'unpayed' => 'non payé',
                 ],
                 'expanded' => true,
                 'multiple' => false

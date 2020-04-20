@@ -12,7 +12,6 @@ use App\Entity\Participation;
 use App\Entity\ActivityExecution;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
-use Faker\Provider\Lorem;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class AppFixtures extends Fixture
@@ -38,30 +37,32 @@ class AppFixtures extends Fixture
         
         //--ACTIVITY-EXECUTION
         $ActivityExecution = new ActivityExecution();
-        $ActivityExecution->setDate($faker->dateTimeThisYear('now'));
+        //$ActivityExecution->setDate($faker->dateTimeThisYear('now'));
+        $ActivityExecution->setDate($faker->dateTimeBetween('now', '+30 days'));  
         $freePlace=$faker->numberBetween(0,5);
         $ActivityExecution->setFreePlace($freePlace);
         $ActivityExecution->setIsComplete(((5-$freePlace) == 0) ? true : false);
         $ActivityExecution->setActivity($activity);
         $manager->persist($ActivityExecution);
         //------------
-         //-- ACTIVITY
-         $activity2 = new Activity();
-         $activity2->setName("jardinage");
-         $activity2->setDescription($faker->realText(500, 2));
-         $activity2->setPlace(5);
-         $activity2->setPrice(30.00);
-         $manager->persist($activity2);
-         
-         //--ACTIVITY-EXECUTION
-         $ActivityExecution2 = new ActivityExecution();
-         $ActivityExecution2->setDate($faker->dateTimeBetween('now', '+30 days'));
-         $freePlace=$faker->numberBetween(0,5);
-         $ActivityExecution2->setFreePlace($freePlace);
-         $ActivityExecution2->setIsComplete(((5-$freePlace) == 0) ? true : false);
-         $ActivityExecution2->setActivity($activity);
-         $manager->persist($ActivityExecution2);
-         //-----------------------------
+        //-- ACTIVITY
+        $activity2 = new Activity();
+        $activity2->setName("jardinage");
+        $activity2->setDescription($faker->realText(500, 2));
+        $activity2->setPlace(5);
+        $activity2->setPrice(30.00);
+        $manager->persist($activity2);
+        
+        //--ACTIVITY-EXECUTION
+        $ActivityExecution2 = new ActivityExecution();
+        //  $ActivityExecution2->setDate($faker->dateTimeBetween('now', '+30 days'));
+        $ActivityExecution2->setDate($faker->dateTimeThisYear('now')); 
+        $freePlace=$faker->numberBetween(0,5);
+        $ActivityExecution2->setFreePlace($freePlace);
+        $ActivityExecution2->setIsComplete(((5-$freePlace) == 0) ? true : false);
+        $ActivityExecution2->setActivity($activity2);
+        $manager->persist($ActivityExecution2);
+        //-----------------------------
         
         for ($i=1; $i<3; $i++ ){
             //-PARENT-
