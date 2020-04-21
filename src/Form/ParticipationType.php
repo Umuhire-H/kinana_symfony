@@ -68,7 +68,8 @@ class ParticipationType extends AbstractType
             ->add('pricePayed', MoneyType::class, [
                 'disabled' => true,
                 'currency' => false,
-                'required' => false                
+                'required' => false,
+                                
             ]
             )
             ->add('statusPayement', ChoiceType::class, [ //radio
