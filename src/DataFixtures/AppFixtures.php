@@ -33,7 +33,7 @@ class AppFixtures extends Fixture
         $activity->setDescription($faker->realText(500, 2));
         $activity->setPlace(5);
         $activity->setPrice(30.00);
-        //$manager->persist($activity);
+        $manager->persist($activity);
         
         //--ACTIVITY-EXECUTION
         $ActivityExecution = new ActivityExecution();
@@ -51,7 +51,7 @@ class AppFixtures extends Fixture
         $activity2->setDescription($faker->realText(500, 2));
         $activity2->setPlace(5);
         $activity2->setPrice(30.00);
-        //$manager->persist($activity2);
+        $manager->persist($activity2);
         
         //--ACTIVITY-EXECUTION
         $ActivityExecution2 = new ActivityExecution();
@@ -93,32 +93,37 @@ class AppFixtures extends Fixture
                      $child->addUserParent($parent);
                      //  $child->addParticipation: done
                      array_push($children, $child);
-         
+                    
                      //-- Participation
-                     $participation=new Participation();
-                     //--
-                     $OneExcecution = $ActivityExecution;
-                     $dateExecution=  $OneExcecution->getDate();
-                     //--
-                     $participation->setActivityExecution($OneExcecution);
-                     $participation->setPricePayed($OneExcecution->getActivity()->getPrice());
-                     if( $dateExecution< new DateTime('now') ){
-                         $participation->setDatePayement($dateExecution);
-                         $participation->setTypePayement('cash'); 
-                         $participation->setStatusPayement('payed');
+                     foreach( $array_executions as $OneExcecution ){
+                        $manager->persist($OneExcecution);
+
+                         $participation=new Participation();
+                         //--
+                         $array_executions;
+                        
+                         $dateExecution=  $OneExcecution->getDate();
+                         //--
+                         $participation->setActivityExecution($OneExcecution);
+                         $participation->setPricePayed($OneExcecution->getActivity()->getPrice());
+                         if( $dateExecution< new DateTime('now') ){
+                             $participation->setDatePayement($dateExecution);
+                             $participation->setTypePayement('cash'); 
+                             $participation->setStatusPayement('payed');
+                         }
+                         if( $dateExecution> new DateTime('now') ){
+                             $participation->setDatePayement($faker->dateTimeBetween('now','+10 days'));
+                             $participation->setTypePayement('paypal'); 
+                             $participation->setStatusPayement('in process');
+                         }               
+                         $participation->setComment($faker->realText(100, 2));
+                         //$participation->setUser(); : no need
+                         
+                         $manager->persist($participation);
+                         $child->addParticipation($participation);
+                         $manager->persist($child);
+                         $participation->setChild($child);
                      }
-                     if( $dateExecution> new DateTime('now') ){
-                         $participation->setDatePayement($faker->dateTimeBetween('now','+10 days'));
-                         $participation->setTypePayement('paypal'); 
-                         $participation->setStatusPayement('in process');
-                     }               
-                     $participation->setComment($faker->realText(100, 2));
-                     //$participation->setUser(); : no need
-                     
-                     //$manager->persist($participation);
-                     $child->addParticipation($participation);
-                     //$manager->persist($child);
-                     $participation->setChild($child);
                  }
             }
             //--------------activity2 - activityExe2-parent 2--
@@ -126,16 +131,18 @@ class AppFixtures extends Fixture
             
         
         //-- ANIMATEUR
-        $animator = new User();
-        $animator->setEmail($faker->freeEmail);
-        $animator->setRoles(['ROLE_USER','ROLE_USER_ANIMATOR']);
-        $animator->setPassword($this->passwordEncoder->encodePassword($animator,'test1234='));
-        $animator->setFirstName($faker->firstName);
-        $animator->setLastName($faker->lastName);
-        $animator->setDateBirth($faker->dateTimeBetween('-70 years','-40 years'));
-        $otherExcecution = $ActivityExecution;
-        $animator->addActivityExecution($otherExcecution);
-        //$manager->persist($animator);
+        foreach( $array_executions as $OneExcecution ){
+            $animator = new User();
+            $animator->setEmail($faker->freeEmail);
+            $animator->setRoles(['ROLE_USER','ROLE_USER_ANIMATOR']);
+            $animator->setPassword($this->passwordEncoder->encodePassword($animator,'test1234='));
+            $animator->setFirstName($faker->firstName);
+            $animator->setLastName($faker->lastName);
+            $animator->setDateBirth($faker->dateTimeBetween('-70 years','-40 years'));
+            $otherExcecution = $ActivityExecution;
+            $animator->addActivityExecution($otherExcecution);
+            $manager->persist($animator);
+        }
        //-- TRADUCTEUR
         $traductor = new User();
         $traductor->setEmail($faker->freeEmail);

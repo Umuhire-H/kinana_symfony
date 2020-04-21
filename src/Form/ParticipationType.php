@@ -34,7 +34,8 @@ class ParticipationType extends AbstractType
                 'query_builder' => function (ActivityExecutionRepository $repo){
                     return $repo->createQueryBuilder('ae');
                 },*/
-                // 'choices' => $options['user']->get
+                'data' => $options['selectedActivity'],
+               // 'label' => $options['selectedActivity']->getActivity()->getName().' du '.getDate()->format('d-m-Y'),
                 'choice_label' => function($ActEx){
                     return $ActEx->getActivity()->getName().' du '.$ActEx->getDate()->format('d-m-Y');
                 },                
@@ -92,6 +93,7 @@ class ParticipationType extends AbstractType
         $resolver->setDefaults([
             'data_class' => Participation::class,
             'user' => null,
+            'selectedActivity' =>null,
         ]);
     }
 }

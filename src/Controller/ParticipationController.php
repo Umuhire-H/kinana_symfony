@@ -18,11 +18,9 @@ class ParticipationController extends AbstractController
      */
     public function participationInscription(Request $req) //# (Request $req)
     {
-        $this->getUser();
+        $connectedUser = $this->getUser();
         $em= $this->getDoctrine()->getManager();
-        
-        //==TodayDate ==
-        //$today = new \DateTimeInterface('now');
+       
         $today = new DateTime('now');
 
         //====================================================
@@ -31,18 +29,22 @@ class ParticipationController extends AbstractController
         $uneParticipation = new Participation();
 
         //2. form de TYPE participationType
-        $connectedUser = $this->getUser();
-        $connectedUserChildren = $connectedUser->getChildren();
-        if(isset($connectedUser) && isset($connectedUserChildren)){ // tous ayant enfant 
+        //
+        //==The activity-execution --selected for inscription ==
+        $executionId= $req->get('selectedOne'); 
+        $selectedActivityExecution = $em
+            ->getRepository(ActivityExecution::class)
+            ->findOnebyId($executionId);
+        //
+        
+        //$connectedUserChildren = $connectedUser->getChildren();
+        if(isset($connectedUser) ){ 
             //dd($theActiveUser);
             $formulaireParticipation = $this->createForm(ParticipationType::class, $uneParticipation, [
                 'action' => $this->generateUrl('participation-inscription'), 
                 'method' => 'POST', 
-                'user'=> $connectedUser] );       
-        }
-        else{
-            $formulaireParticipation = $this
-            ->createForm(ParticipationType::class, $uneParticipation, ['action' => $this->generateUrl('participation-inscription'), 'method' => 'POST'] );       
+                'user'=> $connectedUser,
+                /*'selectedActivity' => $selectedActivityExecution*/] );       
         }
         //3. form
         $formulaireParticipation->handleRequest($req);

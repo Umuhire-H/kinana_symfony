@@ -40,6 +40,7 @@ class SecurityController extends AbstractController
      */
     public function auRevoir()
     {
+        return $this->render('security/au-revoir.html.twig');
         
     }
 }
