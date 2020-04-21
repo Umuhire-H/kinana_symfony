@@ -11,8 +11,9 @@
   <div class="container">
     <div class="row">
       <div class="col-12">      
-        <h2 class="section-title"> <i class="ti-book text-primary icon-md mr-2"></i> Etape 2</h2>
-        <h4> Inscription réussie ! {{participationInsert.child }} est bien inscrit à l'activité "{{participationInsert.activityExecution.activity.name}}" du {{participationInsert.activityExecution.date}} </h4>
+        <h2 class="section-title"> <i class="ti-book text-primary icon-md mr-2"></i> Etape 3 </h2>
+        <p class="h3 text-color font-secondary"> Inscription réussie !</p>
+        <p> <span class=" text-primary font-secondary">{{participationInserted.child.firstName }}</span> est bien inscrit à l'activité <span class=" text-primary font-secondary">{{participationInserted.activityExecution.activity.name}}</span> du <span class=" text-primary ">{{participationInserted.activityExecution.date |date('d-m-Y')}}</span> </p>
       </div>
     </div>
     

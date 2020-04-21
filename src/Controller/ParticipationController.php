@@ -18,13 +18,9 @@ class ParticipationController extends AbstractController
      */
     public function participationInscription(Request $req) //# (Request $req)
     {
+        $this->getUser();
         $em= $this->getDoctrine()->getManager();
-        //====================================================
-        //==The activity-execution --selected for inscription ==
-        $executionId= $req->get('selectedOne'); 
-        $selectedActivityExecution = $em
-            ->getRepository(ActivityExecution::class)
-            ->findOnebyId($executionId);
+        
         //==TodayDate ==
         //$today = new \DateTimeInterface('now');
         $today = new DateTime('now');
@@ -33,9 +29,10 @@ class ParticipationController extends AbstractController
         //==form to send to the View ==
         //1. vide
         $uneParticipation = new Participation();
+
         //2. form de TYPE participatonType
         $formulaireParticipation = $this
-        ->createForm(ParticipationType::class, $uneParticipation, ['action' => $this->generateUrl('participation-inscription'), 'method' => 'POST'] );
+        ->createForm(ParticipationType::class, $uneParticipation, ['action' => $this->generateUrl('participation-inscription'), 'method' => 'POST'/*, 'user'=> $this->getUser(),*/] );
         /* J'AIMERAIS ICI :
         2.1 AJOUTER au [formulaire avant de l'affiche] des valeurs par defaut 
                 (c'est-à-dire : les enfants du user,l'activité selectionnée, la date d'aujourd'hui))
@@ -51,9 +48,11 @@ class ParticipationController extends AbstractController
         //3. form
         $formulaireParticipation->handleRequest($req);
                     
-        if( $formulaireParticipation->isSubmitted() &&  $formulaireParticipation->isValid()){
+        if( $formulaireParticipation->isSubmitted() && $formulaireParticipation->isValid()){
             
             $uneParticipation = $formulaireParticipation->getData();
+            $idActivityExecution = $req->get('idActivityExecution');
+
             $typePayement = $formulaireParticipation->get('typePayement')->getData();
             switch($typePayement){
                 case 'cash':
@@ -68,13 +67,32 @@ class ParticipationController extends AbstractController
                     $uneParticipation->setPricePayed($activityPrice);
                     break;
             }
+            //dd($formulaireParticipation->get('child')->getData());
+            //--obtenir activityExecution de la DB
+            $selectedActivityExecution = $em
+            ->getRepository(ActivityExecution::class)
+            ->findOnebyId($idActivityExecution);
+            $uneParticipation->setActivityExecution($selectedActivityExecution);
+            //--child
+
             $em->persist($uneParticipation);
             $em->flush();
-            return $this->render('participation/participation-inscription-traitement.html.twig',['participationInserted'=> $uneParticipation /*'execution'=>$selectedActivityExecution*/]);
+           
+            return $this->render('participation/participation-inscription-traitement.html.twig',['participationInserted'=> $uneParticipation , 'execution'=>$selectedActivityExecution]);
         }
-        
-        $toView = [ 'participationForm' => $formulaireParticipation->createView(), 'execution'=>$selectedActivityExecution];
-        return $this->render('participation/participation-inscription.html.twig', $toView );
+        else{
+            //====================================================
+            //==The activity-execution --selected for inscription ==
+            $executionId= $req->get('selectedOne'); 
+            $selectedActivityExecution = $em
+                ->getRepository(ActivityExecution::class)
+                ->findOnebyId($executionId);
+            //
+            
+            $toView = [ 'participationForm' => $formulaireParticipation->createView(), 'execution'=>$selectedActivityExecution];
+            return $this->render('participation/participation-inscription.html.twig', $toView );
+            
+        }
         
     }
 

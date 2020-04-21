@@ -29,7 +29,7 @@ class ActivityExecutionController extends AbstractController
         //--The activityExecutions --selected by User --
         $repoAcEx = $em->getRepository(ActivityExecution::class);
         $activityExecutions = $repoAcEx->findAllByActivityId($activityId, $today);
-        dump($activityExecutions);
+        dd($activityExecutions);
         return $this->render('activity_execution/activity-executions.html.twig', ['activityExecutions'=>$activityExecutions]);
     }
 

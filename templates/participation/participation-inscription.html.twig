@@ -10,8 +10,14 @@
 <section class="section-sm">
   <div class="container">
     <div class="row">
+      {% if app.user %}
+      <div class="mb-3">
+          Bonjour {{ app.user.username }}, <a href="{{ path('logout') }}">Logout</a>
+      </div>
+      {% endif %}
       <div class="col-12">      
         <h2 class="section-title"> <i class="ti-book text-primary icon-md mr-2"></i> Etape 2</h2>
+        
         <h4> J'inscris mon enfant : </h4>
       </div>
     </div>
@@ -22,13 +28,14 @@
             {{ form_start (participationForm) }}
                 {{ form_widget (participationForm.child) }}
                 {{ form_widget (participationForm.activityExecution) }}
+                <input type="hidden" name="idActivityExecution" value="{{execution.id}}" />                
                 {{ form_widget (participationForm.typePayement) }}
                 {{ form_widget (participationForm.datePayement) }}
                 {{ form_widget (participationForm.pricePayed) }}
                 {{ form_widget (participationForm.statusPayement) }}
                 {{ form_widget (participationForm.comment) }}
-            {{ form_end (participationForm)}}
-            <button type="submit" class="btn btn-primary btn-sm mb-5">ENVOYER</button>
+                <button type="submit" class="btn btn-primary btn-sm mb-5">ENVOYER</button>
+            {{ form_end (participationForm, {'render_rest': false})}}
         </div>
       </div>
 

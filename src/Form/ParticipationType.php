@@ -23,7 +23,7 @@ class ParticipationType extends AbstractType
     {
         $builder
             // ->add('user')
-            ->add('activityExecution', EntityType::class, [
+            ->add('activityExecution', EntityType::class/*, [
                 'class' => ActivityExecution::class,
                 'query_builder' => function (ActivityExecutionRepository $repo){
                     return $repo->createQueryBuilder('ae');
@@ -32,12 +32,12 @@ class ParticipationType extends AbstractType
                     return $ActEx->getActivity()->getName().' du '.$ActEx->getDate()->format('d-m-Y');
                 },
                 
-            ])
+            ]*/)            
             ->add('child', EntityType::class, [
-                'class' => Child::class,
+                'class' => Child::class/*,
                 'query_builder' => function (ChildRepository $repo){
                     return $repo->createQueryBuilder('c');
-                },
+                }*/,
                 'choice_label' => function($child){
                     return $child->getFirstName();
                 },
@@ -77,6 +77,7 @@ class ParticipationType extends AbstractType
                 'required' => false
             ])
         ;
+        dd($builder);
     }
 
     public function configureOptions(OptionsResolver $resolver)
