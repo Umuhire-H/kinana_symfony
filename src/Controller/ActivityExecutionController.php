@@ -23,13 +23,13 @@ class ActivityExecutionController extends AbstractController
         $today= date("Y-m-d H:i:s");
         $activityId= $req->get('activityId'); 
         $em = $this->getDoctrine()->getManager();
-        dump($activityId);
-        dump($today);
+        // dump($activityId);
+        // dump($today);
         
         //--The activityExecutions --selected by User --
         $repoAcEx = $em->getRepository(ActivityExecution::class);
         $activityExecutions = $repoAcEx->findAllByActivityId($activityId, $today);
-        dd($activityExecutions);
+        //dd($activityExecutions);
         return $this->render('activity_execution/activity-executions.html.twig', ['activityExecutions'=>$activityExecutions]);
     }
 

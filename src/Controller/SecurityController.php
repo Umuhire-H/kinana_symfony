@@ -40,6 +40,6 @@ class SecurityController extends AbstractController
      */
     public function auRevoir()
     {
-        dd('au revoir');
+        
     }
 }

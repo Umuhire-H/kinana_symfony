@@ -5,6 +5,7 @@ namespace App\Form;
 use App\Entity\Child;
 use App\Entity\Participation;
 use App\Entity\ActivityExecution;
+use App\Entity\User;
 use App\Repository\ChildRepository;
 use Symfony\Component\Form\AbstractType;
 use App\Repository\ActivityExecutionRepository;
@@ -22,22 +23,28 @@ class ParticipationType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            // ->add('user')
-            ->add('activityExecution', EntityType::class/*, [
-                'class' => ActivityExecution::class,
+            ->add('user', EntityType::class, [
+                'class' => User::class,
+                'choice_label' => function($aUser){
+                    return $aUser->getUsername();
+                }, 
+            ])
+            ->add('activityExecution', EntityType::class, [
+                'class' => ActivityExecution::class,/*
                 'query_builder' => function (ActivityExecutionRepository $repo){
                     return $repo->createQueryBuilder('ae');
-                },
+                },*/
+                // 'choices' => $options['user']->get
                 'choice_label' => function($ActEx){
                     return $ActEx->getActivity()->getName().' du '.$ActEx->getDate()->format('d-m-Y');
-                },
-                
-            ]*/)            
+                },                
+            ])            
             ->add('child', EntityType::class, [
                 'class' => Child::class/*,
                 'query_builder' => function (ChildRepository $repo){
                     return $repo->createQueryBuilder('c');
                 }*/,
+                'choices' => $options['user']->getChildren(),
                 'choice_label' => function($child){
                     return $child->getFirstName();
                 },
@@ -77,13 +84,14 @@ class ParticipationType extends AbstractType
                 'required' => false
             ])
         ;
-        dd($builder);
+        
     }
 
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
             'data_class' => Participation::class,
+            'user' => null,
         ]);
     }
 }

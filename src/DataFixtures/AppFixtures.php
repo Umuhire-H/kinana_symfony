@@ -55,16 +55,21 @@ class AppFixtures extends Fixture
         
         //--ACTIVITY-EXECUTION
         $ActivityExecution2 = new ActivityExecution();
-        //  $ActivityExecution2->setDate($faker->dateTimeBetween('now', '+30 days'));
-        $ActivityExecution2->setDate($faker->dateTimeThisYear('now')); 
+        $ActivityExecution2->setDate($faker->dateTimeBetween('-2 days', '+30 days'));
+        //$ActivityExecution2->setDate($faker->dateTimeThisYear('now')); 
         $freePlace=$faker->numberBetween(0,5);
         $ActivityExecution2->setFreePlace($freePlace);
         $ActivityExecution2->setIsComplete(((5-$freePlace) == 0) ? true : false);
         $ActivityExecution2->setActivity($activity2);
         //$manager->persist($ActivityExecution2);
         //-----------------------------
-        
-        for ($i=1; $i<3; $i++ ){
+       
+        $array_executions = array();
+        array_push( $array_executions, $ActivityExecution2 );
+        array_push( $array_executions, $ActivityExecution );
+
+        $array_parents = array();
+        for ($i=0; $i<4; $i++ ){
             //-PARENT-
             $parent = new User();
             $parent->setEmail($faker->freeEmail);
@@ -74,44 +79,52 @@ class AppFixtures extends Fixture
             $parent->setLastName($faker->lastName);
             $parent->setDateBirth($faker->dateTimeBetween('-50 years','-20 years'))
             ;
-            //$manager->persist($parent);
-            for ($i=0; $i<2; $i++ ){
-                //-- Child
-                $child = new Child();
-                $child->setFirstName($faker->firstName);
-                $child->setLastName($faker->lastName);
-                $child->setDateBirth($faker->dateTimeBetween('-5 years','-2 years'));
-                $child->addUserParent($parent);
-                //  $child->addParticipation: done
-    
-                //-- Participation
-                $participation=new Participation();
-                //--
-                $OneExcecution = $ActivityExecution;
-                $dateExecution=  $OneExcecution->getDate();
-                //--
-                $participation->setActivityExecution($OneExcecution);
-                $participation->setPricePayed($OneExcecution->getActivity()->getPrice());
-                if( $dateExecution< new DateTime('now') ){
-                    $participation->setDatePayement($dateExecution);
-                    $participation->setTypePayement('cash'); 
-                    $participation->setStatusPayement('payed');
-                }
-                if( $dateExecution> new DateTime('now') ){
-                    $participation->setDatePayement($faker->dateTimeBetween('now','+10 days'));
-                    $participation->setTypePayement('paypal'); 
-                    $participation->setStatusPayement('in process');
-                }               
-                $participation->setComment($faker->realText(100, 2));
-                //$participation->setUser(); : no need
-                
-                //$manager->persist($participation);
-                $child->addParticipation($participation);
-                //$manager->persist($child);
-                $participation->setChild($child);
-            }
-            
+            array_push( $array_parents, $parent );
         }
+            foreach( $array_parents as $parent ){
+                $manager->persist($parent);
+                $children = array();
+                 for ($i=0; $i<2; $i++ ){
+                     //-- Child
+                     $child = new Child();
+                     $child->setFirstName($faker->firstName);
+                     $child->setLastName($faker->lastName);
+                     $child->setDateBirth($faker->dateTimeBetween('-5 years','-2 years'));
+                     $child->addUserParent($parent);
+                     //  $child->addParticipation: done
+                     array_push($children, $child);
+         
+                     //-- Participation
+                     $participation=new Participation();
+                     //--
+                     $OneExcecution = $ActivityExecution;
+                     $dateExecution=  $OneExcecution->getDate();
+                     //--
+                     $participation->setActivityExecution($OneExcecution);
+                     $participation->setPricePayed($OneExcecution->getActivity()->getPrice());
+                     if( $dateExecution< new DateTime('now') ){
+                         $participation->setDatePayement($dateExecution);
+                         $participation->setTypePayement('cash'); 
+                         $participation->setStatusPayement('payed');
+                     }
+                     if( $dateExecution> new DateTime('now') ){
+                         $participation->setDatePayement($faker->dateTimeBetween('now','+10 days'));
+                         $participation->setTypePayement('paypal'); 
+                         $participation->setStatusPayement('in process');
+                     }               
+                     $participation->setComment($faker->realText(100, 2));
+                     //$participation->setUser(); : no need
+                     
+                     //$manager->persist($participation);
+                     $child->addParticipation($participation);
+                     //$manager->persist($child);
+                     $participation->setChild($child);
+                 }
+            }
+            //--------------activity2 - activityExe2-parent 2--
+            
+            
+        
         //-- ANIMATEUR
         $animator = new User();
         $animator->setEmail($faker->freeEmail);

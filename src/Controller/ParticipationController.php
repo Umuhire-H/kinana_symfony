@@ -30,21 +30,20 @@ class ParticipationController extends AbstractController
         //1. vide
         $uneParticipation = new Participation();
 
-        //2. form de TYPE participatonType
-        $formulaireParticipation = $this
-        ->createForm(ParticipationType::class, $uneParticipation, ['action' => $this->generateUrl('participation-inscription'), 'method' => 'POST'/*, 'user'=> $this->getUser(),*/] );
-        /* J'AIMERAIS ICI :
-        2.1 AJOUTER au [formulaire avant de l'affiche] des valeurs par defaut 
-                (c'est-à-dire : les enfants du user,l'activité selectionnée, la date d'aujourd'hui))
-            * Que choisir ? ==ChoicesType['data'=> ...'Choice_label' ...'data'...'select name'...'option value'
-            * exemples: ->setChild($this->user->getChildren , 
-                        ->setactivityExecution($selectedActivityExecution->getActivity()->getName())
-                        ->setInscriptionDate($today)
-            *action à lancer: https://127.0.0.1:8000/activites ---puis--> btn 'participer'  ---puis--> btn 'Confirmer'
-            
-        2.2 : CACHER des champs (TWIG function? ou TYPE options ?)
-        2.3 : CREER mes propre type / ENUM pour les choix ?
-        */    
+        //2. form de TYPE participationType
+        $connectedUser = $this->getUser();
+        $connectedUserChildren = $connectedUser->getChildren();
+        if(isset($connectedUser) && isset($connectedUserChildren)){ // tous ayant enfant 
+            //dd($theActiveUser);
+            $formulaireParticipation = $this->createForm(ParticipationType::class, $uneParticipation, [
+                'action' => $this->generateUrl('participation-inscription'), 
+                'method' => 'POST', 
+                'user'=> $connectedUser] );       
+        }
+        else{
+            $formulaireParticipation = $this
+            ->createForm(ParticipationType::class, $uneParticipation, ['action' => $this->generateUrl('participation-inscription'), 'method' => 'POST'] );       
+        }
         //3. form
         $formulaireParticipation->handleRequest($req);
                     
