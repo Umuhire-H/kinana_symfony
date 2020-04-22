@@ -36,24 +36,29 @@ class ParticipationController extends AbstractController
             ->getRepository(ActivityExecution::class)
             ->findOnebyId($executionId);
         //
-        
+        // dd($selectedActivityExecution);
         //$connectedUserChildren = $connectedUser->getChildren();
+       // dd($connectedUser);
         if(isset($connectedUser) ){ 
             //dd($theActiveUser);
             $formulaireParticipation = $this->createForm(ParticipationType::class, $uneParticipation, [
                 'action' => $this->generateUrl('participation-inscription'), 
                 'method' => 'POST', 
                 'user'=> $connectedUser,
-                /*'selectedActivity' => $selectedActivityExecution*/] );       
+                'selectedActivity' => $selectedActivityExecution] );  
+            // dd($formulaireParticipation);     
         }
         //3. form
         $formulaireParticipation->handleRequest($req);
                     
         if( $formulaireParticipation->isSubmitted() && $formulaireParticipation->isValid()){
-            
             $uneParticipation = $formulaireParticipation->getData();
-            $idActivityExecution = $req->get('idActivityExecution');
-
+            dd($uneParticipation);
+            //dd($uneParticipation);
+            $ActivityExecution_id = $req->get('idActivityExecution');
+            //
+            $isUsertargeted = $formulaireParticipation->get('target')->getData();// bool 
+            
             $typePayement = $formulaireParticipation->get('typePayement')->getData();
             switch($typePayement){
                 case 'cash':
@@ -72,7 +77,12 @@ class ParticipationController extends AbstractController
             //--obtenir activityExecution de la DB
             $selectedActivityExecution = $em
             ->getRepository(ActivityExecution::class)
-            ->findOnebyId($idActivityExecution);
+            ->findOnebyId($ActivityExecution_id);
+            //--If is the user
+            // dd($selectedActivityExecution);
+            if($isUsertargeted){
+                $uneParticipation->setUser($connectedUser);
+            }
             $uneParticipation->setActivityExecution($selectedActivityExecution);
             //--child
 
@@ -97,4 +107,16 @@ class ParticipationController extends AbstractController
         
     }
 
+    /**
+     * @Route("/participation/inscription/payement", name="payement-paypal")
+     */
+    public function participationInscriptionPayement(Request $req) //# (Request $req)
+    {
+        $em= $this->getDoctrine()->getManager();
+        $selectedActivityExecution = $em
+            ->getRepository(ActivityExecution::class)
+            ->findOnebyId($req->get('selectedOne'));
+        return $this->render('participation/payement-paypal.html.twig', ['payedExecution' => $selectedActivityExecution] );
+        
+    }
 }

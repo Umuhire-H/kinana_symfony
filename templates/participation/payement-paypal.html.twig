@@ -1,0 +1,29 @@
+{% extends "base.html.twig" %}
+{% block title %} Payement | Kina{% endblock %}
+{% block page_title_title %}Nos activités {% endblock %}
+{% block page_title_second_title_empty %}{% endblock %}
+{% block page_title_second_title_full_title %}Payement{#{{payedExecution.activity.name}}#}{% endblock %} 
+{% block page_title_content %} Apprendre ikinyarwanda en jouant? Par groupe de 5 enfants maximun, les enfants apprennent à nommer les élements qui les entourent.{% endblock %}
+
+{% block content %}
+<!-- related course -->
+<section class="section-sm">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">      
+        <h2 class="section-title"> <i class="ti-book text-primary icon-md mr-2"></i> Etape 4 </h2>
+        <p class="h3 text-color font-secondary">payement effectué ! </p>
+        {#
+        <p> 
+        <span class=" text-primary font-secondary">{{payedExecution.activity.name}}</span> du <span class=" text-primary ">{{payedExecution.activityExecution.date |date('d-m-Y')}}</span> </p>
+          #}
+      </div>
+    </div>
+    
+  </div>
+</section>
+<!-- /related course -->
+
+
+
+{% endblock %}
