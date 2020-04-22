@@ -109,7 +109,7 @@ class AppFixtures extends Fixture
                          if( $dateExecution< new DateTime('now') ){
                              $participation->setDatePayement($dateExecution);
                              $participation->setTypePayement('cash'); 
-                             $participation->setStatusPayement('payed');
+                             $participation->setStatusPayement('paid');
                          }
                          if( $dateExecution> new DateTime('now') ){
                              $participation->setDatePayement($faker->dateTimeBetween('now','+10 days'));

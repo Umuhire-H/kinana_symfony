@@ -16,9 +16,8 @@
       </div>
       {% endif %}
       <div class="col-12">      
-        <h2 class="section-title"> <i class="ti-book text-primary icon-md mr-2"></i> Etape 2</h2>
-        
-        <h3 class="mb-3"> Remplir l'inscription  </h3>
+        <h2 class="section-title"> <i class="ti-book text-primary icon-md mr-2"></i> Etape 2  <span class="h3 mb-3"> - Remplir l'inscription  </span></h2>     
+       
       </div>
     </div>
     <div class="row justify-content-center">
@@ -30,12 +29,16 @@
                   {{ form_label(participationForm.target, 'Participant') }}              
                 <div class="form-row">
                   <div class="form-group col-lg-6 col-md-12 col-sm-12 col-xs-12 ">
-                    {{ form_widget (participationForm.target, {'attr': {'class': 'form-control mb-3'}}) }}
+                    {{ form_widget (participationForm.target, {'attr': {'class': 'form-control '}}) }}
                   </div>
                   <div class="form-group col-lg-6 col-md-12 col-sm-12 col-xs-12 ">
-                    {{ form_widget (participationForm.child, {'attr': {'class': 'form-control mb-3'}}) }}
+                    {{ form_widget (participationForm.child, {'attr': {'class': 'form-control '}}) }}
                   </div>
                 </div>
+              </div>
+              <div class="form-group col-12 mb-4{#d-none#}">
+                {{ form_label(participationForm.activityExecution, 'Activité') }}
+                {{ form_widget (participationForm.activityExecution, {'attr': {'class': 'form-control mb-3'}}) }}
               </div>
               <div class="form-group col-12 ">
                 {{ form_label(participationForm.typePayement, 'Moyen de payement') }}
@@ -54,9 +57,7 @@
               <div class="form-group col-12 d-none mb-3 ">
                 {{ form_widget (participationForm.user, {'attr': {'class': 'form-control mb-3'}}) }}
               </div>
-              <div class="form-group col-12 d-none">
-                {{ form_widget (participationForm.activityExecution, {'attr': {'class': 'form-control mb-3'}}) }}
-              </div>
+              
               <div class="form-group col-12 ">
                 <input type="hidden" name="idActivityExecution" value="{{execution.id}}" />                
               </div>
@@ -69,43 +70,6 @@
             {{ form_end (participationForm, {'render_rest': false})}}
         </div>
       </div>
-
-
-      {# 
-        <form action="#" class="row">
-              <div class="col-12">
-                <input
-                  type="text"
-                  class="form-control mb-3"
-                  id="loginPhone"
-                  name="loginPhone"
-                  placeholder="Phone"
-                />
-              </div>
-              <div class="col-12">
-                <input
-                  type="text"
-                  class="form-control mb-3"
-                  id="loginName"
-                  name="loginName"
-                  placeholder="Name"
-                />
-              </div>
-              <div class="col-12">
-                <input
-                  type="password"
-                  class="form-control mb-3"
-                  id="loginPassword"
-                  name="loginPassword"
-                  placeholder="Password"
-                />
-              </div>
-              <div class="col-12">
-                <button type="submit" class="btn btn-primary text-uppercase">envoyer</button>
-              </div>
-            </form>
-       #}
-      <!-- course item -->
       <!-- course item -->
       <div class="col-lg-4 col-sm-6 mb-5">
         <div class="card p-0 border-primary rounded-0 hover-shadow">
@@ -124,7 +88,6 @@
               {% else %} 
               <li class="list-inline-item"><i class=" ti-hand-open  mr-1 text-color"></i>{{execution.freePlace}}/{{execution.activity.place}} places restantes</li>
               {% endif %}
-              {# <li class="list-inline-item"><a class="text-color" href="#">Humanities</a></li> #}
             </ul>
               {# <a href="{{ path ('activite') }}">
                 <h4 class="card-title">{{execution.activity.name}}</h4>

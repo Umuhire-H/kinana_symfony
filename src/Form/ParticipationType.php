@@ -2,22 +2,19 @@
 // CECI EST MON NOUVEL ESSAI : SANS SUCCES NON PLUS
 namespace App\Form;
 
+use App\Entity\User;
 use App\Entity\Child;
 use App\Entity\Participation;
 use App\Entity\ActivityExecution;
-use App\Entity\User;
-use App\Repository\ChildRepository;
 use Symfony\Component\Form\AbstractType;
 use App\Repository\ActivityExecutionRepository;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
-use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Component\Form\Extension\Core\Type\MoneyType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
-use Symfony\Component\Validator\Constraints\Currency;
+use Symfony\Component\Form\Extension\Core\Type\NumberType;
 
 class ParticipationType extends AbstractType
 {
@@ -86,13 +83,13 @@ class ParticipationType extends AbstractType
                 'label' => 'Date de Payement',
                 'required' => false
             ])
-            ->add('pricePayed', MoneyType::class, [
+            ->add('pricePayed', NumberType::class, [
                 'disabled' => true,
-                'currency' => false,
-                'required' => false,           
+                'required' => false, 
+                'scale' => 2,          
                 // 'data' => function() use ($options){
 
-                //     return (int)($options['selectedActivity']->getActivity()->getPrice());
+                //     return ($options['selectedActivity']->getActivity()->getPrice());
                 // },   
                             
             ]
