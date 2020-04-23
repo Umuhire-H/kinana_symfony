@@ -18,6 +18,8 @@ class ParticipationController extends AbstractController
      */
     public function participationInscription(Request $req) //# (Request $req)
     {
+        $this->denyAccessUnlessGranted('ROLE_PARENT','ROLE_MEMBRE' );
+        //
         $connectedUser = $this->getUser();
         $today = new DateTime('now');
         $em= $this->getDoctrine()->getManager();       
@@ -96,6 +98,8 @@ class ParticipationController extends AbstractController
      */
     public function participationInscriptionPayement(Request $req) //# (Request $req)
     {
+        $this->denyAccessUnlessGranted('ROLE_PARENT','ROLE_MEMBRE' );
+        //
         $em= $this->getDoctrine()->getManager();
         $selectedActivityExecution = $em
             ->getRepository(ActivityExecution::class)

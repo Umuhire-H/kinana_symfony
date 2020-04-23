@@ -1,70 +1,51 @@
-{% extends "base.html.twig" %}
-{% block title %} Se connecter | Kina{% endblock %}
-{% block page_title_title %}Se connecter  {% endblock %}
-{% block page_title_second_title_empty %}{% endblock %}
-{% block page_title_second_title_full_title %}{% endblock %}
-{% block page_title_content %} Apprendre ikinyarwanda en jouant? <br> Par groupe de 5 enfants maximun, les enfants apprennent à nommer les élements qui les entourent.{% endblock %}
 
-{% block content %}
-<!-- related course -->
-<section class="section-sm">
-  <div class="container">
-    <div class="row">
-      <div class="col-12">      
-        <h2 class="section-title"> <i class="ti-book text-primary icon-md mr-2"></i> Se Connecter{#Etape 2#}</h2>
-      </div>
-    </div>
-    <div class="row justify-content-center">
-      <!-- course item -->
-      <div class="col-lg-8 col-sm-6 mb-5">
-        <div class="card p-0 border-primary rounded-0 hover-shadow">
-        {# =========================================================================================== #}
-            <form method="post">
-                {% if error %}
-                    <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-                {% endif %}
+        
+{# =========================================================================================== #}
+<form id="loginForm">
+  <label for="inputEmail">Email</label>
+  <input type="email" value="" name="email" id="inputEmail" class="form-control mb-3" required autofocus>
+  <label for="inputPassword">Mot de passe</label>
+  <input type="password" name="password" id="inputPassword" class="form-control mb-4" required>
 
-                {% if app.user %}
-                    <div class="mb-3">
-                        Bonjour {{ app.user.username }}, <a href="{{ path('logout') }}">Logout</a>
-                    </div>
-                {% endif %}
+  <input type="hidden" name="_csrf_token"
+      value="{{ csrf_token('authenticate') }}"
+  >
+  <input id="loginButton" class="btn btn-lg btn-primary" type="submit">
+  </input>
+<div id="divErrorMessage" class="form-error text-danger mt-2 mb-1" >
+</div>
+</form>
 
-                {# <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1> #}
-                {# <h3 class="h3 mb-3 font-weight-normal"> Bonjour </h3> #}
-                <label for="inputEmail">Email</label>
-                <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control mb-3" required autofocus>
-                <label for="inputPassword">Password</label>
-                <input type="password" name="password" id="inputPassword" class="form-control mb-3" required>
-
-                <input type="hidden" name="_csrf_token"
-                    value="{{ csrf_token('authenticate') }}"
-                >
-
-                {#
-                    Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
-                    See https://symfony.com/doc/current/security/remember_me.html
-
-                    <div class="checkbox mb-3">
-                        <label>
-                            <input type="checkbox" name="_remember_me"> Remember me
-                        </label>
-                    </div>
-                #}
-
-                <button class="btn btn-lg btn-primary" type="submit">
-                    Envoyer
-                </button>
-            </form>
-          {# =============================================================================================  #}
-        </div>
-      </div>
-      <!-- course item -->          
-    </div>
-  </div>
-</section>
-<!-- /related course -->
-
-
-
-{% endblock %}
+{# =============================================================================================  #}
+ {% block my_js %}
+ <script>
+    document.getElementById("loginButton").addEventListener("click", function (event) {
+        event.preventDefault();
+        axios({
+            url: '{{ path ("login") }}',
+            method: 'POST',
+            headers: { 'Content-Type': 'multipart/form-data' },
+            data: new FormData(document.getElementById("loginForm"))
+        })
+        .then(function (response) {
+                // response.data = objet(array associatif) qui est envoyé dans le controller
+                // JsonResponse va transformer l'array en JSON. 
+                // Axios transforme le JSON --en--> objet JS
+                
+                // si erreur
+                if (response.data.error != undefined) {
+                    divErrorMessage.innerHTML = response.data.error;
+                }
+                // si pas d'erreur
+                else {
+                    console.log ('login OK');
+                    window.location.href = "{{ path ('home') }}";
+                }
+                
+        })
+        .catch(function (error) {
+                console.log(error);
+        });
+    });    
+</script>
+ {% endblock %}

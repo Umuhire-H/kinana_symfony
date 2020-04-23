@@ -1,0 +1,182 @@
+    <!-- header -->
+    <header class="fixed-top header">
+      <!-- top header -->
+      <div class="top-header py-2 bg-white">
+        <div class="container">
+          <div class="row no-gutters">
+            <div class="col-lg-8 text-center text-lg-right">
+              <ul class="list-inline">
+                              
+                </li>
+                <li class="list-inline-item">
+                  <a
+                    class="text-uppercase text-color p-sm-2 py-2 px-0 d-inline-block"
+                    href="#"
+                    data-toggle="modal"
+                    data-target="#loginModal"
+                    >se connecter </a
+                  >
+                </li>
+                <li class="list-inline-item">
+                  <a
+                    class="text-uppercase text-color p-sm-2 py-2 px-0 d-inline-block"
+                    href="#"
+                    data-toggle="modal"
+                    data-target="#signupModal"
+                    >s'inscrire</a
+                  >
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- navbar -->
+      <div class="navigation w-100">
+        <div class="container">
+          <nav class="navbar navbar-expand-lg navbar-light p-0">
+            <a class="navbar-brand" href="{{ path ('home') }}"
+              ><img src="{{ asset ('assets/images/favicon-32x32.png')}}" alt="logo"
+            /></a>
+            <button
+              class="navbar-toggler rounded-0"
+              type="button"
+              data-toggle="collapse"
+              data-target="#navigation"
+              aria-controls="navigation"
+              aria-expanded="false"
+              aria-label="Toggle navigation"
+            >
+              <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navigation">
+              <ul class="navbar-nav ml-auto text-center">
+                <li class="nav-item active">
+                  <a class="nav-link" href="{{ path ('home') }}">KINA </a>
+                </li>                
+                {# <li class="nav-item @@courses"> #}
+                <li class="nav-item @@activites">
+                  <a class="nav-link" href="{{ path ('activites') }}">nos activités</a>
+                </li>
+                <li class="nav-item @@events">
+                  <a class="nav-link" href="{{ path ('events') }}">vue sur l'agenda</a>
+                </li>
+                <li class="nav-item @@blog">
+                  <a class="nav-link" href="{{ path ('blog') }}">nos traductions</a>
+                </li>
+               
+              </ul>
+            </div>
+          </nav>
+        </div>
+      </div>
+    </header>
+    <!-- /header -->
+    <!-- Modal -->
+    <div
+      class="modal fade"
+      id="signupModal"
+      tabindex="-1"
+      role="dialog"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content rounded-0 border-0 p-4">
+          <div class="modal-header border-0">
+            <h3>S'inscrire</h3>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="login">
+              <form action="#" class="row">
+                <div class="col-12">
+                  <input
+                    type="text"
+                    class="form-control mb-3"
+                    id="signupName1"
+                    name="signupName2"
+                    placeholder="Nom"
+                  />
+                </div>
+                <div class="col-12">
+                  <input
+                    type="text"
+                    class="form-control mb-3"
+                    id="signupName2"
+                    name="signupName2"
+                    placeholder="Prénom"
+                  />
+                </div>
+                <div class="col-12">
+                  <input
+                    type="email"
+                    class="form-control mb-3"
+                    id="signupEmail"
+                    name="signupEmail"
+                    placeholder="Email"
+                  />
+                </div>
+                <div class="col-12">
+                  <input
+                    type="password"
+                    class="form-control mb-3"
+                    id="signupPassword"
+                    name="signupPassword"
+                    placeholder="Mot de passe"
+                  />
+                </div>
+                <div class="col-12">
+                  <input
+                    type="password"
+                    class="form-control mb-3"
+                    id="signupPassword"
+                    name="signupPassword"
+                    placeholder="Confirmer le mot de passe"
+                  />
+                </div>
+                <div class="col-12">
+                  <button type="submit" class="btn btn-primary text-uppercase">envoyer</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Modal -->
+    <div
+      class="modal fade"
+      id="loginModal"
+      tabindex="-1"
+      role="dialog"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content rounded-0 border-0 p-4">
+          <div class="modal-header border-0">
+            <h3>Se connecter</h3>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+         	  {% include "security/login.html.twig" %}
+   
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- end Modal -->

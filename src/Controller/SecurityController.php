@@ -2,9 +2,11 @@
 
 namespace App\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 class SecurityController extends AbstractController
@@ -12,7 +14,7 @@ class SecurityController extends AbstractController
     /**
      * @Route("/connexion", name="login")
      */
-    public function login(AuthenticationUtils $authenticationUtils): Response
+    public function login(AuthenticationUtils $authenticationUtils, Request $req): Response
     {
         
         if ($this->getUser()) {
@@ -23,8 +25,17 @@ class SecurityController extends AbstractController
         $error = $authenticationUtils->getLastAuthenticationError();
         // last username entered by the user
         $lastUsername = $authenticationUtils->getLastUsername();
-
-        return $this->render('security/login.html.twig', ['last_username' => $lastUsername, 'error' => $error]);
+        
+        $response = new JsonResponse(['lastUsername' => $lastUsername]);
+        if(!is_null($error)){
+            $response = new JsonResponse([
+                'error' => 'Email ou mot de passe incorrect',
+                'lastUsername' => $lastUsername
+            ]);
+        }
+        
+        return $response;
+        // return $this->render('security/login.html.twig', ['last_username' => $lastUsername, 'error' => $error]);
     }
 
     /**
@@ -40,6 +51,10 @@ class SecurityController extends AbstractController
      */
     public function auRevoir()
     {
+        $this->denyAccessUnlessGranted('ROLE_ADMIN' );
+        if ($this->getUser()) {
+            return $this->redirectToRoute('home');
+        }
         return $this->render('security/au-revoir.html.twig');
         
     }

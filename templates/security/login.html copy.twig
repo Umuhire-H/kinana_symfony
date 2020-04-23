@@ -18,20 +18,40 @@
       <!-- course item -->
       <div class="col-lg-8 col-sm-6 mb-5">
         <div class="card p-0 border-primary rounded-0 hover-shadow">
+        
         {# =========================================================================================== #}
-            <h1>Register</h1>
+            <form method="post">
                 {% if error %}
                     <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
                 {% endif %}
 
-                {{ form_start(registrationForm) }}
-                    {{ form_row(registrationForm.email) }}
-                    {{ form_row(registrationForm.plainPassword) }}
-                    {{ form_row(registrationForm.agreeTerms) }}
 
-                    <button class="btn">Register</button>
-                {{ form_end(registrationForm) }}
+                {# <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1> #}
+                {# <h3 class="h3 mb-3 font-weight-normal"> Bonjour </h3> #}
+                <label for="inputEmail">Email</label>
+                <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control mb-3" required autofocus>
+                <label for="inputPassword">Password</label>
+                <input type="password" name="password" id="inputPassword" class="form-control mb-3" required>
 
+                <input type="hidden" name="_csrf_token"
+                    value="{{ csrf_token('authenticate') }}"
+                >
+
+                {#
+                    Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
+                    See https://symfony.com/doc/current/security/remember_me.html
+
+                    <div class="checkbox mb-3">
+                        <label>
+                            <input type="checkbox" name="_remember_me"> Remember me
+                        </label>
+                    </div>
+                #}
+
+                <input class="btn btn-lg btn-primary" type="submit">
+                    Envoyer
+                </input>
+            </form>
           {# =============================================================================================  #}
         </div>
       </div>
@@ -44,5 +64,3 @@
 
 
 {% endblock %}
-
-
