@@ -99,9 +99,7 @@ class AppFixtures extends Fixture
                         $manager->persist($OneExcecution);
 
                          $participation=new Participation();
-                         //--
-                         $array_executions;
-                        
+                         //--                        
                          $dateExecution=  $OneExcecution->getDate();
                          //--
                          $participation->setActivityExecution($OneExcecution);
@@ -139,8 +137,7 @@ class AppFixtures extends Fixture
             $animator->setFirstName($faker->firstName);
             $animator->setLastName($faker->lastName);
             $animator->setDateBirth($faker->dateTimeBetween('-70 years','-40 years'));
-            $otherExcecution = $ActivityExecution;
-            $animator->addActivityExecution($otherExcecution);
+            $animator->addActivityExecution($OneExcecution);
             $manager->persist($animator);
         }
        //-- TRADUCTEUR

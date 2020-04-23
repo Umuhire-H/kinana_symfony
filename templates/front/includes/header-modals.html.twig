@@ -84,6 +84,16 @@
       <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content rounded-0 border-0 p-4">
           <div class="modal-header border-0">
+            {% if app.user %}
+            <div class="row  d-flex justify-content-center">
+              <div class="btn btn-light btn-lg col-6 ">
+                <i class="  ti-check-box text-primary"></i>Actuellement connecté - <i class=" ti-user text-primary"></i>{{app.user.firstName}}
+              </div>
+              <div class="btn btn-light btn-lg col-3 ">
+                <a href="{{ path('logout') }}"><i class=" ti-power-off  text-primary"></i>-  Logout </a>            
+              </div>
+            </div>          
+            {% endif %}
             <h3>S'inscrire</h3>
             <button
               type="button"
@@ -165,6 +175,16 @@
       <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content rounded-0 border-0 p-4">
           <div class="modal-header border-0">
+            {% if app.user %}
+            <div class="row  d-flex justify-content-center">
+              <div class="btn btn-light btn-lg col-6 ">
+                <i class="  ti-check-box text-primary"></i>Actuellement connecté - <i class=" ti-user text-primary"></i>{{app.user.firstName}}
+              </div>
+              <div class="btn btn-light btn-lg col-3 ">
+                <a href="{{ path('logout') }}"><i class=" ti-power-off  text-primary"></i>-  Logout </a>            
+              </div>
+            </div>          
+            {% endif %}
             <h3>Se connecter</h3>
             <button
               type="button"
