@@ -12,11 +12,15 @@ use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 class SecurityController extends AbstractController
 {
     /**
-     * @Route("/connexion", name="login")
+     * @Route("/login", name="login")
      */
     public function login(AuthenticationUtils $authenticationUtils, Request $req): Response
     {
-      
+        // if(is_null($this->getUser()){
+         
+        //     $this->render('security/login.html.twig');
+
+        // }
         // get the login error if there is one
         $error = $authenticationUtils->getLastAuthenticationError();
         // last username entered by the user
@@ -35,7 +39,7 @@ class SecurityController extends AbstractController
     }
 
     /**
-     * @Route("/deconnexion", name="logout")
+     * @Route("/logout", name="logout")
      */
     public function logout()
     {
@@ -47,7 +51,6 @@ class SecurityController extends AbstractController
      */
     public function auRevoir()
     {
-        $this->denyAccessUnlessGranted('ROLE_ADMIN' );
         if ($this->getUser()) {
             return $this->redirectToRoute('home');
         }

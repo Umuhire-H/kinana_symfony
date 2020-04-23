@@ -21,7 +21,7 @@ security:
                 authenticators:
                     - App\Security\UserAuthenticator
             logout:
-                path: /deconnexion
+                path: /logout
                 # where to redirect after logout
                 target: /au/revoir
 

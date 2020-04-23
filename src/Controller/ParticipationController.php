@@ -18,7 +18,7 @@ class ParticipationController extends AbstractController
      */
     public function participationInscription(Request $req) //# (Request $req)
     {
-        $this->denyAccessUnlessGranted('ROLE_PARENT','ROLE_MEMBRE' );
+        //$this->denyAccessUnlessGranted('ROLE_PARENT','ROLE_MEMBRE','ROLE_USER' );
         //
         $connectedUser = $this->getUser();
         $today = new DateTime('now');
@@ -29,6 +29,7 @@ class ParticipationController extends AbstractController
         //==form to send to the View ==           
         $uneParticipation = new Participation();
         //==The activity-execution-selected ==for inscription ==
+        
         $selectedActivityExecution = $em
         ->getRepository(ActivityExecution::class)
         ->findOnebyId($executionId);
@@ -50,7 +51,8 @@ class ParticipationController extends AbstractController
 
             // target ===================================================            
              $isUsertargeted = $formulaireParticipation->get('target')->getData();// bool 
-             if($isUsertargeted){
+             if($isUsertargeted)
+             {
                  $uneParticipation->setUser($connectedUser);
              }
             //activityexecution================================================
@@ -65,7 +67,8 @@ class ParticipationController extends AbstractController
             // --Payement ========================================================
             $typePayement = $formulaireParticipation->get('typePayement')->getData();  // dd($typePayement);
             $uneParticipation->setTypePayement($typePayement);
-            switch($typePayement){
+            switch($typePayement)
+            {
                 case 'cash':
                     $uneParticipation->setStatusPayement('unpaid');
                     break;
@@ -98,7 +101,7 @@ class ParticipationController extends AbstractController
      */
     public function participationInscriptionPayement(Request $req) //# (Request $req)
     {
-        $this->denyAccessUnlessGranted('ROLE_PARENT','ROLE_MEMBRE' );
+        //$this->denyAccessUnlessGranted('ROLE_PARENT','ROLE_MEMBRE, ROLE_USER' );
         //
         $em= $this->getDoctrine()->getManager();
         $selectedActivityExecution = $em

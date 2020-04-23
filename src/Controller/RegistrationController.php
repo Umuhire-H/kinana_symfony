@@ -25,6 +25,7 @@ class RegistrationController extends AbstractController
         
         $form = $this->createForm(RegistrationFormType::class, $user);
         $form->handleRequest($request);
+        //dump( $form);
         //
         if ($form->isSubmitted() && $form->isValid()) {
             // encode the plain password
@@ -50,6 +51,7 @@ class RegistrationController extends AbstractController
         }
         else
         {
+            $response = new JsonResponse(['registrationForm' => $form->createView()]);
             //--form errors
             $formErrors = $form->getErrors();
             //$formErrors2 = clone $formErrors;
@@ -61,16 +63,13 @@ class RegistrationController extends AbstractController
                     'registrationForm' => $form->createView()
                     ]);
                     
-                    unset($form);
+                   // unset($form);
                     // unset($formErrors);
                     // $user = new User();
                     // $form = $this->createForm(RegistrationFormType::class, $user);
                     
-                }
-            else
-            {                   
-                $response = new JsonResponse(['registrationForm' => $form->createView()]);
             }
+           
             return  $response;
         }
         

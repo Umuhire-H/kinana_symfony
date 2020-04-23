@@ -1,1 +1,54 @@
 1. chemin départ : https://127.0.0.1:8000/home
+
+
+!!!FAUT SE CONNECTER d'abord pour aller plus loin que la liste de " nos activités", sinon erreur.
+!!! la route directe ne marche pas (login https://127.0.0.1:8000/login)
+=> il faut passer  par home et cliquer sur "se connecter " dans nav ....modal
+	email : celui du 1er user de la DB
+	mot de passe : test1234=
+le boutton est capricieux, le modal ne se ferme pas automatiquement. 
+---> soulution :  raffraichissant la page c'est bon ---- sinon faut refaire la manoeuvre. Mais ca marche.
+=====================
+les routes qui marche
+=====================
+1. home: https://127.0.0.1:8000/home
+
+2. nos activités: https://127.0.0.1:8000/activites
+		=> liste des activité "generique" == catégorie
+		=> seule le choix Bricolage fonctionne.
+	:( : jardinage ne possède pas d'animateur associé et vue que le requete pour construire l'objet exige ce paramètre + que la date soit >aujoud'hui : cela emmet erreur
+ ------> solution : je dois modifier fixture et rajouter animateur(à faire plus tard) 
+
+
+3. Après avoir selectionné "bricolage" : https://127.0.0.1:8000/activity/executions?activityId=27
+
+4. l'inscription à l'activité datée (activityExecution")https://127.0.0.1:8000/participation/inscription?selectedOne=23
+ ==> formulaire custom (basé sur app.User + L'activité selectionné plus tôt)
+==> fomulaire pour inscrire soit l'enfant soit la personne connéctée 
+	(plus tard des activités pour adulte/ado seront proposées)
+ ==> Paypal : non fonctionnel (à faire pdt le confinement)
+
+4. envoyer inscription : 
+error : Call to a member function getActivity() on null
+-----> je pensais avoir régler ce bug, mais non. A voir si j'ai le temps de régler çà 
+
+5. traitement inscription : marchait, mais maitenant plus.
+
+
+====================
+ce qui ne marche pas
+====================
+1. acces denied : je les ai commentés :  //$this->denyAccessUnlessGranted('ROLE_PARENT','ROLE_MEMBRE','ROLE_USER' )
+==> controller : PartcipationController 
+
+2. la route directe : vers login https://127.0.0.1:8000/login
+=> il faut passer  par home et cliquer sur "se connecter " dans nav
+
+3. le modal : register ( :( je ne vois pas pourquoi d'ailleurs
+
+4.le traitement inscription, alors qu'il fonctionnnait hier.
+
+
+Bonne correction
+
+

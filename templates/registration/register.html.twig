@@ -1,5 +1,5 @@
 
-{{ form_start(registrationForm, {'attr': {'id': 'registerForm'}}) }}
+{# {{ form_start(response.data.registrationForm, {'attr': {'id': 'registerForm'}}) }}
   <div class="form-group col-12 mt-3">
     <div class="form-row">
       <div class="form-group col-lg-4 col-md-12 col-sm-12 col-xs-12 ">
@@ -21,7 +21,7 @@
       </div>
     </div>
   </div>
-  {# -- #}
+ 
    <div class="form-group col-12 mt-3">
     <div class="form-row">
       <div class="form-group col-lg-6 col-md-12 col-sm-12 col-xs-12 ">
@@ -41,15 +41,63 @@
   <div class="form-error text-danger mt-2 mb-1" >
     {{ form_errors(registrationForm) }}
   </div>
-  <div id="divErrorMessage" class="form-error text-danger mt-2 mb-1" >
-   <i> test test </i>
+ 
+{{ form_end(registrationForm) }} #}
+{# ================================= #}
+<form id="registerForm ">
+  <div class="col-12">
+    <input
+      type="text"
+      class="form-control mb-3"
+      name="lastName"
+      placeholder="Nom"
+    />
   </div>
-{{ form_end(registrationForm) }}
-
+   <div class="col-12">
+    <input
+      type="text"
+      class="form-control mb-3"
+      name="firstName"
+      placeholder="Prénom"
+    />
+  </div>
+  <div class="col-12">
+    <input
+      type="date"
+      class="form-control mb-3"
+      name="dateBirth"
+      placeholder="Date de naissance"
+    />
+  </div>
+  <div class="col-12">
+    <input
+      type="email"
+      class="form-control mb-3"
+      name="email"
+      placeholder="Email"
+    />
+  </div>
+  <div class="col-12">
+    <input
+      type="password"
+      class="form-control mb-3"
+      name="plainPassword"
+      placeholder="Mot de passe"
+    />
+  </div>
+  <div class="col-12">
+    <button id="registerButton" type="submit" class="btn btn-primary ">ENVOYER</button>
+  </div>
+  <div id="divErrorMessage" class="form-error text-danger mt-2 mb-1" >
+   
+  </div>
+</form> 
           
 
 {# =============================================================================================  #}
  {% block my_js %}
+ <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
  <script>
     document.getElementById("registerButton").addEventListener("click", function (event) {
         event.preventDefault();
@@ -66,12 +114,14 @@
                 
                 // si erreur
                 if (response.data.error != undefined) {
+                  console.log(response.data);
                     divErrorMessage.textContent  = response.data.error;
                    // window.location.href = "{{ path ('register') }}";
                 }
                 // si pas d'erreur
                 else {
-                    console.log ('Registration OK');
+
+                    //console.log ('Registration OK');
                 }
                 
         })
