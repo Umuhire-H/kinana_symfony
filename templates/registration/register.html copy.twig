@@ -1,0 +1,48 @@
+{% extends "base.html.twig" %}
+{% block title %} Se connecter | Kina{% endblock %}
+{% block page_title_title %}Se connecter  {% endblock %}
+{% block page_title_second_title_empty %}{% endblock %}
+{% block page_title_second_title_full_title %}{% endblock %}
+{% block page_title_content %} Apprendre ikinyarwanda en jouant? <br> Par groupe de 5 enfants maximun, les enfants apprennent à nommer les élements qui les entourent.{% endblock %}
+
+{% block content %}
+<!-- related course -->
+<section class="section-sm">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">      
+        <h2 class="section-title"> <i class="ti-book text-primary icon-md mr-2"></i> Se Connecter{#Etape 2#}</h2>
+      </div>
+    </div>
+    <div class="row justify-content-center">
+      <!-- course item -->
+      <div class="col-lg-8 col-sm-6 mb-5">
+        <div class="card p-0 border-primary rounded-0 hover-shadow">
+        {# =========================================================================================== #}
+            <h1>Register</h1>
+                {% if error %}
+                    <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                {% endif %}
+
+                {{ form_start(registrationForm) }}
+                    {{ form_row(registrationForm.email) }}
+                    {{ form_row(registrationForm.plainPassword) }}
+                    {{ form_row(registrationForm.agreeTerms) }}
+
+                    <button class="btn">Register</button>
+                {{ form_end(registrationForm) }}
+
+          {# =============================================================================================  #}
+        </div>
+      </div>
+      <!-- course item -->          
+    </div>
+  </div>
+</section>
+<!-- /related course -->
+
+
+
+{% endblock %}
+
+

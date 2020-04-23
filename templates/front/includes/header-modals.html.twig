@@ -96,7 +96,9 @@
           </div>
           <div class="modal-body">
             <div class="login">
-              <form action="#" class="row">
+              {% include "registration/register.html.twig" %}                        
+
+              {# <form action="#" class="row">
                 <div class="col-12">
                   <input
                     type="text"
@@ -145,13 +147,14 @@
                 <div class="col-12">
                   <button type="submit" class="btn btn-primary text-uppercase">envoyer</button>
                 </div>
-              </form>
+              </form> #}
+            
             </div>
           </div>
         </div>
       </div>
     </div>
-    <!-- Modal -->
+    <!-- Modal   LOGIN-->
     <div
       class="modal fade"
       id="loginModal"

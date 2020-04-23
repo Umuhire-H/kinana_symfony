@@ -46,7 +46,7 @@ class RegistrationFormType extends AbstractType
                 'placeholder' => 'Prénom'
             ])
             ->add('lastName', TextType::class)
-            ->add('dateBirth', DateTimeType::class,['label' => 'Date de Payement',])
+            ->add('dateBirth', DateTimeType::class)
             
             ->add('email')
             ->add('plainPassword', PasswordType::class, [
@@ -77,6 +77,12 @@ class RegistrationFormType extends AbstractType
             // ->add('requestedTexts', EntityType::class, [
             //     'class' => Text::class,
             //     'required' =>false]) 
+            // ->add('translatedTexts', EntityType::class, [
+            //     'class' => Text::class,
+            //     'required' =>false]) 
+            // ->add('activityExecutions', EntityType::class, [
+            //     'class' => Text::class,
+            //     'required' =>false])     
             // //======================================================
             // //======================================================
             
