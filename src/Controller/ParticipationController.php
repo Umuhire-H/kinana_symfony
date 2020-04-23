@@ -23,27 +23,42 @@ class ParticipationController extends AbstractController
         $connectedUser = $this->getUser();
         $today = new DateTime('now');
         $em= $this->getDoctrine()->getManager();       
-        $executionId= $req->get('selectedOne');        
-
-        //====================================================
-        //==form to send to the View ==           
         $uneParticipation = new Participation();
-        //==The activity-execution-selected ==for inscription ==
+        // $executionId= $req->get('selectedOne'); 
+        // dd($req->getData);       
+        // dd($executionId);
+        if(!is_null($req->get('selectedOne'))){
+            $executionId= $req->get('selectedOne'); 
+            //dd($executionId);
+            //====================================================
+            //==form to send to the View ==           
+            //==The activity-execution-selected ==for inscription ==
+            $selectedActivityExecution = $em
+            ->getRepository(ActivityExecution::class)
+            ->findOnebyId($executionId);
+            
+            $price=$selectedActivityExecution->getActivity()->getPrice();
+            $uneParticipation->setPricePayed($price);
+            //2. form de TYPE participationType
+            $formulaireParticipation = $this->createForm(ParticipationType::class, $uneParticipation, [
+                'action' => $this->generateUrl('participation-inscription'), 
+                'method' => 'POST', 
+                'user'=> $connectedUser,
+                'selectedActivity' => $selectedActivityExecution] );  //dump($formulaireParticipation);     
+            // $executionId= $req->get('selectedOne'); 
+            //3. form
+        }
+        else
+        {
+            $formulaireParticipation = $this->createForm(ParticipationType::class, $uneParticipation, [
+                'action' => $this->generateUrl('participation-inscription'), 
+                'method' => 'POST', 
+                'user'=> $connectedUser,
+                /*'selectedActivity' => $selectedActivityExecution*/] );  //dump($formulaireParticipation);     
+            // $executionId= $req->get('selectedOne'); 
+            //3. form
+        }
         
-        $selectedActivityExecution = $em
-        ->getRepository(ActivityExecution::class)
-        ->findOnebyId($executionId);
-        
-        $price=$selectedActivityExecution->getActivity()->getPrice();
-        $uneParticipation->setPricePayed($price);
-        //2. form de TYPE participationType
-        $formulaireParticipation = $this->createForm(ParticipationType::class, $uneParticipation, [
-            'action' => $this->generateUrl('participation-inscription'), 
-            'method' => 'POST', 
-            'user'=> $connectedUser,
-            'selectedActivity' => $selectedActivityExecution] );  //dump($formulaireParticipation);     
-
-        //3. form
         $formulaireParticipation->handleRequest($req);     
 
         if( $formulaireParticipation->isSubmitted() /*&& $formulaireParticipation->isValid()*/){
@@ -81,10 +96,14 @@ class ParticipationController extends AbstractController
                     $uneParticipation->setPricePayed($activityPrice);
                     break;
             }
+            // dump($uneParticipation);
+            // dump($formulaireParticipation->get('child')->getData());
+            // dd($uneParticipation->getChild());
                      
             $em->persist($uneParticipation);
 
             $em->flush();
+            
                        
             return $this->render('participation/participation-inscription-traitement.html.twig',['participationInserted'=> $uneParticipation , 'execution'=>$finalizedActivityExecution]);
         }
