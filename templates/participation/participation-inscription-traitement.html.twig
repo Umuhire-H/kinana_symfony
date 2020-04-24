@@ -13,7 +13,14 @@
       <div class="col-12">      
         <h2 class="section-title"> <i class="ti-book text-primary icon-md mr-2"></i> Etape 3 </h2>
         <p class="h3 text-color font-secondary"> Inscription réussie !</p>
-        <p> <span class=" text-primary font-secondary">{{participationInserted.child.firstName }}</span> est bien inscrit à l'activité <span class=" text-primary font-secondary">{{participationInserted.activityExecution.activity.name}}</span> du <span class=" text-primary ">{{participationInserted.activityExecution.date |date('d-m-Y')}}</span> </p>
+        <p>
+          {% if participationInserted.user is null %}
+          <span class=" text-primary font-secondary">{{participationInserted.child.firstName }}</span> est 
+          {% else %}
+          <span class=" text-primary font-secondary">{{participationInserted.user.firstName }} {{participationInserted.user.lastName }}, voues êtes </span> 
+          {% endif %} 
+          bien inscrit à l'activité <span class=" text-primary font-secondary">{{participationInserted.activityExecution.activity.name}}</span> du <span class=" text-primary ">{{participationInserted.activityExecution.date |date('d-m-Y')}}</span> 
+        </p>
       </div>
     </div>
     
