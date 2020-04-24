@@ -6,8 +6,17 @@
           <div class="row no-gutters">
             <div class="col-lg-8 text-center text-lg-right">
               <ul class="list-inline">
-                              
+                {% if app.user %}
+                <li class="list-inline-item">
+                
+                  <a href="#" class=" text-uppercase text-color p-sm-2 py-2 px-0 d-inline-block"><i class=" ti-user text-primary"></i>
+                  {{app.user.firstName}}</a> 
                 </li>
+                <li class="list-inline-item">
+                  <a href="{{ path('logout') }} text-uppercase text-color p-sm-2 py-2 px-0 d-inline-block"><i class=" ti-power-off  text-primary"></i> Logout </a>            
+                </li>
+                {% else %}
+                    
                 <li class="list-inline-item">
                   <a
                     class="text-uppercase text-color p-sm-2 py-2 px-0 d-inline-block"
@@ -26,6 +35,9 @@
                     >s'inscrire</a
                   >
                 </li>
+                  
+                {% endif %}             
+               
               </ul>
             </div>
           </div>
@@ -84,16 +96,7 @@
       <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content rounded-0 border-0 p-4">
           <div class="modal-header border-0">
-            {% if app.user %}
-            <div class="row  d-flex justify-content-center">
-              <div class="btn btn-light btn-lg col-6 ">
-                <i class="  ti-check-box text-primary"></i>Actuellement connecté - <i class=" ti-user text-primary"></i>{{app.user.firstName}}
-              </div>
-              <div class="btn btn-light btn-lg col-3 ">
-                <a href="{{ path('logout') }}"><i class=" ti-power-off  text-primary"></i>-  Logout </a>            
-              </div>
-            </div>          
-            {% endif %}
+            
             <h3>S'inscrire</h3>
             <button
               type="button"
@@ -126,16 +129,7 @@
       <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content rounded-0 border-0 p-4">
           <div class="modal-header border-0">
-            {% if app.user %}
-            <div class="row  d-flex justify-content-center">
-              <div class="btn btn-light btn-lg col-6 ">
-                <i class="  ti-check-box text-primary"></i>Actuellement connecté - <i class=" ti-user text-primary"></i>{{app.user.firstName}}
-              </div>
-              <div class="btn btn-light btn-lg col-3 ">
-                <a href="{{ path('logout') }}"><i class=" ti-power-off  text-primary"></i>-  Logout </a>            
-              </div>
-            </div>          
-            {% endif %}
+           
             <h3>Se connecter</h3>
             <button
               type="button"
