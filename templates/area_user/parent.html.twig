@@ -1,0 +1,82 @@
+    {% extends "base.html.twig" %}
+    {% block title %}Zone Membre | Kina{% endblock %}
+    {% block page_title_title %}Ma session parent {% endblock %}
+    {% block page_title_second_title_empty %}{% endblock %}
+    {% block page_title_second_title_full_title %} Bonjour {{app.user.firstName}} {% endblock %}
+    {% block page_title_content %} Ici, vous trouverez vos informations personnelles{% endblock %}
+            
+    {% block content %}
+    {# {% if app.user %}
+    {% endif %}  #}
+    <div class="row mt-2">
+        <div class="col-2  ">
+            <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                <a class="nav-link active" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true">Mes données </a>
+                <a class="nav-link" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false">Mes enfants</a>
+                <a class="nav-link" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-messages" role="tab" aria-controls="v-pills-messages" aria-selected="false">Messages</a>
+                <a class="nav-link" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-settings" role="tab" aria-controls="v-pills-settings" aria-selected="false">Settings</a>
+            </div>
+        </div>
+        <div class="col-10">
+            <div class="tab-content " id="v-pills-tabContent">
+                <div class="tab-pane fade show active " id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
+                    <form class="form-inline">
+                        <label class="sr-only" for="inlineFormInputName1">Nom</label>
+                        <input type="text" class="form-control mb-2 mr-sm-2" id="inlineFormInputName1" placeholder="{{app.user.lastName}}">
+                        
+                        <label class="sr-only" for="inlineFormInputName2">Prénom</label>
+                        <input type="text" class="form-control mb-2 mr-sm-2" id="inlineFormInputName2" placeholder="{{app.user.firstName}}">
+
+                         <label class="sr-only" for="inlineFormInputName2">Date de naissance</label>
+                        <input type="text" class="form-control mb-2 mr-sm-2" id="inlineFormInputName2" placeholder="{{app.user.dateBirth | date("m/d/Y")}}">
+
+                        <label class="sr-only" for="inlineFormInputGroupUsername2">Email</label>
+                        <div class="input-group mb-2 mr-sm-2">
+                            <div class="input-group-prepend">
+                            <div class="input-group-text">@</div>
+                            </div>
+                            <input type="text" class="form-control" id="inlineFormInputGroupUsername2" placeholder="{{app.user.email}}">
+                        </div>
+
+                        <button type="submit" class="btn btn-primary mb-2">Modifier</button>
+                    </form>
+                    {# ======card========== #}
+                    {# <div class="card" style="width: 18rem;">
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item"> {{app.user.email}}</li>
+                            <li class="list-group-item"> {{app.user.lastName}}</li>
+                            <li class="list-group-item"> {{app.user.firstName}}</li>
+                            <li class="list-group-item"> {{app.user.dateBirth | date("m/d/Y")}}</li>
+                        </ul>
+                        <a href="#" class="btn btn-primary col-6">Modifier</a>
+                    </div> #}
+                    {# ======form class - registrationType #}
+                    {# {{ form_start(formUser, {'attr': {'class': 'form-inline'}}) }}
+                        {{ form_label(formUser.lastName, 'Nom') }}   
+                        <span class="form-error text-danger mt-2 mb-1" > {{ form_errors(formUser.lastName) }}</span>          
+                        {{ form_widget (formUser.lastName, {'attr': {'class': 'form-control '}}) }}
+
+                        {{ form_label(formUser.firstName, 'Prénom') }}      
+                        <span class="form-error text-danger mt-2 mb-1" > {{ form_errors(registrationForm.firstName) }}</span>          
+                        {{ form_widget (formUser.firstName, {'attr': {'class': 'form-control '}}) }}
+
+                        {{ form_label(registrationForm.dateBirth, 'Date de naissance') }} 
+                        <span class="form-error text-danger mt-2 mb-1" > {{ form_errors(registrationForm.dateBirth) }}</span>               
+                        {{ form_widget (formUser.dateBirth, {'attr': {'class': 'form-control '}}) }}
+
+                        <button id="registerButton" class="btn">ENVOYER</button>
+                    {{ form_end(formUser) }}   #}
+                </div>
+                <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
+                  profile---mes enfants
+                </div>
+                <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">
+                    messages
+                </div>
+                <div class="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">
+                    settings
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endblock %}
