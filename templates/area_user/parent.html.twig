@@ -17,8 +17,8 @@
                 <a class="nav-link" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false">Mes enfants</a>
 
                 {% endif %}
-                <a class="nav-link" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-messages" role="tab" aria-controls="v-pills-messages" aria-selected="false">Messages</a>
-                <a class="nav-link" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-settings" role="tab" aria-controls="v-pills-settings" aria-selected="false">Settings</a>
+                {# <a class="nav-link" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-messages" role="tab" aria-controls="v-pills-messages" aria-selected="false">Messages</a>
+                <a class="nav-link" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-settings" role="tab" aria-controls="v-pills-settings" aria-selected="false">Settings</a> #}
             </div>
         </div>
         <div class="col-10">
@@ -55,6 +55,39 @@
                         </ul>
                         <a href="#" class="btn btn-primary col-6">Modifier</a>
                     </div>
+                        {% if app.user.participations != null %}
+                        <div class="col-lg-4 col-sm-6 mb-4 mb-lg-0">
+                            <div class="card rounded-0 hover-shadow border-top-0 border-left-0 border-right-0">
+                                <div class="card-body">
+                                    
+                                    <h4 class="card-title mb-3 ">MES PARTICIPATIONS</h4>
+                                    {% for partcipation in app.user.participations %}
+                                        <ul class="list-group list-group-flush">
+                                            <li class="list-group-item"> 
+                                                <h5 >{{partcipation.activityExecution.activity.name}} -  {{partcipation.activityExecution.date | date('d-m-Y')}}</h5>
+                                                <p> <strong> Animée par : </strong> 
+                                                    {% for animator in partcipation.activityExecution.userAnimators %}
+                                                        <span>{{animator.firstName}} {{animator.lastName}} </span> <br>                                                        
+                                                    {% endfor %}
+                                                </p>
+                                               
+                                                <p><strong>Du </strong> {{partcipation.activityExecution.date | date('d-m-Y')}}</p>
+                                                <p><strong>Paiement: </strong> {{partcipation.statusPayement }}</p>
+                                                {% if partcipation.comment != null  %}
+                                                <p><strong>Votre commentaire: </strong> {{partcipation.comment }}</p>
+                                                {% else %}
+                                                <a href="#" class="btn btn-primary">Ajouter un commentaire</a>
+                                                {% endif %}
+                                                
+                                            </li>
+                                            {# <li class="list-group-item">Dapibus ac facilisis in</li>
+                                            <li class="list-group-item">Vestibulum at eros</li> #}
+                                        </ul>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+                        {% endif %}
                     {# ======form class - registrationType =====#}
                     {# {{ form_start(formUser, {'attr': {'class': 'form-inline'}}) }}
                         {{ form_label(formUser.lastName, 'Nom') }}   
@@ -83,57 +116,31 @@
                             
                                 <div class="card-body">
                                     <h4 class="card-title mb-3 text-uppercase">{{child.firstName}} {{child.lastName}}</h4>
-                                    <p class="mb-1">né(e): {{child.dateBirth|date('d-m-Y')}}</p>
+                                    <p class="mb-1">né(e): {{ child.dateBirth|date('d-m-Y')}}</p>
                                     <h4 class="card-title mb-3 ">SES PARTICIPATIONS</h4>
                                     {% for partcipation in child.participations %}
-                                        <div class="row align-items-center mb-5">
-      <div class="col-xl-3 order-1 col-sm-6 mb-4 mb-xl-0">
-        <h2>Photography</h2>
-      </div>
-      <div class="col-xl-6 order-sm-3 order-xl-2 col-12 order-2">
-        <ul class="list-inline text-xl-center">
-          <li class="list-inline-item mr-4 mb-3 mb-sm-0">
-            <div class="d-flex align-items-center">
-              <i class="ti-book text-primary icon-md mr-2"></i>
-              <div class="text-left">
-                <h6 class="mb-0">COURSES</h6>
-                <p class="mb-0">06 Month</p>
-              </div>
-            </div>
-          </li>
-          <li class="list-inline-item mr-4 mb-3 mb-sm-0">
-            <div class="d-flex align-items-center">
-              <i class="ti-alarm-clock text-primary icon-md mr-2"></i>
-              <div class="text-left">
-                <h6 class="mb-0">DURATION</h6>
-                <p class="mb-0">03 Hours</p>
-              </div>
-            </div>
-          </li>
-          <li class="list-inline-item mr-4 mb-3 mb-sm-0">
-            <div class="d-flex align-items-center">
-              <i class="ti-wallet text-primary icon-md mr-2"></i>
-              <div class="text-left">
-                <h6 class="mb-0">FEE</h6>
-                <p class="mb-0">From: $699</p>
-              </div>
-            </div>
-          </li>
-        </ul>
-      </div>
-      <div class="col-xl-3 text-sm-right text-left order-sm-2 order-3 order-xl-3 col-sm-6 mb-4 mb-xl-0">
-        <a href="#" class="btn btn-primary">Apply now</a>
-      </div>
-    </div>
+                                        <ul class="list-group list-group-flush">
+                                            <li class="list-group-item"> 
+                                                <h5 >{{partcipation.activityExecution.activity.name}} -  {{partcipation.activityExecution.date | date('d-m-Y')}}</h5>
+                                                <p> <strong> Animée par : </strong> 
+                                                    {% for animator in partcipation.activityExecution.userAnimators %}
+                                                        <span>{{animator.firstName}} {{animator.lastName}} </span> <br>                                                        
+                                                    {% endfor %}
+                                                </p>
+                                               
+                                                <p><strong>Du </strong> {{partcipation.activityExecution.date | date('d-m-Y')}}</p>
+                                                <p><strong>Paiement: </strong> {{partcipation.statusPayement }}</p>
+                                                {% if partcipation.comment != null  %}
+                                                <p><strong>Votre commentaire: </strong> {{partcipation.comment }}</p>
+                                                {% else %}
+                                                <a href="#" class="btn btn-primary">Ajouter un commentaire</a>
+                                                {% endif %}
+                                                
+                                            </li>
+                                            {# <li class="list-group-item">Dapibus ac facilisis in</li>
+                                            <li class="list-group-item">Vestibulum at eros</li> #}
+                                        </ul>
                                     {% endfor %}
-                                    <ul class="list-styled">
-                                        <li>institutes</li>
-                                        <li>Smart-affiliated research</li>
-                                        <li>Digital Access to Scholarship</li>
-                                        <li>Smart Catalyst</li>
-                                        <li>Smart Library Portal</li>
-                                        <li>Smart research programs</li>
-                                    </ul>
                                 </div>
                             </div>
                         </div>
@@ -141,12 +148,12 @@
                     </div>
                 </div>
                 {% endif %}
-                <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">
+                {# <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">
                     messages
                 </div>
                 <div class="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">
                     settings
-                </div>
+                </div> #}
             </div>
         </div>
     </div>
