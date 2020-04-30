@@ -45,7 +45,6 @@ class ParticipationController extends AbstractController
                 'method' => 'POST', 
                 'user'=> $connectedUser,
                 'selectedActivity' => $selectedActivityExecution] );  //dump($formulaireParticipation);     
-            // $executionId= $req->get('selectedOne'); 
             //3. form
         }
         else

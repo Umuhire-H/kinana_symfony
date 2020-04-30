@@ -23,25 +23,7 @@ class RegistrationFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder
-            // ->add('roles', ChoiceType::class, [
-            //     'label' => 'Je m\'inscris en tant que : ',
-            //     'choices' => [
-            //         'parent' => 'parent',
-            //         'membre curieux' => 'membre',
-            //         'animateur' => 'animateur',
-            //         'traduteur' => 'traducteur',
-            //     ],
-            //     'expanded' => true,
-            //     'multiple' => false,
-
-            //     // 'mapped' => false,
-            //     // 'constraints' => [
-            //     //     new IsTrue([
-            //     //         'message' => 'Je m\'inscris en tant que ',
-            //     //     ]),
-            //     // ],
-            // ])
+        $builder            
             ->add('firstName', TextType::class, [
                 'placeholder' => 'Prénom'
             ])

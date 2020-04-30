@@ -14,11 +14,13 @@
                 <a class="nav-link active" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true">Mes données </a>
                 
                 {% if (app.user.children != null) %}
-                <a class="nav-link" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false">Mes enfants</a>
+                {% for child in app.user.children %}
+                <a class="nav-link" id="{{child.id}}-{{child.firstName}}-tab" data-toggle="pill" href="#{{child.id}}-{{child.firstName}}" role="tab" aria-controls="{{child.id}}-{{child.firstName}}" aria-selected="false">Enfant - {{child.firstName}}</a>
+                {% endfor %}
 
                 {% endif %}
-                {# <a class="nav-link" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-messages" role="tab" aria-controls="v-pills-messages" aria-selected="false">Messages</a>
-                <a class="nav-link" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-settings" role="tab" aria-controls="v-pills-settings" aria-selected="false">Settings</a> #}
+                <a class="nav-link" id="v-pills-child-tab" data-toggle="pill" href="#v-pills-child" role="tab" aria-controls="v-pills-child" aria-selected="false">Ajouter un enfant</a>
+                
             </div>
         </div>
         <div class="col-10">
@@ -55,39 +57,42 @@
                         </ul>
                         <a href="#" class="btn btn-primary col-6">Modifier</a>
                     </div>
-                        {% if app.user.participations != null %}
-                        <div class="col-lg-4 col-sm-6 mb-4 mb-lg-0">
-                            <div class="card rounded-0 hover-shadow border-top-0 border-left-0 border-right-0">
+                    {% if app.user.participations != null %}
+                    <h4 class="card-title mb-3 mt-3">MES PARTICIPATIONS ({{app.user.participations|length}})</h4>
+                    <div class="row">
+                        {% for partcipation in app.user.participations %}
+                        <!-- event -->
+                        <div class="col-lg-4 col-sm-6 mb-5">
+                            <div class="card border-0 rounded-0 hover-shadow">
+                                <div class="card-img position-relative">
+                                    <img class="card-img-top rounded-0" src="{{ asset ('assets/images/events/event-1.jpg') }}" alt="event thumb">
+                                    <div class="card-date">{{partcipation.activityExecution.date | date('d-m-Y')}}</div>
+                                </div>
                                 <div class="card-body">
-                                    
-                                    <h4 class="card-title mb-3 ">MES PARTICIPATIONS</h4>
-                                    {% for partcipation in app.user.participations %}
-                                        <ul class="list-group list-group-flush">
-                                            <li class="list-group-item"> 
-                                                <h5 >{{partcipation.activityExecution.activity.name}} -  {{partcipation.activityExecution.date | date('d-m-Y')}}</h5>
-                                                <p> <strong> Animée par : </strong> 
-                                                    {% for animator in partcipation.activityExecution.userAnimators %}
-                                                        <span>{{animator.firstName}} {{animator.lastName}} </span> <br>                                                        
-                                                    {% endfor %}
-                                                </p>
-                                               
-                                                <p><strong>Du </strong> {{partcipation.activityExecution.date | date('d-m-Y')}}</p>
-                                                <p><strong>Paiement: </strong> {{partcipation.statusPayement }}</p>
-                                                {% if partcipation.comment != null  %}
-                                                <p><strong>Votre commentaire: </strong> {{partcipation.comment }}</p>
-                                                {% else %}
-                                                <a href="#" class="btn btn-primary">Ajouter un commentaire</a>
-                                                {% endif %}
-                                                
-                                            </li>
-                                            {# <li class="list-group-item">Dapibus ac facilisis in</li>
-                                            <li class="list-group-item">Vestibulum at eros</li> #}
-                                        </ul>
-                                    {% endfor %}
+                                    <ul class="list-inline mb-3">
+                                        <!-- author -->
+                                        <li class="list-inline-item mr-3 ml-0">Animateur(s) : {{partcipation.activityExecution.userAnimators|map((u)=> "#{u.firstName} #{u.lastName}")|join(', ')}}</li>
+                                        <!-- post date -->
+                                        <li class="list-inline-item mr-3 ml-0">Paiement: </strong> {{partcipation.statusPayement }}</li>
+                                    </ul>
+                                    <!-- location -->
+                                    {# <p><i class="ti-location-pin text-primary mr-2"></i>Dhanmondi Lake, Dhaka</p> #}
+                                    <h4 class="card-title">{{partcipation.activityExecution.activity.name}}</h4>
+                                    {# <a href="{{ path ('event-single') }}">
+                                    <h4 class="card-title">{{partcipation.activityExecution.activity.name}}</h4>
+                                    </a> #}
+                                    {% if partcipation.comment != null  %}
+                                    <p><strong>Votre commentaire: </strong> {{partcipation.comment }}</p>
+                                    {% else %}
+                                    <a href="#" class="btn btn-primary">Ajouter un commentaire</a>
+                                    {% endif %}
                                 </div>
                             </div>
                         </div>
-                        {% endif %}
+                        {% endfor %}
+                    </div>
+                    
+                    {% endif %}
                     {# ======form class - registrationType =====#}
                     {# {{ form_start(formUser, {'attr': {'class': 'form-inline'}}) }}
                         {{ form_label(formUser.lastName, 'Nom') }}   
@@ -105,55 +110,53 @@
                         <button id="registerButton" class="btn">ENVOYER</button>
                     {{ form_end(formUser) }}   #}
                 </div>
-                {% if (app.user.children != null) %}
-               
-                <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
-                  
-                    <div class="row justify-content-center">
-                        {% for child in app.user.children %}                   
-                        <div class="col-lg-4 col-sm-6 mb-4 mb-lg-0">
-                            <div class="card rounded-0 hover-shadow border-top-0 border-left-0 border-right-0">
-                            
+                {% if (app.user.children != null) %}               
+                {% for child in app.user.children %}                   
+                <div class="tab-pane fade" id="{{child.id}}-{{child.firstName}}" role="tabpanel" aria-labelledby="{{child.id}}-{{child.firstName}}-tab">
+                    <h4 class="card-title mb-3 mt-3">LES PARTICIPATIONS de {{child.lastName}} {{child.firstName}} ({{child.participations|length}})</h4>
+                    <div class="row">
+                        {% for partcipation in child.participations %}
+                        <!-- event -->
+                        <div class="col-lg-4 col-sm-6 mb-5">
+                            <div class="card border-0 rounded-0 hover-shadow">
+                                <div class="card-img position-relative">
+                                    <img class="card-img-top rounded-0" src="{{ asset ('assets/images/events/event-1.jpg') }}" alt="event thumb">
+                                    <div class="card-date">{{partcipation.activityExecution.date | date('d-m-Y')}}</div>
+                                </div>
                                 <div class="card-body">
-                                    <h4 class="card-title mb-3 text-uppercase">{{child.firstName}} {{child.lastName}}</h4>
-                                    <p class="mb-1">né(e): {{ child.dateBirth|date('d-m-Y')}}</p>
-                                    <h4 class="card-title mb-3 ">SES PARTICIPATIONS</h4>
-                                    {% for partcipation in child.participations %}
-                                        <ul class="list-group list-group-flush">
-                                            <li class="list-group-item"> 
-                                                <h5 >{{partcipation.activityExecution.activity.name}} -  {{partcipation.activityExecution.date | date('d-m-Y')}}</h5>
-                                                <p> <strong> Animée par : </strong> 
-                                                    {% for animator in partcipation.activityExecution.userAnimators %}
-                                                        <span>{{animator.firstName}} {{animator.lastName}} </span> <br>                                                        
-                                                    {% endfor %}
-                                                </p>
-                                               
-                                                <p><strong>Du </strong> {{partcipation.activityExecution.date | date('d-m-Y')}}</p>
-                                                <p><strong>Paiement: </strong> {{partcipation.statusPayement }}</p>
-                                                {% if partcipation.comment != null  %}
-                                                <p><strong>Votre commentaire: </strong> {{partcipation.comment }}</p>
-                                                {% else %}
-                                                <a href="#" class="btn btn-primary">Ajouter un commentaire</a>
-                                                {% endif %}
-                                                
-                                            </li>
-                                            {# <li class="list-group-item">Dapibus ac facilisis in</li>
-                                            <li class="list-group-item">Vestibulum at eros</li> #}
-                                        </ul>
-                                    {% endfor %}
+                                    <ul class="list-inline mb-3">
+                                        <!-- author -->
+                                        <li class="list-inline-item mr-3 ml-0">Animateur(s) : {{partcipation.activityExecution.userAnimators|map((u)=> "#{u.firstName} #{u.lastName}")|join(', ')}}</li>
+                                        <!-- post date -->
+                                        <li class="list-inline-item mr-3 ml-0">Paiement: </strong> {{partcipation.statusPayement }}</li>
+                                    </ul>
+                                    <!-- location -->
+                                    {# <p><i class="ti-location-pin text-primary mr-2"></i>Dhanmondi Lake, Dhaka</p> #}
+                                    <h4 class="card-title">{{partcipation.activityExecution.activity.name}}</h4>
+                                    {# <a href="{{ path ('event-single') }}">
+                                    <h4 class="card-title">{{partcipation.activityExecution.activity.name}}</h4>
+                                    </a> #}
+                                    {% if partcipation.comment != null  %}
+                                    <p><strong>Votre commentaire: </strong> {{partcipation.comment }}</p>
+                                    {% else %}
+                                    <a href="#" class="btn btn-primary">Ajouter un commentaire</a>
+                                    {% endif %}
                                 </div>
                             </div>
                         </div>
                         {% endfor %}
                     </div>
+                        <!-- event -->
+                        
+                    
                 </div>
+                {% endfor %}
                 {% endif %}
-                {# <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">
-                    messages
+                <div class="tab-pane fade" id="v-pills-child" role="tabpanel" aria-labelledby="v-pills-child-tab">
+                    <h4 class="card-title mb-3 mt-3">Formulaire d'inscription d'un enfant</h4>
+                    
                 </div>
-                <div class="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">
-                    settings
-                </div> #}
+               
             </div>
         </div>
     </div>

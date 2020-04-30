@@ -1,0 +1,28 @@
+{{ form_start(response.data.registrationForm, {'attr': {'id': 'registerForm'}}) }}
+  <div class="form-group col-12 mt-3">
+    <div class="form-row">
+      <div class="form-group col-lg-4 col-md-12 col-sm-12 col-xs-12 ">
+        {{ form_label(registrationForm.lastName, 'Nom') }}   
+         <span class="form-error text-danger mt-2 mb-1" > {{ form_errors(registrationForm.lastName) }}</span>          
+        {{ form_widget (registrationForm.lastName, {'attr': {'class': 'form-control '}}) }}
+      </div>
+
+      <div class="form-group col-lg-4 col-md-12 col-sm-12 col-xs-12 ">
+        {{ form_label(registrationForm.firstName, 'Prénom') }}      
+        <span class="form-error text-danger mt-2 mb-1" > {{ form_errors(registrationForm.firstName) }}</span>          
+        {{ form_widget (registrationForm.firstName, {'attr': {'class': 'form-control '}}) }}
+      </div>
+
+      <div class="form-group col-lg-4 col-md-12 col-sm-12 col-xs-12 ">
+        {{ form_label(registrationForm.dateBirth, 'Date de naissance') }} 
+        <span class="form-error text-danger mt-2 mb-1" > {{ form_errors(registrationForm.dateBirth) }}</span>               
+        {{ form_widget (registrationForm.dateBirth, {'attr': {'class': 'form-control '}}) }}
+      </div>
+    </div>
+  </div>
+  <button id="registerButton" class="btn">ENVOYER</button>
+  <div class="form-error text-danger mt-2 mb-1" >
+    {{ form_errors(registrationForm) }}
+  </div>
+ 
+{{ form_end(registrationForm) }} 
