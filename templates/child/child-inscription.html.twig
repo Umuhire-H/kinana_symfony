@@ -1,0 +1,55 @@
+{# {{ form_start(formChild) }}
+  <div class="form-group col-12 mt-3">
+    <div class="form-row">
+      <div class="form-group col-lg-4 col-md-12 col-sm-12 col-xs-12 ">
+        {{ form_label(formChild.lastName, 'Nom') }}   
+         <span class="form-error text-danger mt-2 mb-1" > {{ form_errors(formChild.lastName) }}</span>          
+        {{ form_widget (formChild.lastName, {'attr': {'class': 'form-control '}}) }}
+      </div>
+
+      <div class="form-group col-lg-4 col-md-12 col-sm-12 col-xs-12 ">
+        {{ form_label(formChild.firstName, 'Prénom') }}      
+        <span class="form-error text-danger mt-2 mb-1" > {{ form_errors(formChild.firstName) }}</span>          
+        {{ form_widget (formChild.firstName, {'attr': {'class': 'form-control '}}) }}
+      </div>
+
+      <div class="form-group col-lg-4 col-md-12 col-sm-12 col-xs-12 ">
+        {{ form_label(formChild.dateBirth, 'Date de naissance') }} 
+        <span class="form-error text-danger mt-2 mb-1" > {{ form_errors(formChild.dateBirth) }}</span>               
+        {{ form_widget (formChild.dateBirth, {'attr': {'class': 'form-control '}}) }}
+      </div>
+    </div>
+  </div>
+  <button id="registerButton" class="btn">ENVOYER</button>
+
+ 
+{{ form_end(formChild) }}  #}
+
+<div class="col-lg-8 col-sm-6 mb-3">
+  <div class="card p-0 border-primary rounded-0 hover-shadow mb-5">
+      {{ form_start (formChild) }}              
+        
+        <div class="form-group col-12 mb-4{#d-none#}">
+          {{ form_label(formChild.lastName, 'Nom') }}
+          {{ form_widget (formChild.lastName, {'attr': {'class': 'form-control mb-3'}}) }}
+        </div>
+        <div class="form-group col-12 ">
+          {{ form_label(formChild.firstName, 'Prénom') }}
+          {{ form_widget (formChild.firstName, {'attr': {'class': 'form-control mb-3'}}) }}
+        </div>
+
+        <div class="form-group col-12 ">
+          {{ form_label(formChild.dateBirth, 'Prénom') }}
+          {{ form_widget (formChild.dateBirth, {'attr': {'class': 'form-control mb-3'}}) }}
+        </div>
+
+        {# <div class="form-group col-12 d-none mb-3 ">
+          {{ form_widget (formChild.userParents, {'attr': {'class': 'form-control mb-3'}}) }}
+        </div> #}
+
+        <div class="form-group col-12 ">
+          <button type="submit" class="btn btn-primary btn-sm mb-5">ENVOYER</button>
+        </div>
+      {{ form_end (formChild, {'render_rest': false})}}
+  </div>
+</div>
