@@ -15,13 +15,14 @@ class AreaUserController extends AbstractController
         return $this->render('area_user/parent.html.twig');
     }
 
-    // /**
-    //  * @Route("/area/user", name="area_user")
-    //  */
-    // public function index()
-    // {
-    //     return $this->render('area_user/index.html.twig', [
-    //         'controller_name' => 'AreaUserController',
-    //     ]);
-    // }
+    // //=====================================================
+    // //========= test 2 : forward ==========================
+    // //=====================================================
+    /**
+     * @Route("/parent/add/child", name="parent-add-child")
+     */
+    public function addChild()
+    {
+        return $this->forward('App\Controller\ChildController:child-inscription');
+    }
 }

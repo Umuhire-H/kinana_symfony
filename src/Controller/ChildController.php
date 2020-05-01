@@ -16,6 +16,7 @@ class ChildController extends AbstractController
     public function inscription(Request $req)
     {
         $oneChild = new Child();
+        $oneChild->addUserParent($this->getUser());
         
         $formChild = $this->createForm(ChildType::class, $oneChild, [
             'action' => $this->generateUrl('child-inscription'),
@@ -24,7 +25,7 @@ class ChildController extends AbstractController
         ] );
 
         $formChild->handleRequest($req);
-        if($formChild->isSubmitted() && $formChild->isValid()){
+        if($formChild->isSubmitted() /*&& $formChild->isValid()*/){
 
             $oneChild = $formChild->getData();
 
@@ -34,6 +35,8 @@ class ChildController extends AbstractController
             $em->persist($oneChild);
 
             $em->flush();
+            
+            return $this->redirectToRoute('area_user');
         }
         $toView = [ 'formChild' => $formChild->createView()];
         return $this->render('child/child-inscription.html.twig', $toView);
