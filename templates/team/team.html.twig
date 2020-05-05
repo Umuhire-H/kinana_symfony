@@ -1,5 +1,5 @@
 {% extends "base.html.twig" %}
-{% block title %}Equipe | Kina {% endblock %}
+{% block title %} Equipe | Kina {% endblock %}
 {% block page_title_title %}L'équipe{% endblock %}
 {% block page_title_second_title_full %}{% endblock %}
 {% block page_title_content %}{% endblock %}
@@ -12,13 +12,8 @@
       <div class="col-12">
         <!-- teacher category list -->
         <ul class="list-inline text-center filter-controls mb-5">
-          <li class="list-inline-item m-3 text-uppercase" data-filter=".arts">arts</li>
-          <li class="list-inline-item m-3 text-uppercase" data-filter=".bio-science">biological science</li>
-          <li class="list-inline-item m-3 text-uppercase" data-filter=".business-study">business studies</li>
-          <li class="list-inline-item m-3 text-uppercase" data-filter=".law">law</li>
-          <li class="list-inline-item m-3 text-uppercase" data-filter=".pharmacy">pharmacy</li>
-          <li class="list-inline-item m-3 text-uppercase" data-filter=".science">science</li>
-          <li class="list-inline-item m-3 text-uppercase" data-filter=".social-science">social science</li>
+          <li class="list-inline-item m-3 text-uppercase" data-filter=".ROLE_USER_ANIMATOR">Animation</li>
+          <li class="list-inline-item m-3 text-uppercase" data-filter=".ROLE_USER_TRADUCTOR">Traduction</li>          
         </ul>
       </div>
     </div>
@@ -27,31 +22,32 @@
       <!-- teacher -->
       {% for teammate in team %}
         
-      <div data-ref="mixitup-target" class="col-lg-4 col-sm-6 mb-5 arts law">
+      <div data-ref="mixitup-target" class="col-lg-4 col-sm-6 mb-5 {{(teammate.roles ? is empty) ? teammate.roles|join(' ') : '' }}">
         <div class="card border-0 rounded-0 hover-shadow">
           <img class="card-img-top rounded-0" src="{{ asset ('assets/images/teachers/teacher-1.jpg') }}" alt="teacher">
           <div class="card-body">
             <h4 class="card-title">{{teammate.firstName}} {{teammate.lastName}}</h4>           
            
-           {% if 'ROLE_USER_ANIMATOR' in teammate.role and 'ROLE_USER_ANIMATOR' in teammate.role %}
+            {% if 'ROLE_USER_ANIMATOR' in teammate.roles and 'ROLE_USER_ANIMATOR' in teammate.roles %}
             <p>Animateur | Traducteur</p>                      
-           {% elseif 'ROLE_USER_ANIMATOR' in teammate.role %}
+            {% elseif 'ROLE_USER_ANIMATOR' in teammate.roles %}
             <p>Animateur </p>  
-           {% elseif 'ROLE_USER_TRADUCTOR' in teammate.role %}
-            <p>Traducteur</p>                      
-           {% endif %}
-           
-                        
+            <p>Champ d'activité: {{teammate.activityExecutions|join(', ', ' et ') ?? ' - '}}</p>  
+            {% elseif 'ROLE_USER_TRADUCTOR' in teammate.roles %}
+            <p>Traducteur</p> 
+            {% else %}
+            <p> - </p>    
+            {% endif %} 
+
             <ul class="list-inline">
               <li class="list-inline-item"><a class="text-color" href="#"><i class="ti-facebook"></i></a></li>
-              <li class="list-inline-item"><a class="text-color" href="#"><i class="ti-twitter-alt"></i></a></li>
-              <li class="list-inline-item"><a class="text-color" href="#"><i class="ti-google"></i></a></li>
               <li class="list-inline-item"><a class="text-color" href="#"><i class="ti-linkedin"></i></a></li>
             </ul>
           </div>
         </div>
       </div>
       {% endfor %}
+{#       
       <!-- teacher -->
       <div data-ref="mixitup-target" class="col-lg-4 col-sm-6 mb-5 bio-science">
         <div class="card border-0 rounded-0 hover-shadow">
@@ -195,9 +191,129 @@
             </ul>
           </div>
         </div>
-      </div>
+      </div> #}
     </div>
   </div>
 </section>
+<!-- /teachers -->
+
+<!-- teachers -->
+{# <section class="section">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-12">
+        <h2 class="section-title">L'équipe</h2>
+      </div>
+      <!-- teacher -->
+      <div class="col-lg-4 col-sm-6 mb-5 mb-lg-0">
+        <div class="card border-0 rounded-0 hover-shadow">
+          <img
+            class="card-img-top rounded-0"
+           src="{{ asset ('assets/images/teachers/teacher-1.jpg') }}"
+            alt="teacher"
+          />
+          <div class="card-body">
+            <a href="{{ path ('teacher-single') }}">
+              <h4 class="card-title">Jacke Masito</h4>
+            </a>
+            <p>Teacher</p>
+            <ul class="list-inline">
+              <li class="list-inline-item">
+                <a class="text-color" href="#"
+                  ><i class="ti-facebook"></i
+                ></a>
+              </li>
+              <li class="list-inline-item">
+                <a class="text-color" href="#"
+                  ><i class="ti-twitter-alt"></i
+                ></a>
+              </li>
+              <li class="list-inline-item">
+                <a class="text-color" href="#"><i class="ti-google"></i></a>
+              </li>
+              <li class="list-inline-item">
+                <a class="text-color" href="#"
+                  ><i class="ti-linkedin"></i
+                ></a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <!-- teacher -->
+      <div class="col-lg-4 col-sm-6 mb-5 mb-lg-0">
+        <div class="card border-0 rounded-0 hover-shadow">
+          <img
+            class="card-img-top rounded-0"
+           src="{{ asset ('assets/images/teachers/teacher-2.jpg') }}"
+            alt="teacher"
+          />
+          <div class="card-body">
+            <a href="{{ path ('teacher-single') }}">
+              <h4 class="card-title">Clark Malik</h4>
+            </a>
+            <p>Teacher</p>
+            <ul class="list-inline">
+              <li class="list-inline-item">
+                <a class="text-color" href="#"
+                  ><i class="ti-facebook"></i
+                ></a>
+              </li>
+              <li class="list-inline-item">
+                <a class="text-color" href="#"
+                  ><i class="ti-twitter-alt"></i
+                ></a>
+              </li>
+              <li class="list-inline-item">
+                <a class="text-color" href="#"><i class="ti-google"></i></a>
+              </li>
+              <li class="list-inline-item">
+                <a class="text-color" href="#"
+                  ><i class="ti-linkedin"></i
+                ></a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <!-- teacher -->
+      <div class="col-lg-4 col-sm-6 mb-5 mb-lg-0">
+        <div class="card border-0 rounded-0 hover-shadow">
+          <img
+            class="card-img-top rounded-0"
+           src="{{ asset ('assets/images/teachers/teacher-3.jpg') }}"
+            alt="teacher"
+          />
+          <div class="card-body">
+            <a href="{{ path ('teacher-single') }}">
+              <h4 class="card-title">John Doe</h4>
+            </a>
+            <p>Teacher</p>
+            <ul class="list-inline">
+              <li class="list-inline-item">
+                <a class="text-color" href="#"
+                  ><i class="ti-facebook"></i
+                ></a>
+              </li>
+              <li class="list-inline-item">
+                <a class="text-color" href="#"
+                  ><i class="ti-twitter-alt"></i
+                ></a>
+              </li>
+              <li class="list-inline-item">
+                <a class="text-color" href="#"><i class="ti-google"></i></a>
+              </li>
+              <li class="list-inline-item">
+                <a class="text-color" href="#"
+                  ><i class="ti-linkedin"></i
+                ></a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section> #}
 <!-- /teachers -->
 {% endblock %}

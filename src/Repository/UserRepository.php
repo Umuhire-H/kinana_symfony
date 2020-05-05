@@ -39,13 +39,12 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
     /**
      * @return User[] Returns an array of User objects
      */
-    public function findTeam($value)
+    public function findTeam()
     {
         $qb= $this->createQueryBuilder('u')
-            ->where('u.roles LIKE :role')
-            ->andWhere('u.roles LIKE :role2')
-            ->setParameter('role', '%"' .'ROLE_USER_ANIMATOR' . '"%')
-            ->setParameter('role2', '%"' .'ROLE_USER_TRADUCTOR' . '"%')
+            ->where('u.roles LIKE :role OR u.roles LIKE :role2')
+            ->setParameter('role', '%ROLE_USER_ANIMATOR%' )
+            ->setParameter('role2', '%ROLE_USER_TRADUCTOR%')
             ->orderBy('u.id', 'ASC')
             ->getQuery()
            ->getResult()
@@ -53,7 +52,23 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
         dd($qb);
         return $qb;
     }
- 
+    
+    // /**
+    //  * @return User[] Returns an array of User objects
+    //  */
+    public function findTeamRoles()
+    {
+        $qb= $this->createQueryBuilder('u')
+            ->select('u.roles')
+            ->where('u.roles LIKE :role')
+            ->setParameter('role', '%ROLE_USER_%' )
+            ->orderBy('u.id', 'ASC')
+            ->getQuery();
+        $array=$qb->getArrayResult();
+        
+        dd($array);
+        return $array;
+    }
 
     /*
     public function findOneBySomeField($value): ?User
