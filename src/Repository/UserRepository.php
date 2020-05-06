@@ -45,30 +45,35 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
             ->where('u.roles LIKE :role OR u.roles LIKE :role2')
             ->setParameter('role', '%ROLE_USER_ANIMATOR%' )
             ->setParameter('role2', '%ROLE_USER_TRADUCTOR%')
+            ->leftJoin('u.activityExecutions', 'ae')
+            ->addSelect('ae')
+            ->leftJoin('ae.activity', 'a')
+            ->addSelect('a')
             ->orderBy('u.id', 'ASC')
             ->getQuery()
            ->getResult()
         ;
-        dd($qb);
+        //dd($qb);
         return $qb;
     }
     
     // /**
     //  * @return User[] Returns an array of User objects
     //  */
-    public function findTeamRoles()
-    {
-        $qb= $this->createQueryBuilder('u')
-            ->select('u.roles')
-            ->where('u.roles LIKE :role')
-            ->setParameter('role', '%ROLE_USER_%' )
-            ->orderBy('u.id', 'ASC')
-            ->getQuery();
-        $array=$qb->getArrayResult();
+    // public function findTeamRoles()
+    // {
+    //     $qb= $this->createQueryBuilder('u')
+    //         ->select('u.roles')
+    //         ->where('u.roles LIKE :role OR u.roles LIKE :role2')
+    //         ->setParameter('role', '%ROLE_USER_ANIMATOR%' )
+    //         ->setParameter('role2', '%ROLE_USER_TRADUCTOR%')
+    //        // ->orderBy('u.id', 'ASC')
+    //         ->getQuery();
+    //     $array=$qb->getArrayResult();
         
-        dd($array);
-        return $array;
-    }
+    //     dd($array);
+    //     return $array;
+    // }
 
     /*
     public function findOneBySomeField($value): ?User

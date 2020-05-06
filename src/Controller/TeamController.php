@@ -18,6 +18,7 @@ class TeamController extends AbstractController
         $em = $this->getDoctrine()->getManager();
         $repo = $em->getRepository(User::class);
         $team = $repo->findTeam();
+        // dd($team);
         return $this->render("team/team.html.twig", ['team'=>$team]);
       
     }
