@@ -19,22 +19,33 @@ class TextRepository extends ServiceEntityRepository
         parent::__construct($registry, Text::class);
     }
 
-    // /**
-    //  * @return Text[] Returns an array of Text objects
-    //  */
-    /*
-    public function findByExampleField($value)
+    /**
+     * @return Text[] Returns an array of Text objects
+     */
+    
+    public function findAllTranslations()
     {
         return $this->createQueryBuilder('t')
-            ->andWhere('t.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('t.id', 'ASC')
+            ->leftJoin('t.userTranslator', 'ut')
+            ->addSelect('ut')
+            ->orderBy('t.dateReturn', 'DESC')
             ->setMaxResults(10)
             ->getQuery()
             ->getResult()
         ;
     }
-    */
+    
+    public function findThisById($value): ?Text
+    {
+        return $this->createQueryBuilder('t')
+            ->leftJoin('t.userRequester', 'ur')
+            ->addSelect('ur')
+            ->andWhere('t.id = :val')
+            ->setParameter('val', $value)
+            ->getQuery()
+            ->getOneOrNullResult()
+        ;
+    }
 
     /*
     public function findOneBySomeField($value): ?Text

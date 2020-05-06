@@ -43,7 +43,7 @@ class AppFixtures extends Fixture
         $ActivityExecution->setFreePlace($freePlace);
         $ActivityExecution->setIsComplete(((5-$freePlace) == 0) ? true : false);
         $ActivityExecution->setActivity($activity);
-        //$manager->persist($ActivityExecution);
+        $manager->persist($ActivityExecution);
         //------------
         //-- ACTIVITY
         $activity2 = new Activity();
@@ -61,7 +61,7 @@ class AppFixtures extends Fixture
         $ActivityExecution2->setFreePlace($freePlace);
         $ActivityExecution2->setIsComplete(((5-$freePlace) == 0) ? true : false);
         $ActivityExecution2->setActivity($activity2);
-        //$manager->persist($ActivityExecution2);
+        $manager->persist($ActivityExecution2);
         //-----------------------------
        
         $array_executions = array();
@@ -148,20 +148,22 @@ class AppFixtures extends Fixture
         $traductor->setFirstName($faker->firstName);
         $traductor->setLastName($faker->lastName);
         $traductor->setDateBirth($faker->dateTimeBetween('-70 years','-40 years'));
-        //$manager->persist($traductor);
+        $manager->persist($traductor);
         //-- TEXT
-        $text = new Text();
-        $text->setName('Une comptine');
-        $text->setContentToTranslate($faker->realText(300, 2));
-        $text->setContentTranslated($faker->text(300, 2));
-        $text->setDateReception($faker->dateTimeThisMonth('now'));
-        $text->setDateReception($faker->dateTimeBetween('-30 days','-20 days'));
-        $text->setDateReturn($faker->dateTimeBetween('-15 days','now'));
-        $oneParent = $parent;
-        $text->setUserRequester($oneParent);
-        $text->setRating($faker->numberBetween(0,5));
-        $text->setComment($faker->realText(100, 2));
-        //$manager->persist($traductor);
+        foreach( $array_parents as $parent ){
+            $text = new Text();
+            $text->setName('Une comptine');
+            $text->setContentToTranslate($faker->text(300, 2));
+            $text->setContentTranslated($faker->realText(300, 2));
+            $text->setDateReception($faker->dateTimeThisMonth('now'));
+            //$text->setDateReception($faker->dateTimeBetween('-30 days','-20 days'));
+            $text->setDateReturn($faker->dateTimeBetween('now','-15 days'));           
+            $text->setUserRequester($parent);
+            $text->setRating($faker->numberBetween(0,5));
+            $text->setComment($faker->realText(100, 2));
+            $manager->persist($traductor);
+
+        }
 
         //--
         $traductor->addTranslatedText($text);        

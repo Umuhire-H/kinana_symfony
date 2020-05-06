@@ -1,0 +1,115 @@
+{% extends "base.html.twig" %}
+{% block title %}Traduction | Kina {% endblock %}
+{% block page_title_title %}Traductions {% endblock %}
+{% block page_title_second_title_empty %}{% endblock %}
+{% block page_title_second_title_full_title %} {{translation.name}}{% endblock %}
+{% block page_title_content %}{% endblock %}
+
+{% block content %}
+<!-- blog details -->
+<section class="section-sm bg-gray">
+  <div class="container">
+    <div class="row">
+  
+      <!-- blog contect -->
+      
+      {# <div class="col-12 mb-5"> #}
+          <!-- blog post -->
+          <article class="col-lg-6 col-md-6 col-sm-12 mb-5">
+            <div class="card rounded-0 border-bottom border-primary border-top-0 border-left-0 border-right-0 hover-shadow">
+              <img class="card-img-top rounded-0" src="{{ asset ('assets/images/blog/post-1.jpg') }}" alt="Post thumb">
+              <div class="card-body">
+                <!-- post meta -->
+                <ul class="list-inline mb-3">
+                  <!-- author -->
+                  <li class="list-inline-item mr-3 ml-0">Traduit par {{translation.userTranslator.firstName}} {{translation.userTranslator.lastName}} </li>
+                  <!-- post date -->
+                  <li class="list-inline-item mr-3 ml-0"> le {{translation.dateReturn|date("d-m-Y")}}</li>
+                </ul>
+                <h4 class="card-title">{{translation.name}}</h4>
+                
+                <p class="card-text ">{{translation.contentTranslated}}</p>
+                
+              </div>
+            </div>
+          </article>
+          <!-- blog post -->
+          <!-- blog post -->
+          <article class="col-lg-6 col-md-6 col-sm-12 mb-5">
+            <div class="card rounded-0 border-bottom border-primary border-top-0 border-left-0 border-right-0 hover-shadow">
+              <img class="card-img-top rounded-0" src="{{ asset ('assets/images/blog/post-1.jpg') }}" alt="Post thumb">
+              <div class="card-body">
+                <!-- post meta -->
+                <ul class="list-inline mb-3">
+                  <!-- author -->
+                  <li class="list-inline-item mr-3 ml-0">Demandée par {{translation.userRequester.firstName}} </li>
+                  <!-- post date -->
+                  <li class="list-inline-item mr-3 ml-0">le {{ translation.dateReception|date("d-m-Y")}}</li>
+                </ul>
+                <h4 class="card-title">{{translation.name}}</h4>
+                
+                <p class="card-text ">{{translation.contentTranslated}}</p>
+                
+              </div>
+            </div>
+          </article>
+          <!-- blog post -->
+      {# </div> #}
+      <!-- comment box -->
+      {# <div class="col-12">
+        <form action="#" class="row">
+          <div class="col-sm-6">
+            <input type="text" class="form-control mb-4" id="name" name="name" placeholder="Full Name">
+          </div>
+          <div class="col-sm-6">
+            <input type="email" class="form-control mb-4" id="mail" name="mail" placeholder="Email Address">
+          </div>
+          <div class="col-12">
+            <textarea name="comment" id="comment" class="form-control mb-4" placeholder="Comment Here..."></textarea>
+          </div>
+          <div class="col-12">
+            <button type="submit" value="send" class="btn btn-primary">post comment</button>
+          </div>
+        </form>
+      </div> #}
+      
+    </div>
+  </div>
+</section>
+<!-- /blog details -->
+
+<!-- recommended post -->
+{# <section class="section">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <h2 class="section-title">Recommended</h2>
+      </div>
+    </div>
+  <div class="row justify-content-center">
+  <!-- blog post -->
+  <article class="col-lg-4 col-sm-6 mb-5 mb-lg-0">
+    <div class="card rounded-0 border-bottom border-primary border-top-0 border-left-0 border-right-0 hover-shadow">
+      <img class="card-img-top rounded-0" src="{{ asset ('assets/images/blog/post-1.jpg') }}" alt="Post thumb">
+      <div class="card-body">
+        <!-- post meta -->
+        <ul class="list-inline mb-3">
+          <!-- post date -->
+          <li class="list-inline-item mr-3 ml-0">August 28, 2019</li>
+          <!-- author -->
+          <li class="list-inline-item mr-3 ml-0">By Jonathon</li>
+        </ul>
+        <a href="{{ path ('blog-single') }}">
+          <h4 class="card-title">The Expenses You Are Thinking.</h4>
+        </a>
+        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicin</p>
+        <a href="{{ path ('blog-single') }}" class="btn btn-primary btn-sm">read more</a>
+      </div>
+    </div>
+  </article>
+  
+</div>
+  </div>
+</section> #}
+<!-- /recommended post -->
+{% endblock %}
