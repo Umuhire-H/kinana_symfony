@@ -13,8 +13,8 @@ class ErrorsController extends AbstractController
      */
     public function errorPage(Request $req)
     {
-        $error = $req;
-        dd($error);
+        $error = $req->get('message');
+        // dd($error);
         return $this->render('errors/error-page.html.twig', [
             'error' => $error  ]);
     }

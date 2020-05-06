@@ -34,6 +34,23 @@ class TextRepository extends ServiceEntityRepository
             ->getResult()
         ;
     }
+     /**
+     * @return Text[] Returns an array of Text objects
+     */
+    
+    public function findAllExcept($value)
+    {
+        return $this->createQueryBuilder('t')
+            ->leftJoin('t.userTranslator', 'ut')
+            ->addSelect('ut')
+            ->where('t.id <> :val')
+            ->setParameter('val', $value)
+            ->orderBy('t.dateReturn', 'DESC')
+            ->setMaxResults(10)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
     
     public function findThisById($value): ?Text
     {

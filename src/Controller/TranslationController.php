@@ -32,16 +32,16 @@ class TranslationController extends AbstractController
      */
     public function translation(Request $req)
     {
-       
+       //dd($req);
         $em = $this->getDoctrine()->getManager();
                
         $repoText = $em->getRepository(Text::class);
         $oneTranslation = $repoText->findThisById($req->get('translationId'));
-        //$oneTranslation = $repoText->find($req->get('translationId'));
         // dd($oneTranslation);
-
-        if (!is_null($oneTranslation)) {
-            return $this->render('translation/translation.html.twig', ['translation' => $oneTranslation]);
+        $otherTranslations = $repoText->findAllExcept($req->get('translationId'));
+        
+        if (!is_null($oneTranslation) && !is_null($otherTranslations)) {
+            return $this->render('translation/translation.html.twig', ['translation' => $oneTranslation, 'translations' => $otherTranslations]);
            
         }
         return $this->forward('App\Controller\ErrorsController:errorPage', ['message'=> 'Traduction en cours de modification.']);
